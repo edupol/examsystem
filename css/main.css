@@ -1,0 +1,153 @@
+body{
+    font-size: 18px;
+}
+.customFont{
+  font-size:16px;
+}
+.customFont0{
+  font-size:18px;
+}
+.customFont1{
+  font-size:22px;
+}
+.customFont2{
+  font-size:30px; 
+}
+
+.form-control1{
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555555;
+    display: block;
+    font-size: 18px;
+    height: 38px;
+    line-height: 1.42857;
+    padding: 8px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+.padd-top-25{
+    padding-top: 25px;
+}
+#ExamsContainer{
+    min-height: 200px;
+}
+#changepwd,#QuestionsContainer{
+    min-height: 400px;
+}
+.dataTable tbody tr td{
+    vertical-align: middle;
+}
+.fixbox{
+    height: 60px;
+}
+.fix-head-text{
+    padding: 10px 15px 0 0;
+}
+#loginBox{
+    width: 41.6667%
+}/*Question CSS*/
+.question-box{
+    margin-bottom: 10px;
+}
+.exam-hilight{
+    background-color: #f9f9f9;
+}
+.scroll-to {
+    display: inline-block;
+    clear: both;
+    /*background: #cecece;*/
+    color: #333;
+    padding: 0 10px 5px;
+    margin: 20px 0 0;
+    text-shadow: none;
+}
+#examContainer{
+    height: 500px;
+    overflow-y: scroll;
+}
+.exam-text{
+    padding-left: 5px;
+}
+.exam-name{
+  font-size: 18px;
+}
+/*input#belongto{
+    min-width: 610px;
+}*/
+
+
+.typeahead,
+.tt-query,
+.tt-hint {
+    min-width: 610px;
+  padding: 8px 12px;
+  line-height: 30px;
+
+  border: 2px solid #ccc;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+  outline: none;
+}
+
+.typeahead {
+  background-color: #fff;
+}
+
+.typeahead:focus {
+  border: 2px solid #0097cf;
+}
+
+.tt-query {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+  color: #999
+}
+
+.tt-menu {
+  min-width: 580px;
+  margin: 12px 0;
+  padding: 8px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+  padding: 3px 20px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.tt-suggestion:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #0097cf;
+}
+
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #0097cf;
+
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+footer{
+  padding-top: 20px;
+  font-size: 16px;
+}
