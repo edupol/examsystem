@@ -33,16 +33,14 @@
                 </ul>
 
                 <div class="box ">
-                    <div class="col-md-3"><span class="label1">ผู้เข้าทดสอบ</span><span class="exam-text">xxxxxxxx</span></div>
-                    <div class="col-md-2"><span class="label1">ตำแหน่ง</span><span class="exam-text">xxxxxxxx</span></div>
-                    <div class="col-md-2"><span class="label1">จำนวนข้อ</span><span class="exam-text">xxxxxxxx</span></div>                    
-                    <div class="col-md-5"><span class="label1">ชื่อแบบทดสอบ</span><span class="exam-text">xxxxxxxx</span></div>
-                </div>
-                <div class="box ">
+                    <div class="col-md-12"><span class="label1">ชื่อแบบทดสอบ</span><span class="exam-text">xxxxxxxx</span></div>
                     <div class="col-md-3"><span>เวลาทำข้อสอบ</span><span id="StartClock" class="exam-text">xxxxxxxx</span></div>
-                    <div class="col-md-2"><span>ใช้เวลาไป</span><span id="StartClock" class="exam-text">xxxxxxxx</span></div>
+                    <div class="col-md-3"><span>ใช้เวลาไป</span><span id="StartClock" class="exam-text">xxxxxxxx</span></div>
                     <div class="col-md-3"><span>เหลือเวลา</span><span id="EndClock"  class="exam-text">xxxxxxxx</span></div>
-                </div>                
+                    <div class="col-md-3"><span class="label1">จำนวนข้อ</span><span class="exam-text">xxxxxxxx</span></div>                    
+
+                </div>
+            
             </div>
             <form id="answers">
                 <div class="row">

@@ -964,6 +964,7 @@ window.ListOfExams = {
 window.TestExam = {
 	init : function(){
 		var self = this;
+
 		self.load();
 
 		jQuery('#saveAnswer').on('click',function(e){
