@@ -62,6 +62,53 @@ class ExamAssignment extends BaseClass
 		
 		echo json_encode($results);	
 	}
+	
+	public function getAssignmentsByStudentID(){
+
+		$user_id 				= $_SESSION['user_id'];
+		$results['data'] 		= array();
+
+
+		//Sql statement
+	    $sql     = " SELECT c.id,c.name,b.start_assignment,b.end_assignment,c.exam_minute FROM student_course_training  as a
+	    			 JOIN student_exam_assignment as b
+	                 ON  a.student_course_id = b.student_course_id
+	                 JOIN exam_random_history as c
+	                 on b.exam_random_history_id = c.id
+	               ";
+	    $where = array();
+	    $params = array();	  
+
+	    //user identity criteria
+		if (isset($user_id)) {
+
+			//sql for pwd criteria			
+			array_push($where, "a.student_id = ? ");
+			array_push($params, $user_id);	
+
+			array_push($where, " DATE(NOW()) <= DATE(b.end_assignment)");
+		}    
+
+		//merge where conditions
+		if(isset($where)){
+			$sql 	 .= PDOAdpter::getInstance()->whereQuery($where);
+		}
+
+		$exams  		= PDOAdpter::getInstance()->select($sql, $params, false);
+
+		if(isset($exams)){
+			foreach ($exams as $key => $value) {
+				$exams[$key]['exam_random_history_id']  	= str_pad($value['id'], 10, "0", STR_PAD_LEFT);
+				$exams[$key]['start_assignment'] 			= date_format(date_create($value['start_assignment']), 'd/m/Y ');
+				$exams[$key]['end_assignment'] 			    = date_format(date_create($value['end_assignment']), 'd/m/Y ');
+				$exams[$key]['datetime'] 					= $exams[$key]['start_assignment'] .' - '. $exams[$key]['end_assignment'];
+			}
+
+			$results['data'] = $exams;
+		}
+			
+		echo json_encode( $results );
+	}
 
 	public function isAlreadyExist($data){
 		//db table		

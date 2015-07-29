@@ -1228,7 +1228,7 @@ window.ExamAssignment = {
 				container.first().trigger('change');
 			}	
 		});		
-	},save : function(){//working
+	},save : function(){
 		if(window.Setting.exams[0] == null) return;
 		window.Setting.exams[0].startAssignment = jQuery('#startAssignment').val();
 		window.Setting.exams[0].endAssignment = jQuery('#endAssignment').val();
@@ -1258,28 +1258,10 @@ window.ListOfTests = {
 	init : function(){
 		var self = this;
 		self.setDataTable();
-	},getUser : function(cb){
-		var self 	= this,
-			url 	= (window.Setting.isTest)? window.Setting.testAPI : window.Setting.serverAPI ;
-			url 	+= 'examstore/user/id';
-
-		jQuery.ajax({
-			url : url,
-			type: 'GET' ,
-			dataType: "json",
-			success: function(response){
-
-				if(response != "undefined" && response != null){
-					if(typeof cb =="function"){
-						cb(response);	
-					}
-				}
-			}	
-		});		
 	},setDataTable : function(){
 		var self 	= this,
 			url 	= (window.Setting.isTest)? window.Setting.testAPI : window.Setting.serverAPI ;
-			url 	+= 'examstore/history';
+			url 	+= 'exam/assignment/me';
 
 		//datatable
 		jQuery('.datatable').dataTable({
@@ -1289,15 +1271,14 @@ window.ListOfTests = {
 		        "sLengthMenu": "_MENU_ records per page"
 		    },
 		     "ajax": url,
-		     "columns" : [{ "data": "exam_code" },{ "data": "name" },{ "data": "minute" },{ "data": "datetime" },
+		     "columns" : [{ "data": "exam_random_history_id" },{ "data": "name" },{ "data": "exam_minute" },{ "data": "datetime" },
             {
                 sortable: false,
                 "render": function ( data, type, full, meta ) {
                 	if(data == full) return false;
-                    var buttonID = full.exam_id,
-                    	btn = '<a id="'+buttonID+'" href="export_exam.php" class="word btn btn-success customFont" role="button"><i class="glyphicon glyphicon-list-alt icon-white"></i>  ข้อสอบ</a>';
-                    	btn += '   <a id="'+buttonID+'" href="export_excel.php" class="excel btn btn-info customFont" role="button"><i class="glyphicon glyphicon-th-large icon-white"></i>  เฉลย</a>';
-                    	btn += '   <a id="'+buttonID+'" href="exam_assignment.php" class="assignment btn btn-warning customFont" role="button"><i class="glyphicon glyphicon-list-alt icon-white"></i>  กำหนดการสอบ</a>';
+                    var buttonID = full.id,
+                    	btn = '<a id="'+buttonID+'" href="test.php?exam_id='+buttonID+'" class="word btn btn-success customFont" role="button"><i class="glyphicon glyphicon-list-alt icon-white"></i>  ทำข้อสอบ</a>';
+                    	btn += '   <a id="'+buttonID+'" href="#result.php" class="excel btn btn-info customFont" role="button"><i class="glyphicon glyphicon-th-large icon-white"></i>  ตรวจสอบผล</a>';
                 	return btn;
                 }
             }            
@@ -1311,11 +1292,9 @@ window.ListOfTests = {
 			e.stopPropagation();
 			var route = jQuery(this).attr('href'),
 				exam_id = jQuery(this).attr('id');
-			self.getUser(function(response){
-				jQuery('input[name="user_id"]').val(response.user_id);	
-				jQuery('input[name="exam_id"]').val(exam_id);				
-				jQuery('#examSubmit').attr({'action':route}).submit();				
-			});
+
+			jQuery('input[name="exam_id"]').val(exam_id);				
+			jQuery('#examSubmit').attr({'action':route}).submit();		
 		});
 
 	}
@@ -1345,6 +1324,9 @@ $(document).ready(function(){
 		break;
 		case 'exam_assignment.php':
 			window.ExamAssignment.init();
+		break;
+		case 'list_of_test.php' :
+			window.ListOfTests.init();
 		break;
 		default : 
 		break;
