@@ -2,9 +2,8 @@
 
 include("connect.inc");	
 
-$sbgdb=mysql_query("select * from sbgrb as a join sbj as b
-on  a.sbgid = b.sbgid
-where a.sblid=4");
+$sbgdb=mysql_query("select * from exam_group as a join exam_subject as b
+on  a.id = b.exam_group_id where a.exam_level_id=4");
 
 $totalArray = array();
 while($sbgrs=mysql_fetch_array($sbgdb)){	

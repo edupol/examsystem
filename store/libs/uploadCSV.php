@@ -1,5 +1,4 @@
-<?php 
-require_once("../examsystem/libs/PDOAdapter.php");
+<?php date_default_timezone_set('Asia/Bangkok');
 //upload Btn click and post back
 if(isset($_POST['uploadFile'])){ 
 
@@ -29,24 +28,26 @@ if(isset($_POST['uploadFile'])){
 	      if($readFileCSV === FALSE){
 	         die("Error opening File : "."$fileCSV"); 	
 	      }
+	      $date = new DateTime("now");
           while (($objArr = fgetcsv($readFileCSV, 100000, ",")) !== FALSE) {		  
 					
             //echo "SQL : $strSQL";
 			//$strSQL .="(`sbno` ,`apid13` ,`apdate` ,`edid13` ,`eddate` ,`qtn` ,`ans1` ,`ans2` ,`ans3` ,`ans4`) ";
-			$data['apid13'] = $apid13;
-			$data['apdate'] = date('Y-m-d');
-			//$data['edid13'] = '';			
-			//$data['eddate'] = '';
-			
-			
+			//$data['apid13'] = $apid13;
+			//$data['apdate'] = date('Y-m-d');
+
+			$data['exam_subject_id'] = $_SESSION['vvsbid'];
 			$data['qtn'] 	= $objArr[1];//iconv( 'UTF-8', 'TIS-620', $objArr[1]);
-			$data['ans1'] 	= '00'.substr(trim($objArr[2]),2);//(($objArr[6] == "1")?"1":"0").$objArr[2];//iconv( 'UTF-8', 'TIS-620', $objArr[2]);
-			$data['ans2'] 	= '00'.substr(trim($objArr[3]),2);//(($objArr[6] == "2")?"1":"0").$objArr[3];//iconv( 'UTF-8', 'TIS-620', $objArr[3]);
-			$data['ans3'] 	= '00'.substr(trim($objArr[4]),2);//(($objArr[6] == "3")?"1":"0").$objArr[4];//iconv( 'UTF-8', 'TIS-620', $objArr[4]);															
-			$data['ans4'] 	= '00'.substr(trim($objArr[5]),2);//(($objArr[6] == "4")?"1":"0").$objArr[5];//iconv( 'UTF-8', 'TIS-620', $objArr[5]);
+			$data['ans1'] 	= (($objArr[6] == "1")?"1":"0").$objArr[2];//'01'.substr(trim($objArr[2]),2);//iconv( 'UTF-8', 'TIS-620', $objArr[2]);
+			$data['ans2'] 	= (($objArr[6] == "2")?"1":"0").$objArr[3];//'02'.substr(trim($objArr[3]),2);//iconv( 'UTF-8', 'TIS-620', $objArr[3]);
+			$data['ans3'] 	= (($objArr[6] == "3")?"1":"0").$objArr[4];//'03'.substr(trim($objArr[4]),2);//iconv( 'UTF-8', 'TIS-620', $objArr[4]);															
+			$data['ans4'] 	= (($objArr[6] == "4")?"1":"0").$objArr[5];//'04'.substr(trim($objArr[5]),2);//iconv( 'UTF-8', 'TIS-620', $objArr[5]);
+			$data['answer'] = $objArr[6];
+			$data['created_at'] = $date->format('Y-m-d H:i:s'); 
+			$data['instrutor_id'] = 456;//$_SESSION['vvid13'];
 
 			//save row to database			
-			$pdo->insert($data,$examID);
+			$pdo->insert($data,'questions');
     	  }
     	  fclose($readFileCSV); 		  
 		}  else { 
@@ -56,7 +57,7 @@ if(isset($_POST['uploadFile'])){
 		echo "Cannot Open File $fileCSV"; 
 	}		
 	
-    $sql     = "SELECT * FROM $examID ";
+    $sql     = "SELECT * FROM questions where exam_subject_id = " . $_SESSION['vvsbid'];
 	$exams = $pdo->select($sql,null,false);
 
 	if(isset($exams)){

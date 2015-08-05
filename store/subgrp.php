@@ -1,5 +1,5 @@
-<?	session_start();
-	if(!$_SESSION['vvstatus'][7]){ echo "<script>window.location='../index.php'</script>";  exit();}
+<?php	session_start();
+	//if(!$_SESSION['vvstatus'][7]){ echo "<script>window.location='../index.php'</script>";  exit();}
 ?>
 <html>
 	<head>
@@ -18,7 +18,7 @@
 		
 	</head>
 	<body background="images/bg.png">
-<?	include("connect.inc");
+<?php	include("connect.inc");
 	//ตารางหลัก sbgrb
 	$sbgname="";
 	$sblid="";
@@ -31,7 +31,7 @@
 		$subm=trim($_POST['subm']);
 		$hsbgid=trim($_POST['hsbgid']);
 		if($subm=="บันทึกข้อมูล")
-		{	$db=mysql_query("select * from sbgrb where sbgname='$sbgname' and sblid='$sblid'");
+		{	$db=mysql_query("select * from exam_group where name='$sbgname' and exam_level_id='$sblid'");
 			$row=@mysql_num_rows($db); if($row==null){ $row=0; }
 			if($row>0)
 			{	$rs=mysql_fetch_array($db);	
@@ -39,20 +39,20 @@
 				$msg="ไม่บันทึกข้อมูล เนื่องจาก $sbgname มีบันทึกไว้แล้วที่รหัส : $sbgid";
 			} else
 			{	
-				$sql = "insert into sbgrb (sbgid,sbgname,sblid) values ('$sbgid','$sbgname','$sblid')";
+				$sql = "insert into exam_group (id,name,exam_level_id) values ('$sbgid','$sbgname','$sblid')";
 				var_dump($sql);
 				mysql_query($sql);
 
 			}
 		} else	//แก้ไขข้อมูล
-		{	$db=mysql_query("select * from sbgrb where sbgname='$sbgname' and sblid='$sblid' and sbgid<>'$hsbgid'");
+		{	$db=mysql_query("select * from exam_group where name='$sbgname' and exam_level_id='$sblid' and id<>'$sbgid'");
 			$row=mysql_numrows($db);
 			if($row>0)
 			{	$rs=mysql_fetch_array($db);
 				$sbgid=$rs['sbgid'];	
 				$msg="ไม่บันทึกข้อมูล เนื่องจาก $sbgname มีบันทึกไว้แล้วที่รหัส : $sbgid";
 			} else
-			{	mysql_query("update sbgrb set sbgname='$sbgname',sblid='$sblid' where sbgid='$sbgid'");
+			{	mysql_query("update exam_group set name='$sbgname',exam_level_id='$sblid' where id='$sbgid'");
 			}
 		}	
 		$sbgname="";
@@ -60,9 +60,9 @@
 	}
 	if(isset($_GET['delsbgid']))
 	{	$sbgid=$_GET['delsbgid'];
-		mysql_query("delete from sbgrb where sbgid='$sbgid'");
+		mysql_query("delete from exam_group where id='$sbgid'");
 	}
-	$db=mysql_query("select * from sbgrb a join sblevel b on a.sblid=b.sblid order by a.sbgid desc");
+	$db=mysql_query("select * from exam_group a join exam_level b on a.id=b.id order by a.id desc");
 	$row=@mysql_num_rows($db); if($row==null){ $row=0; };
 	if($row>0)
 	{	mysql_data_seek($db,0);
@@ -135,11 +135,11 @@
 			<td width="319" bgcolor="#FFCC99">
 				<select name="sblid" size="1" tabindex="1">
 					<option>เลือกชื่อหลักสูตร หากไม่มีกรุณาปรับปรุงชื่อหลักสูตร</option>
-				<?	$sbldb=mysql_query("select * from sblevel");
-					while($sblrs=mysql_fetch_array($sbldb)){	$osblid=trim($sblrs['sblid']);	$osblname=trim($sblrs['sblname']);	
+				<?php	$sbldb=mysql_query("select * from exam_level");
+					while($sblrs=mysql_fetch_array($sbldb)){	$osblid=trim($sblrs['id']);	$osblname=trim($sblrs['name']);	
 				?>
-					<option value="<? echo $osblid; ?>" <? if($osblid==$sblid){ echo "selected"; } ?>><? echo $osblname; ?></option>
-				<? }  ?>	
+					<option value="<? echo $osblid; ?>" <?php if($osblid==$sblid){ echo "selected"; } ?>><?php echo $osblname; ?></option>
+				<?php }  ?>	
 			  </select>
 		  </td>
 	  </tr>
@@ -147,8 +147,8 @@
 			<td width="151" align="right" bgcolor="#FFCC99">
 			<span style="font-size: 12pt; font-weight: 700">ชื่อกลุ่มวิชา :</span></td>
 			<td width="591" bgcolor="#FFCC99" colspan="3">
-			<input type=hidden name="hsbgid" value="<? echo $hsbgid; ?>">
-			 <input type="text" name="sbgname" value="<? echo $sbgname; ?>" size="102" style="font-family: Tahoma; font-size: 12; color: #4B3D34; " tabindex="2"></td>
+			<input type=hidden name="hsbgid" value="<?php echo $hsbgid; ?>">
+			 <input type="text" name="sbgname" value="<?php echo $sbgname; ?>" size="102" style="font-family: Tahoma; font-size: 12; color: #4B3D34; " tabindex="2"></td>
 		</tr>
 		<tr>
 			<td width="735" colspan="4">
@@ -172,7 +172,7 @@
 	<table border="0" width="850" height="71" cellspacing="1" cellpadding="2">
 		<tr>
 			<td align="center" colspan="5">
-			<font color="#0000FF"><span style="font-size: 12pt" lang="en-us"><? echo $msg; ?></span></font></td>
+			<font color="#0000FF"><span style="font-size: 12pt" lang="en-us"><?php echo $msg; ?></span></font></td>
 		</tr>
 		<tr>
 			<td width="98" align="center" bgcolor="#FF6600">
@@ -191,42 +191,42 @@
 			<font color="#FFFFFF">
 			<span style="font-size: 12pt; font-weight: 700">ลบ</span></font></td>
 		</tr>
-<?	for($i=0;$i<$row;$i++)
-	{	$rs=mysql_fetch_array($db);		$ssbgid=trim($rs['sbgid']);	$ssbgname=trim($rs['sbgname']);	
-											$ssblid=trim($rs['sblid']);		$ssblname=trim($rs['sblname']);
+<?php	for($i=0;$i<$row;$i++)
+	{	$rs=mysql_fetch_array($db);		$ssbgid=trim($rs['id']);	$ssbgname=trim($rs['name']);	
+											$ssblid=trim($rs['id']);		$ssblname=trim($rs['name']);
 		if(($i%2)==0){
 ?>		
 		<tr>
 			<td width="98" bgcolor="#FFCC99">
-			<p align="center"><span style="font-size: 11pt" lang="en-us"><? echo $ssbgid; ?></span></td>
+			<p align="center"><span style="font-size: 11pt" lang="en-us"><?php echo $ssbgid; ?></span></td>
 			<td width="345" bgcolor="#FFCC99">
-			<span style="font-size: 11pt" lang="en-us"><? echo $ssbgname; ?></span></td>
+			<span style="font-size: 11pt" lang="en-us"><?php echo $ssbgname; ?></span></td>
 			<td width="344" bgcolor="#FFCC99">
-			<span style="font-size: 11pt" lang="en-us"><? echo $ssblname; ?></span></td>
+			<span style="font-size: 11pt" lang="en-us"><?php echo $ssblname; ?></span></td>
 			<td width="21" bgcolor="#FFCC99" align="center">
 			<p align="center">
-			<a href="subgrp.php?editsbgid=<? echo $ssbgid; ?>&editsbgname=<? echo $ssbgname; ?>&editsblid=<? echo $ssblid; ?>">
+			<a href="subgrp.php?editsbgid=<?php echo $ssbgid; ?>&editsbgname=<?php echo $ssbgname; ?>&editsblid=<?php echo $ssblid; ?>">
 			<img border="0" src="images/b_edit.png" width="16" height="16"></a></td>
 			<td width="21" bgcolor="#FFCC99" align="center">
-			<a href="subgrp.php?delsbgid=<? echo $ssbgid; ?>">
-			<img border="0" src="images/b_drop.png" width="16" height="16" onClick="return conf('<? echo $ssbgid; ?>')"></a></td>
+			<a href="subgrp.php?delsbgid=<?php echo $ssbgid; ?>">
+			<img border="0" src="images/b_drop.png" width="16" height="16" onClick="return conf('<?php echo $ssbgid; ?>')"></a></td>
 		</tr>
-<? } else {  ?>		
+<?php } else {  ?>		
 		<tr>
 			<td width="98" bgcolor="#FF9966" height="22">
-			<p align="center"><span style="font-size: 11pt" lang="en-us"><? echo $ssbgid; ?></span></td>
+			<p align="center"><span style="font-size: 11pt" lang="en-us"><?php echo $ssbgid; ?></span></td>
 			<td width="345" bgcolor="#FF9966" height="22">
-			<span style="font-size: 11pt" lang="en-us"><? echo $ssbgname; ?></span></td>
+			<span style="font-size: 11pt" lang="en-us"><?php echo $ssbgname; ?></span></td>
 			<td width="344" bgcolor="#FF9966" height="22">
-			<span style="font-size: 11pt" lang="en-us"><? echo $ssblname; ?></span></td>
+			<span style="font-size: 11pt" lang="en-us"><?php echo $ssblname; ?></span></td>
 			<td width="21" bgcolor="#FF9966" align="center" height="22">
-			<a href="subgrp.php?editsbgid=<? echo $ssbgid; ?>&editsbgname=<? echo $ssbgname; ?>&editsblid=<? echo $ssblid; ?>">
+			<a href="subgrp.php?editsbgid=<?php echo $ssbgid; ?>&editsbgname=<?php echo $ssbgname; ?>&editsblid=<?php echo $ssblid; ?>">
 			<img border="0" src="images/b_edit.png" width="16" height="16"></a></td>
 			<td width="21" bgcolor="#FF9966" align="center" height="22">
-			<a href="subgrp.php?delsbgid=<? echo $ssbgid; ?>">
+			<a href="subgrp.php?delsbgid=<?php echo $ssbgid; ?>">
 			<img border="0" src="images/b_drop.png"  onclick="return conf('<? echo $ssbgid; ?>')"  width="16" height="16"></a></td>
 		</tr>
-<?	} }
+<?php	} }
 ?>
 	</table>
 
@@ -239,7 +239,7 @@
 					ฝ่ายอำนวยการ 6 กองบังคับการอำนวยการ กองบัญชาการศึกษา</span></font></td>
 				</tr>
 			</table>
-<?
+<?php
 	mysql_close($conn);
 ?>
 </body>

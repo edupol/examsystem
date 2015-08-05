@@ -1,5 +1,5 @@
-<?	session_start();
-	if(!$_SESSION['vvstatus'][7]){ echo "<script>window.location='../index.php'</script>";  exit();}
+<?php	session_start();
+	//if(!$_SESSION['vvstatus'][7]){ echo "<script>window.location='../index.php'</script>";  exit();}
 ?>
 <html>
 	<head>
@@ -18,7 +18,7 @@
 		
 	</head>
 	<body background="images/bg.png">
-<?	include("connect.inc");
+<?php	include("connect.inc");
 	//ตารางหลัก sblevel
 	$sblname="";
 	$msg="";
@@ -29,24 +29,24 @@
 		$subm=trim($_POST['subm']);
 		$hsblname=trim($_POST['hsblname']);
 		if($subm=="บันทึกข้อมูล")
-		{	$db=mysql_query("select * from sblevel where sblname='$sblname'");
+		{	$db=mysql_query("select * from exam_level where name='$sblname'");
 			$row=@mysql_num_rows($db); if($row==null){ $row=0; }
 			if($row>0)
 			{	$rs=mysql_fetch_array($db);	
 				$sblid=$rs['sblid'];	
 				$msg="ไม่บันทึกข้อมูล เนื่องจาก $sblname มีบันทึกไว้แล้วที่รหัส : $sblid";
 			} else
-			{	mysql_query("insert into sblevel (sblid,sblname) values ('$sblid','$sblname')");
+			{	mysql_query("insert into exam_level (id,name) values ('$sblid','$sblname')");
 			}
 		} else	//แก้ไขข้อมูล
-		{	$db=mysql_query("select * from sblevel where sblname='$sblname' and sblname<>'$hsblname'");
+		{	$db=mysql_query("select * from exam_level where name='$sblname' and name<>'$hsblname'");
 			$row=mysql_numrows($db);
 			if($row>0)
 			{	$rs=mysql_fetch_array($db);
 				$sblid=$rs['sblid'];	
 				$msg="ไม่บันทึกข้อมูล เนื่องจาก $sblname มีบันทึกไว้แล้วที่รหัส : $sblid";
 			} else
-			{	mysql_query("update sblevel set sblname='$sblname' where sblid='$sblid'");
+			{	mysql_query("update exam_level set name='$sblname' where id='$sblid'");
 			}
 		}	
 		$sblname="";
@@ -54,9 +54,9 @@
 	}
 	if(isset($_GET['delsblid']))
 	{	$sblid=$_GET['delsblid'];
-		mysql_query("delete from sblevel where sblid='$sblid'");
+		mysql_query("delete from exam_level where id='$sblid'");
 	}
-	$db=mysql_query("select * from sblevel order by sblid desc");
+	$db=mysql_query("select * from exam_level order by id desc");
 	$row=@mysql_num_rows($db); if($row==null){ $row=0; };
 	if($row>0)
 	{	mysql_data_seek($db,0);
@@ -95,7 +95,7 @@
 					<span style="font-size: 10pt; font-weight: 700" lang="en-us">
 					<? echo $_SESSION['vvname']; ?></span></td>
 					<td align="center" width="65" bgcolor="#F2CEB3">
-			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td>
+			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td>
 				</tr>
 				<tr>
 					<td align="center" colspan="5">
@@ -117,8 +117,8 @@
 			<td width="151" align="right" bgcolor="#FFCC99">
 			<span style="font-size: 12pt; font-weight: 700">ชื่อหลักสูตร :</span></td>
 			<td width="339" bgcolor="#FFCC99">
-			<input type=hidden name="hsblname" value="<? echo $hsblname; ?>">
-			<input type="text" name="sblname" value="<? echo $sblname; ?>" size="58" style="font-family: Tahoma; font-size: 12; color: #4B3D34; " tabindex="1"></td>
+			<input type=hidden name="hsblname" value="<?php echo $hsblname; ?>">
+			<input type="text" name="sblname" value="<?php echo $sblname; ?>" size="58" style="font-family: Tahoma; font-size: 12; color: #4B3D34; " tabindex="1"></td>
 		</tr>
 		<tr>
 			<td width="493" colspan="2">
@@ -159,37 +159,37 @@
 			<font color="#FFFFFF">
 			<span style="font-size: 12pt; font-weight: 700">ลบ</span></font></td>
 		</tr>
-<?	for($i=0;$i<$row;$i++)
+<?php	for($i=0;$i<$row;$i++)
 	{	$rs=mysql_fetch_array($db);		$ssblid=trim($rs['sblid']);	$ssblname=trim($rs['sblname']);
 		if(($i%2)==0){
 ?>		
 		<tr>
 			<td width="73" bgcolor="#FFCC99">
-			<p align="center"><span style="font-size: 11pt" lang="en-us"><? echo $ssblid; ?></span></td>
+			<p align="center"><span style="font-size: 11pt" lang="en-us"><?php echo $ssblid; ?></span></td>
 			<td width="520" bgcolor="#FFCC99">
-			<span style="font-size: 11pt" lang="en-us"><? echo $ssblname; ?></span></td>
+			<span style="font-size: 11pt" lang="en-us"><?php echo $ssblname; ?></span></td>
 			<td width="21" bgcolor="#FFCC99" align="center">
 			<p align="center">
-			<a href="sblevel.php?editsblid=<? echo $ssblid; ?>&editsblname=<? echo $ssblname; ?>">
+			<a href="sblevel.php?editsblid=<?php echo $ssblid; ?>&editsblname=<?php echo $ssblname; ?>">
 		  <img border="0" src="images/b_edit.png" width="16" height="16"></a></td>
 			<td width="21" bgcolor="#FFCC99" align="center">
-			<a href="sblevel.php?delsblid=<? echo $ssblid; ?>">
-			<img border="0" src="images/b_drop.png" width="16" height="16" onClick="return conf('<? echo $ssblid; ?>')"></a></td>
+			<a href="sblevel.php?delsblid=<?php echo $ssblid; ?>">
+			<img border="0" src="images/b_drop.png" width="16" height="16" onClick="return conf('<?php echo $ssblid; ?>')"></a></td>
 	  </tr>
-<? } else {  ?>		
+<?php } else {  ?>		
 		<tr>
 			<td width="73" bgcolor="#FF9966" height="22">
-			<p align="center"><span style="font-size: 11pt" lang="en-us"><? echo $ssblid; ?></span></td>
+			<p align="center"><span style="font-size: 11pt" lang="en-us"><?php echo $ssblid; ?></span></td>
 			<td width="520" bgcolor="#FF9966" height="22">
-			<span style="font-size: 11pt" lang="en-us"><? echo $ssblname; ?></span></td>
+			<span style="font-size: 11pt" lang="en-us"><?php echo $ssblname; ?></span></td>
 			<td width="21" bgcolor="#FF9966" align="center" height="22">
-			<a href="sblevel.php?editsblid=<? echo $ssblid; ?>&editsblname=<? echo $ssblname; ?>">
+			<a href="sblevel.php?editsblid=<?php echo $ssblid; ?>&editsblname=<? echo $ssblname; ?>">
 			<img border="0" src="images/b_edit.png" width="16" height="16"></a></td>
 			<td width="21" bgcolor="#FF9966" align="center" height="22">
-			<a href="sblevel.php?delsblid=<? echo $ssblid; ?>">
-			<img border="0" src="images/b_drop.png"  onclick="return conf('<? echo $ssblid; ?>')"  width="16" height="16"></a></td>
+			<a href="sblevel.php?delsblid=<?php echo $ssblid; ?>">
+			<img border="0" src="images/b_drop.png"  onclick="return conf('<?php echo $ssblid; ?>')"  width="16" height="16"></a></td>
 		</tr>
-<?	} }
+<?php	} }
 ?>
 	</table>
 
@@ -202,7 +202,7 @@
 					ฝ่ายอำนวยการ 6 กองบังคับการอำนวยการ กองบัญชาการศึกษา</span></font></td>
 				</tr>
 			</table>
-<?
+<?php
 	mysql_close($conn);
 ?>
 </body>

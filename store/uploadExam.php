@@ -2,7 +2,12 @@
 	session_start();
 	if(!$_SESSION['vvstatus'][7]){ echo "<script>window.location='../index.php'</script>";  exit();}
 	 include_once("libs/getExamInf.php");
-	 require_once("../examsystem/libs/PDOAdapter.php");
+   require_once 'libs/PDOAdapter.php';
+
+   if(isset($_GET['exam_id']) && !empty($_GET['exam_id'])){
+      $_SESSION['vvsbid'] = $_GET['exam_id'];
+   }
+   var_dump($_SESSION['vvsbid']);
 ?>
 
 <html>
@@ -13,20 +18,20 @@
         <script src="js/util.js"   type="text/javascript" ></script>
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
-	<body background="images/bg.png">
+	<body background="images/sq.gif">
 <?php 
 	 include_once("libs/uploadCSV.php");
 ?>
 <div align="center">
 
 			<input type=hidden name=sbno value="<? echo $sbno; ?>">
-			<table border="0" width="1024" background="images/5.png" cellspacing="0" cellpadding="0">
+			<table border="0" width="1024" background="images/laithai.jpg" cellspacing="0" cellpadding="0">
 				<tr>
 					<td align="center" colspan="4" bgcolor="#E7D7D0">
-					<img border="0" src="images/head.jpg" width="1024" height="120"></td>
+					<img border="0" src="images/head.gif" width="1024" height="120"></td>
 				</tr>
 				<tr>
-					<td align="left" width="611" bgcolor="#F2CEB3" valign="bottom"><font color="#0000FF">
+					<td align="left" width="611" bgcolor="#D2B8AE" valign="bottom"><font color="#0000FF">
 			<span style="font-size: 11pt" lang="en-us"><font size="3">
 			<span style="font-size: 9pt">
 			<input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" 
@@ -35,14 +40,14 @@
 			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left">
 			&nbsp;&nbsp; </span></font></span>
 							</font></td>
-					<td align="center" width="106" valign="bottom" bgcolor="#F2CEB3">
+					<td align="center" width="106" valign="bottom" bgcolor="#D2B8AE">
 					<p align="right"><font style="font-size: 11pt">
 					ผู้ใช้งานระบบ :</font></td>
-					<td align="center" width="242" valign="bottom" bgcolor="#F2CEB3">
+					<td align="center" width="242" valign="bottom" bgcolor="#D2B8AE">
 					<p align="left"><b>
 					<span style="font-size: 11pt; font-weight: 700 color:#003366" lang="en-us">
 					<? echo $_SESSION['vvname']; ?></span></b></td>
-					<td align="center" width="65" bgcolor="#F2CEB3">
+					<td align="center" width="65" bgcolor="#D2B8AE">
 			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" 
 			width="64" height="80"></td>
 				</tr>
@@ -50,8 +55,8 @@
 					<td align="center" colspan="4" height="26">
 					<table border="0" width="100%" cellspacing="1" cellpadding="3" bgcolor="#EDE2DE">
 						<tr>
-							<td width="5" bgcolor="#FF9966">&nbsp;</td>
-							<td bgcolor="#FF9966"><span style="font-size: 12pt; font-weight: 500" lang="en-us">
+							<td width="5">&nbsp;</td>
+							<td><span style="font-size: 12pt; font-weight: 500" lang="en-us">
 							
 							<? echo "ออกข้อสอบหลักสูตร : <font color='#FF0000'>".$sblname."
 							</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; กลุ่มวิชา : <font color=	'#FF0000'>".$sbgname."
@@ -189,17 +194,17 @@
                          <!---CSV Upload Table-->                    
                         <table width="100%">
                             <tr bgcolor="#514139">
-                                <td width="5%" align="center" bgcolor="#FF6600" >
+                                <td align="center" width="5%" >
                                     <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">รหัส</span></td>
-                                <td width="20%" align="center" bgcolor="#FF6600" >
+                                <td align="center" width="20%" >
                                     <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">คำถาม</span></td>    
-                                <td width="15%" align="center" bgcolor="#FF6600" >
+                                <td align="center" width="15%" >
                                     <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">คำตอบที่ 1</span></td>    
-                                <td width="15%" align="center" bgcolor="#FF6600" >
+                                <td align="center" width="15%" >
                                     <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">คำตอบที่ 2</span></td>    
-                                <td width="15%" align="center" bgcolor="#FF6600" >
+                                <td align="center" width="15%" >
                                     <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">คำตอบที่ 3</span></td>    
-                                <td width="15%" align="center" bgcolor="#FF6600" >
+                                <td align="center" width="15%" >
                                     <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">คำตอบที่ 4</span></td>          
                             </tr>
                             
@@ -209,7 +214,7 @@
                                    
                                <tr>             		    
                               <!-- รหัส -->
-                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><? echo $exams[$i]['sbno'];  ?></span></td>
+                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><? echo $exams[$i]['exam_subject_id'];  ?></span></td>
                               <!-- หลักสูตร -->
                                   <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><? echo $exams[$i]['qtn'];  ?></span></td>
                                <!-- รหัส 13 หลัก -->
