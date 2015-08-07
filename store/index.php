@@ -2,6 +2,7 @@
 	//if(!$_SESSION['vvstatus'][7]){ echo "<script> alert('ท่านไม่ได้รับอนุญาตให้ใช้งานระบบนี้ โปรดติดต่อผู้ดูแลระบบ'); 
 	//window.location='../index.php';</script>";  exit();}
    require_once 'libs/PDOAdapter.php';
+
 ?>
 <html>
 <head>
@@ -43,6 +44,7 @@
 <body background="images/bg.png">
 <?php
 	include("connect.inc");	
+  $_SESSION['vvname'] = 'ร.ต.ท.จรัสพงษ์ โชคชัยสิริ';
 	if(isset($_POST['subm']) || isset($_POST['upload']))
 	{	$_SESSION['vvsbid']=trim($_POST['osbid']);
 		$sbid=trim($_POST['osbid']);
@@ -76,18 +78,18 @@
       </tr>
       <tr>
         <td align="left" width="632" bgcolor="#F2CEB3" valign="bottom"><font color="#0000FF"> <span style="font-size: 11pt" lang="en-us"><font size="3"> <span style="font-size: 9pt">
-          <input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" 
-			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left">
+<!--           <input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" 
+			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left"> -->
           &nbsp;&nbsp; </span></font></span> </font></td>
         <td align="center" width="102" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 11pt"> ผู้ใช้งานระบบ :</font></span></td>
         <td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 11pt; font-weight: 700 color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
-        <td align="center" width="65" bgcolor="#D2B8AE"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td>
+        <!-- <td align="center" width="65" bgcolor="#D2B8AE"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td> -->
       </tr>
       <tr>
           <td align="center" colspan="4" height="26">
         <table border="0" width="100%" cellspacing="1" cellpadding="3" bgcolor="#F2CEB3">
           <tr>
-            <td width="7%" height="40" valign="bottom"><p align="right"> <font color="#003366" style="font-size: 10pt"><b> หลักสูตร</b></font><b><span style="font-size: 10pt"> <font color="#003366"> :</font></span></td>
+            <td width="7%" height="40" valign="bottom"><p align="right"> <font color="#003366" style="font-size: 20pt"><b> หลักสูตร</b></font><b><span style="font-size: 10pt"> <font color="#003366"> :</font></span></td>
             <td width="40%" height="40" valign="bottom"><select name="sblid" onChange="getData('ajxsbl.php?zsblid='+this.value,'tbsbgid')" 
 							style="font-family: Tahoma; font-size: 13; color: #4B3D34" size="1" tabindex="1">
                 <option value="0" >เลือกชื่อหลักสูตร หากไม่มีกรุณาปรับปรุงชื่อหลักสูตร</option>
@@ -104,7 +106,7 @@
             <td height="40" colspan="3"><table border="0" width="100%" cellspacing="3" cellpadding="0">
                 <tr>
                   <td valign="bottom"><p align="right"><font color="#0000FF">
-                      <input name="upload" type="submit" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold;float:right;"   value="อัฟโหลดข้อสอบ">
+                      <!-- <input name="upload" type="submit" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold;float:right;"   value="อัฟโหลดข้อสอบ"> -->
                       <input type="button" value="ปรับปรุงชื่อหลักสูตร" onClick="window.location='sblevel.php'" 
 							style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold">
                       &nbsp;
@@ -119,7 +121,7 @@
           </tr>
           <tr>
             <td width="10%"><b>
-              <p align="right"> <font color="#003366" style="font-size: 10pt">กลุ่มวิชา</font><span style="font-size: 10pt"> <font color="#003366"> :</font></span></td>
+              <p align="right"> <font color="#003366" style="font-size: 20pt">กลุ่มวิชา</font><span style="font-size: 10pt"> <font color="#003366"> :</font></span></td>
             <td width="25%" id="tbsbgid" ><p align="left">
                 <select name='osbgid' onChange="getData('ajxsb.php?zsbgid='+this.value,'tdsbid')"  
 								size="1" style="font-family: Tahoma; font-size: 13; color: #4B3D34" tabindex="2">

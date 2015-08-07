@@ -54,7 +54,7 @@
 		{	case 1: $rd1="1"; break;				case 2: $rd2="1"; break;			case 3: $rd3="1"; break;			case 4: $rd4="1"; break;
 		}	//ให้ข้อถูกขึ้นต้นด้วย 1 ข้อผิดขึ้นต้นด้วย 0
 		$ans1=$rd1.$ans1;						$ans2=$rd2.$ans2;				$ans3=$rd3.$ans3;				$ans4=$rd4.$ans4;
-		mysql_query("insert into $sbid (instrutor_id,created_at,qtn,ans1,ans2,ans3,ans4) values ('$apid13','$apdate','$qtn','$ans1','$ans2','$ans3','$ans4')") or die("".mysql_error());
+		mysql_query("insert into $sbid (instructor_id,created_at,qtn,ans1,ans2,ans3,ans4) values ('$apid13','$apdate','$qtn','$ans1','$ans2','$ans3','$ans4')") or die("".mysql_error());
 	}		
 ?>	 
 <div align="center">

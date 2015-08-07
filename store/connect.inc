@@ -1,4 +1,6 @@
-<?
+<?php
+  	// Report simple running errors
+  	error_reporting(E_ERROR | E_PARSE);
 	$host = "localhost";
 	$user = "edupol_exam";
 	$pass = "12345678";

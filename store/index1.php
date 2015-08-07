@@ -42,6 +42,18 @@
 		if($('input[name=qtn]').val()==""){ alert('     โปรดกรอกข้อมูลในช่องคำถาม     '); return false;} 
 		return true;
 	}
+
+	$(document).ready(function(){
+
+		$('.scroll-container').on('change',function(){
+			var val = $(this).val(),
+			 	container = $('#container');
+			var scrollTo = $()
+			container.scrollTop(
+			    scrollTo.offset().top - container.offset().top + container.scrollTop()
+			);
+		});
+	});
 </script>
 
 	</head>
@@ -58,6 +70,7 @@
 	$sbgname=trim($_SESSION['vvsbgname']);		
 	$sblname=trim($_SESSION['vvsblname']);
 	$subm="        บันทึกข้อสอบ        ";
+
 	if(isset($_POST['subm']))
 	{	
 		$subm=trim($_POST['subm']);			
@@ -84,7 +97,7 @@
 			$sbjdb=mysql_query($sql);
 			$rs=mysql_fetch_array($sbjdb);
 			$exam_subject_id = $rs['id'];
-			mysql_query("insert into questions (exam_subject_id,instrutor_id,created_at,qtn,ans1,ans2,ans3,ans4) values 
+			mysql_query("insert into questions (exam_subject_id,instructor_id,created_at,qtn,ans1,ans2,ans3,ans4) values 
 			($exam_subject_id,'$apid13','$apdate','$qtn','$ans1','$ans2','$ans3','$ans4')") or die("".mysql_error());
 		}
 		 else	if(trim($subm)=="แก้ไขข้อสอบ")//แก้ไขข้อสอบ
@@ -92,7 +105,6 @@
 			$sbno=trim($_POST['sbno']);
 			$sql = "update questions set qtn='$qtn',ans1='$ans1',ans2='$ans2',ans3='$ans3',
 			ans4='$ans4',instructor_edit_id='$apid13',created_at='$apdate' where id='$sbno'";
-			var_dump($sql);
 			mysql_query($sql);	
 			$subm="        บันทึกข้อสอบ        ";
 		}
@@ -152,22 +164,22 @@
 					<td align="left" width="611" bgcolor="#F2CEB3" valign="bottom"><font color="#0000FF">
 			<span style="font-size: 11pt" lang="en-us"><font size="3">
 			<span style="font-size: 9pt">
-			<input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" 
-			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left">
+			<!-- <input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" 
+			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left"> -->
 			<input type="button" value="เลือกหลักสูตร  กลุ่มวิชา  ชื่อวิชา" onClick="window.location='index.php'" 
-			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left">
+			style="font-family: Tahoma; font-size: 18px; color: #FF0000; font-weight: bold; float: left">
 			&nbsp;&nbsp; </span></font></span>
 							</font></td>
 					<td align="center" width="106" valign="bottom" bgcolor="#F2CEB3">
-					<p align="right"><font style="font-size: 11pt">
-					ผู้ใช้งานระบบ :</font></td>
+					<p align="right"><font style="font-size: 18pt">
+				  ผู้ใช้งานระบบ :</font></td>
 					<td align="center" width="242" valign="bottom" bgcolor="#F2CEB3">
 					<p align="left"><b>
 					<span style="font-size: 11pt; font-weight: 700 color:#003366" lang="en-us">
 					<?php echo $_SESSION['vvname']; ?></span></b></td>
 					<td align="center" width="65" bgcolor="#F2CEB3">
-			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" 
-			width="64" height="80"></td>
+			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><!-- <img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" 
+			width="64" height="80"> --></td>
 				</tr>
 				<tr>
 					<td align="center" colspan="4" height="26">
@@ -203,8 +215,8 @@
 							ข้อ</span></b></font></td>
 							<td width="369" id="tcname" align=right></td>
 							<td><p align="right"><font color="#0000FF">
-							<input type="button" value="ตรวจสอบรายชื่อผู้ออกและแก้ไขวิชานี้" onClick="getData('ajxchkn.php','tcname')" 
-							style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></font></td>
+							<!-- <input type="button" value="ตรวจสอบรายชื่อผู้ออกและแก้ไขวิชานี้" onClick="getData('ajxchkn.php','tcname')" 
+							style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"/> --></font></td>
 						</tr>
 					</table>
 					</td>
@@ -253,40 +265,31 @@
 				<tr bgcolor="#FFCC99">
 					<td colspan="4" align="center">
 					<font face="Tahoma" style="font-size: 20pt; font-weight: 700" color="#0000FF">
-<table cellpadding="3" border="0" width="100%" height="49" bgcolor="#EDE2DE" 
+<table id="container" cellpadding="3" border="0" width="100%" height="49" bgcolor="#EDE2DE" 
 cellspacing="1" background="images/5.png">	
 	<tr>
 		<td align="center" width="2%" bgcolor="#FF6600" height="24">
 			<font color="#FFFFFF"><b><span style="font-size: 10pt">ข้อ<span lang="en-us">/</span>เฉลย</span></b>
 			<span lang="en-us"></span></span></font><span lang="en-us"><b><span lang="en-us"></a>
-			</span></span></font></b></td>
+			</span></span></font></b>
+		</td>
 		</span>
-		<td align="center" bgcolor="#FF6600" height="24" colspan="3">
-			<font face="Tahoma" style="font-size: 20pt; font-weight: 700" color="#0000FF">
-<span lang="en-us">  
-			<font color="#FFFFFF"><font face="Tahoma" style="font-size: 12pt; font-weight: 700"> 
+		<td align="center" bgcolor="#FF6600" height="24" colspan="2">
+			<span><font face="Tahoma"  face="Tahoma" style="font-size: 12pt; font-weight: 700"> 
 			คำถาม/คำตอบ </font>
-<font style="font-size: 12pt">
-			</a>
-		</font></b>
-		</font>
-		<b><font style="font-size: 12pt">
-		</span>
-		</font>
-		</font></b>
 		</span>
 	</font>
 		</td>
 <span lang="en-us">  
-		<td align="center" bgcolor="#FF6600" height="24">
+		<td align="center" bgcolor="#FF6600" height="24" colspan="2" >
 			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><b><span style="font-size: 10pt">
 			ลบ</span></b></font></td>
-		<td align="center" bgcolor="#FF6600" height="24">
+		<td align="center" bgcolor="#FF6600" height="24" >
+			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><span style="font-size: 10pt">
+			แก้</span></font></td>
+		<!-- <td align="center" bgcolor="#FF6600" height="24" colspan="2">
 			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><b><span style="font-size: 10pt">
-			แก้</span></b></font></td>
-		<td align="center" bgcolor="#FF6600" height="24" colspan="2">
-			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><b><span style="font-size: 10pt">
-			ไปข้อ</span></b></font></td>
+			ไปข้อ</span></b></font></td> -->
 	</tr>
 <?php	for($i=0;$i<$sbjrow;$i++)
 	{	$rs=mysql_fetch_array($sbjdb);
@@ -327,14 +330,14 @@ cellspacing="1" background="images/5.png">
 		<td align="left" width="2%" rowspan="4" colspan="2">
 	<a href="index1.php?editsbno=<?php echo $sbno; ?>">
 	<img border="0" src="images/b_edit.png" width="16" height="16"></a></td>
-		<td align="left" width="3%" rowspan="4">
+<!-- 		<td align="left" width="3%" rowspan="4">
 			<span lang="en-us">
-			<select size="1"  onchange="if (this.selectedIndex > 0) document.location.href=this.value;">
+			<select size="1" class="scroll-container"  >
 				<?php	for($k=0;$k<$sbjrow;$k+=5){	?>
 				<option value="<?php echo '#'.$k; ?>"><?php echo $k; ?></option><?php } ?>
 			</select>
 			</span>
-			</td>
+			</td> -->
 	</tr>
 	<tr bgcolor="#FFCC99">
 		<td align="center" width="2%">

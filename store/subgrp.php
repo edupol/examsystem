@@ -4,65 +4,79 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Language" content="th">
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-874">
-		<title>เพิ่มหมวด/กลุ่มวิชา</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>เน€เธเธดเนเธกเธซเธกเธงเธ”/เธเธฅเธธเนเธกเธงเธดเธเธฒ</title>
 <script>	
 	function conf(n)
-	{ 	if(confirm("   ต้องการลบข้อมูลรหัส : ["+n+"] ใช่หรือไม่   ")==true)		{ return true; } 
+	{ 	if(confirm("   เธ•เนเธญเธเธเธฒเธฃเธฅเธเธเนเธญเธกเธนเธฅเธฃเธซเธฑเธช : ["+n+"] เนเธเนเธซเธฃเธทเธญเนเธกเน   ")==true)		{ return true; } 
 		return false;	
 	}
 	function chk()
-	{	if(document.sbgfrm.sbgname.value==""){ alert('โปรดกรอกข้อมูลในช่องชื่อหมวด/กลุ่มวิชา :'); return false;} else { return true; }
+	{	if(document.sbgfrm.sbgname.value==""){ alert('เนเธเธฃเธ”เธเธฃเธญเธเธเนเธญเธกเธนเธฅเนเธเธเนเธญเธเธเธทเนเธญเธซเธกเธงเธ”/เธเธฅเธธเนเธกเธงเธดเธเธฒ :'); return false;} else { return true; }
 	}
 </script>	
 		
 	</head>
 	<body background="images/bg.png">
 <?php	include("connect.inc");
-	//ตารางหลัก sbgrb
+	//เธ•เธฒเธฃเธฒเธเธซเธฅเธฑเธ sbgrb
 	$sbgname="";
 	$sblid="";
 	$msg="";
-	$subm="บันทึกข้อมูล";
+	$subm="เธเธฑเธเธ—เธถเธเธเนเธญเธกเธนเธฅ";
 	if(isset($_POST['subm']))
 	{	$sbgid=trim($_POST['sbgid']);	
 		$sbgname=trim($_POST['sbgname']);
 		$sblid=trim($_POST['sblid']);
 		$subm=trim($_POST['subm']);
 		$hsbgid=trim($_POST['hsbgid']);
-		if($subm=="บันทึกข้อมูล")
-		{	$db=mysql_query("select * from exam_group where name='$sbgname' and exam_level_id='$sblid'");
+		if($subm=="เธเธฑเธเธ—เธถเธเธเนเธญเธกเธนเธฅ")
+		{	$db=mysql_query("select * from exam_group where name='$sbgname' and id='$sblid'");
 			$row=@mysql_num_rows($db); if($row==null){ $row=0; }
 			if($row>0)
 			{	$rs=mysql_fetch_array($db);	
 				$sbgid=$rs['sbgid'];	
-				$msg="ไม่บันทึกข้อมูล เนื่องจาก $sbgname มีบันทึกไว้แล้วที่รหัส : $sbgid";
+				$msg="เนเธกเนเธเธฑเธเธ—เธถเธเธเนเธญเธกเธนเธฅ เน€เธเธทเนเธญเธเธเธฒเธ $sbgname เธกเธตเธเธฑเธเธ—เธถเธเนเธงเนเนเธฅเนเธงเธ—เธตเนเธฃเธซเธฑเธช : $sbgid";
 			} else
 			{	
 				$sql = "insert into exam_group (id,name,exam_level_id) values ('$sbgid','$sbgname','$sblid')";
-				var_dump($sql);
 				mysql_query($sql);
 
 			}
-		} else	//แก้ไขข้อมูล
-		{	$db=mysql_query("select * from exam_group where name='$sbgname' and exam_level_id='$sblid' and id<>'$sbgid'");
+		} else	if($subm = 'เนเธเนเนเธเธเนเธญเธกเธนเธฅ' )//เนเธเนเนเธเธเนเธญเธกเธนเธฅ
+		{	
+
+			$db=mysql_query("select * from exam_group where name='$sbgname' and exam_level_id='$sblid' and id <>'$sbgid'");
 			$row=mysql_numrows($db);
 			if($row>0)
-			{	$rs=mysql_fetch_array($db);
-				$sbgid=$rs['sbgid'];	
-				$msg="ไม่บันทึกข้อมูล เนื่องจาก $sbgname มีบันทึกไว้แล้วที่รหัส : $sbgid";
+			{		
+				$sbgid=$_GET['editsbgid'];
+				$sbgname = $_GET['editsbgname'];
+				$sblid  = $_GET['editsblid'];
+				$msg="เนเธกเนเธเธฑเธเธ—เธถเธเธเนเธญเธกเธนเธฅ เน€เธเธทเนเธญเธเธเธฒเธ $sbgname เธกเธตเธเธฑเธเธ—เธถเธเนเธงเนเนเธฅเนเธงเธ—เธตเนเธฃเธซเธฑเธช : $sbgid";
+				echo "<script>
+							if(confirm('$msg')){
+								window.location = 'subgrp.php?editsbgid=$sbgid&editsbgname=$sbgname&editsblid=$sblid'
+							}else{
+								window.location = 'subgrp.php';
+							}
+				  			</script>";
 			} else
-			{	mysql_query("update exam_group set name='$sbgname',exam_level_id='$sblid' where id='$sbgid'");
+			{	
+				$sbgid = $_GET['editsbgid'];
+				$sql = "update exam_group set name='$sbgname',exam_level_id='$sblid' where id='$sbgid'";
+				mysql_query($sql);
+				echo "<script>window.location = 'subgrp.php';</script>";
 			}
 		}	
 		$sbgname="";
-		$subm="บันทึกข้อมูล";
+		$subm="เธเธฑเธเธ—เธถเธเธเนเธญเธกเธนเธฅ";
 	}
 	if(isset($_GET['delsbgid']))
 	{	$sbgid=$_GET['delsbgid'];
 		mysql_query("delete from exam_group where id='$sbgid'");
 	}
-	$db=mysql_query("select * from exam_group a join exam_level b on a.id=b.id order by a.id desc");
+	$db=mysql_query("select a.id,a.name as group_name,a.exam_level_id,b.name as level_name from exam_group a join exam_level b on a.exam_level_id=b.id order by a.id desc");
 	$row=@mysql_num_rows($db); if($row==null){ $row=0; };
 	if($row>0)
 	{	mysql_data_seek($db,0);
@@ -70,16 +84,16 @@
 		$sbgid=$rs['sbgid']+1;
 		mysql_data_seek($db,0);
 	} else { 	$sbgid=1;  }	
-	if(isset($_GET['editsbgid']))			//กรณีแก้ไข ค่า sbgid รับมาจากปุ่มกด
+	if(isset($_GET['editsbgid']))			//เธเธฃเธ“เธตเนเธเนเนเธ เธเนเธฒ sbgid เธฃเธฑเธเธกเธฒเธเธฒเธเธเธธเนเธกเธเธ”
 	{	$sbgid=trim($_GET['editsbgid']);
 		$sbgname=trim($_GET['editsbgname']);
 		$sblid=trim($_GET['editsblid']);
-		$hsbgid=$sbgid;					//ซ่อนค่าเพื่อตรวจสอบซ้ำ
-		$subm="แก้ไขข้อมูล";
+		$hsbgid=$sbgid;					//เธเนเธญเธเธเนเธฒเน€เธเธทเนเธญเธ•เธฃเธงเธเธชเธญเธเธเนเธณ
+		$subm="เนเธเนเนเธเธเนเธญเธกเธนเธฅ";
 	}	
 ?>
 <div align="center">
-<form name="sbgfrm" method="POST" action="subgrp.php">
+<form name="sbgfrm" method="POST" >
 			<table border="0" width="1024" background="images/5.png" cellspacing="0" cellpadding="0">
 				<tr>
 					<td align="center" colspan="4" bgcolor="#F2CEB3">
@@ -90,28 +104,27 @@
 					<table border="0" width="97%" id="table1" cellspacing="3" cellpadding="0">
 						<tr>
 							<td width="221"><font size="3" color="#0000FF"><span style="font-size: 11pt" lang="en-us">
-			<input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold; float:left"></span></font></td>
+			<!-- <input type="button" value="เธฃเธฐเธเธเธชเธฒเธฃเธชเธเน€เธ—เธจ เธเธ.เธจ. " onClick="window.location='../index.php'" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold; float:left"> --></span></font></td>
 							<td>
-					<input type=button onClick="window.location='index.php'" value="   ออกข้อสอบ   " name="B4" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></td>
+					<input type=button onClick="window.location='index.php'" value="   เธญเธญเธเธเนเธญเธชเธญเธ   " name="B4" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></td>
 						</tr>
 						<tr>
 							<td width="221">
-							<input type=button onClick="window.location='sblevel.php'" value="   ปรับปรุงชื่อหลักสูตร   " name="B3" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></td>
+							<input type=button onClick="window.location='sblevel.php'" value="   เธเธฃเธฑเธเธเธฃเธธเธเธเธทเนเธญเธซเธฅเธฑเธเธชเธนเธ•เธฃ   " name="B3" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></td>
 							<td>
-				<input type=button onClick="window.location='subject.php'" value="ปรับปรุงชื่อวิชา" name="B2" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></td>
+				<input type=button onClick="window.location='subject.php'" value="เธเธฃเธฑเธเธเธฃเธธเธเธเธทเนเธญเธงเธดเธเธฒ" name="B2" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></td>
 						</tr>
 					</table>
 					</td>
 					<td align="center" width="114" valign="bottom" bgcolor="#F2CEB3">
 					<p align="right"><b><font style="font-size: 11pt">
-					ผู้ใช้งานระบบ </font><span lang="en-us">
+					เธเธนเนเนเธเนเธเธฒเธเธฃเธฐเธเธ </font><span lang="en-us">
 					<font style="font-size: 11pt">:</font></span></b></td>
 					<td align="center" width="231" valign="bottom" bgcolor="#F2CEB3">
 					<p align="left">
 					<span style="font-size: 10pt; font-weight: 700" lang="en-us">
 					<? echo $_SESSION['vvname']; ?></span></td>
-					<td align="center" width="65" bgcolor="#F2CEB3">
-			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td>
+					<td align="center" width="65" bgcolor="#F2CEB3"></td>
 				</tr>
 				<tr>
 					<td align="center" colspan="4">
@@ -120,21 +133,16 @@
 	<table border="0" width="741" cellspacing="1" cellpadding="2" height="100">
 		<tr>
 			<td colspan="4" bgcolor="#FF6600">
-			<p align="center"><font color="#FFFFFF"><span style="font-size: 15pt; font-weight: 700">ปรับปรุงชื่อกลุ่มวิชา</span></font></td>
+			<p align="center"><font color="#FFFFFF"><span style="font-size: 15pt; font-weight: 700">เธเธฃเธฑเธเธเธฃเธธเธเธเธทเนเธญเธเธฅเธธเนเธกเธงเธดเธเธฒ</span></font></td>
 		</tr>
 		<tr>
-			<td width="151" align="right" bgcolor="#FFCC99">
-			<span style="font-size: 12pt; font-weight: 700">รหัสกลุ่มวิชา : </span>
-			</td>
-		  <td width="147" bgcolor="#FFCC99">
-		  <input type="text" name="sbgid" value="<? echo $sbgid; ?>" readonly size="25" style="font-family: Tahoma; font-size: 12; color: #4B3D34; "></td>
 			<td width="115" bgcolor="#FFCC99">
 			<p align="right">
-			<span style="font-size: 12pt; font-weight: 700">ชื่อหลักสูตร<span lang="en-us"> 
+			<span style="font-size: 12pt; font-weight: 700">เธเธทเนเธญเธซเธฅเธฑเธเธชเธนเธ•เธฃ<span lang="en-us"> 
 			:</span></span></td>
 			<td width="319" bgcolor="#FFCC99">
 				<select name="sblid" size="1" tabindex="1">
-					<option>เลือกชื่อหลักสูตร หากไม่มีกรุณาปรับปรุงชื่อหลักสูตร</option>
+					<option>เน€เธฅเธทเธญเธเธเธทเนเธญเธซเธฅเธฑเธเธชเธนเธ•เธฃ เธซเธฒเธเนเธกเนเธกเธตเธเธฃเธธเธ“เธฒเธเธฃเธฑเธเธเธฃเธธเธเธเธทเนเธญเธซเธฅเธฑเธเธชเธนเธ•เธฃ</option>
 				<?php	$sbldb=mysql_query("select * from exam_level");
 					while($sblrs=mysql_fetch_array($sbldb)){	$osblid=trim($sblrs['id']);	$osblname=trim($sblrs['name']);	
 				?>
@@ -145,7 +153,7 @@
 	  </tr>
 		<tr>
 			<td width="151" align="right" bgcolor="#FFCC99">
-			<span style="font-size: 12pt; font-weight: 700">ชื่อกลุ่มวิชา :</span></td>
+			<span style="font-size: 12pt; font-weight: 700">เธเธทเนเธญเธเธฅเธธเนเธกเธงเธดเธเธฒ :</span></td>
 			<td width="591" bgcolor="#FFCC99" colspan="3">
 			<input type=hidden name="hsbgid" value="<?php echo $hsbgid; ?>">
 			 <input type="text" name="sbgname" value="<?php echo $sbgname; ?>" size="102" style="font-family: Tahoma; font-size: 12; color: #4B3D34; " tabindex="2"></td>
@@ -177,23 +185,24 @@
 		<tr>
 			<td width="98" align="center" bgcolor="#FF6600">
 			<font color="#FFFFFF">
-			<span style="font-size: 12pt; font-weight: 700">รหัส</span></font></td>
+			<span style="font-size: 12pt; font-weight: 700">เธฃเธซเธฑเธช</span></font></td>
 			<td align="center" width="345" bgcolor="#FF6600">
 			<font color="#FFFFFF">
-			<span style="font-size: 12pt; font-weight: 700">ชื่อกลุ่มวิชา</span></font></td>
+			<span style="font-size: 12pt; font-weight: 700">เธเธทเนเธญเธเธฅเธธเนเธกเธงเธดเธเธฒ</span></font></td>
 			<td align="center" width="344" bgcolor="#FF6600">
 			<font color="#FFFFFF">
-			<span style="font-size: 12pt; font-weight: 700">ชื่อหลักสูตร</span></font></td>
+			<span style="font-size: 12pt; font-weight: 700">เธเธทเนเธญเธซเธฅเธฑเธเธชเธนเธ•เธฃ</span></font></td>
 			<td align="center" bgcolor="#FF6600">
 			<font color="#FFFFFF" style="font-size: 12pt">
-			<span style="font-weight: 700">แก้</span></font></td>
+			<span style="font-weight: 700">เนเธเน</span></font></td>
 			<td align="center" bgcolor="#FF6600">
 			<font color="#FFFFFF">
-			<span style="font-size: 12pt; font-weight: 700">ลบ</span></font></td>
+			<span style="font-size: 12pt; font-weight: 700">เธฅเธ</span></font></td>
 		</tr>
 <?php	for($i=0;$i<$row;$i++)
-	{	$rs=mysql_fetch_array($db);		$ssbgid=trim($rs['id']);	$ssbgname=trim($rs['name']);	
-											$ssblid=trim($rs['id']);		$ssblname=trim($rs['name']);
+	{	$rs=mysql_fetch_array($db);		
+		$ssbgid=trim($rs['id']);	$ssbgname=trim($rs['group_name']);	
+											$ssblid=trim($rs['exam_level_id']);		$ssblname=trim($rs['level_name']);
 		if(($i%2)==0){
 ?>		
 		<tr>
@@ -235,8 +244,8 @@
 				</tr>
 				<tr>
 					<td align="center" colspan="4"><font color="#9F777E">
-					<span style="font-size: 12pt; font-weight: 700">พัฒนาโดย 
-					ฝ่ายอำนวยการ 6 กองบังคับการอำนวยการ กองบัญชาการศึกษา</span></font></td>
+					<span style="font-size: 12pt; font-weight: 700">เธเธฑเธ’เธเธฒเนเธ”เธข 
+					เธเนเธฒเธขเธญเธณเธเธงเธขเธเธฒเธฃ 6 เธเธญเธเธเธฑเธเธเธฑเธเธเธฒเธฃเธญเธณเธเธงเธขเธเธฒเธฃ เธเธญเธเธเธฑเธเธเธฒเธเธฒเธฃเธจเธถเธเธฉเธฒ</span></font></td>
 				</tr>
 			</table>
 <?php
