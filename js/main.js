@@ -32,6 +32,7 @@ window.Tiktok = {
 		
 		if(self.countTime==0){ 
 			clearInterval(self.timeLoop); 
+			window.TestExam.submitAnswer();
 			// if(typeof callback == 'function'){
 			// 	window.location 
 			// }
@@ -815,7 +816,8 @@ window.ManagExam = {
 		if(results.questions == null || results.user_id == null) return false;
 
 		var name 	= jQuery('input[name="name"]').val(),
-			minute  = jQuery('input[name="exam_minute"]').val();
+			minute  = jQuery('input[name="exam_minute"]').val(),
+			randomQuestions = jQuery('input[name="random_questions"]').val();
 
 		if(name == ""){
 			alert('กรุณากรอกข้อมูลชื่อแบบทดสอบ');
@@ -935,9 +937,9 @@ window.ListOfExams = {
                 "render": function ( data, type, full, meta ) {
                 	if(data == full) return false;
                     var buttonID = full.exam_id,
-                    	btn = '<a id="'+buttonID+'" href="export_exam.php" class="word btn btn-success customFont" role="button"><i class="glyphicon glyphicon-list-alt icon-white"></i>  ข้อสอบ</a>';
-                    	btn += '   <a id="'+buttonID+'" href="export_excel.php" class="excel btn btn-info customFont" role="button"><i class="glyphicon glyphicon-th-large icon-white"></i>  เฉลย</a>';
-                    	btn += '   <a id="'+buttonID+'" href="exam_assignment.php" class="assignment btn btn-warning customFont" role="button"><i class="glyphicon glyphicon-list-alt icon-white"></i>  กำหนดการสอบ</a>';
+                    	btn = '<a id="'+buttonID+'" href="export_exam.php" class="word btn btn-success customFont fix-font1" role="button"><i class="glyphicon glyphicon-list-alt icon-white"></i>  ข้อสอบ</a>';
+                    	btn += '   <a id="'+buttonID+'" href="export_excel.php" class="excel btn btn-info customFont " role="button"><i class="glyphicon glyphicon-th-large icon-white"></i>  เฉลย</a>';
+                    	btn += '   <a id="'+buttonID+'" href="exam_assignment.php" class="assignment btn btn-warning customFont fix-font1" role="button"><i class="glyphicon glyphicon-list-alt icon-white"></i>  กำหนดการสอบ</a>';
                 	return btn;
                 }
             }            
@@ -1010,10 +1012,22 @@ window.TestExam = {
 			forward 			= jQuery('<a href="#" class="scroll-to glyphicon glyphicon-forward back-to-bottom"></a>'),
 			backward 			= jQuery('<a href="#" class="scroll-to glyphicon glyphicon-backward back-to-bottom"></a>'),
 			questionsContainer 	= jQuery('.box-content');
-			questionsContainer.empty();
+			questionsContainer.empty(),
+			currentOffset  		= 0;
+
+			if(response.name != null){
+				jQuery('span#examText').html(response.name);	
+			}
+
+			if(response.exam_minute != null){
+				var totalTime = parseInt(response.exam_minute) * 60;
+				window.Tiktok.countDown(totalTime,totalTime);
+				window.Tiktok.start();
+			}
 
 			if(typeof all_questions != "undefined" &&  all_questions != null ){
-
+				var total = all_questions.length;
+				jQuery('#totalExam').html(total);
 				jQuery.each(all_questions,function(i,v){
 					var color 		=  (index % 2 == 0)? 'exam-hilight':'',
 						questionID 	= '#q' + index ;
@@ -1031,15 +1045,24 @@ window.TestExam = {
 						var qid = index; 
 						a.append(
 
-							fast_backward.clone().on('click',function(){ 
-								var targetOffset = 0;
-								jQuery('.box-content').animate({ scrollTop : targetOffset }, 800);								
+							fast_backward.clone().on('click',function(e){ 
+								e.preventDefault();
+								e.stopPropagation();
+								currentOffset -= 700;	
+								//var targetOffset = jQuery(this).offset().top;								 
+								jQuery('.box-content').animate({ scrollTop : currentOffset }, 700);								
+								return false;
 							}),
 							//backward.clone(),
 							//forward.clone(),
-							fast_forward.clone().on('click',function(){ 
-								var targetOffset = jQuery('.box-content')[0].scrollHeight;
-								jQuery('.box-content').animate({ scrollTop : targetOffset }, 800);	
+							fast_forward.clone().on('click',function(e){ 
+								e.preventDefault();
+								e.stopPropagation();
+								currentOffset += 1100;	
+								//var targetOffset = jQuery('.box-content')[0].scrollHeight;
+								//var targetOffset = jQuery(this).offset().top;	
+								jQuery('.box-content').animate({ scrollTop : currentOffset }, 700);	
+								return false;
 							})
 
 						);
@@ -1066,11 +1089,14 @@ window.TestExam = {
 			dataType: "json",
 			success: function(response){
 				if(response != "undefined" && response != null){
-					if(!response.isError){						
-						//self.renderQuestions(response);
-					}
+					alert(response.message);
+					window.location = response.route;
 				}
-			}	
+			},
+			error : function(jqXHR,textStatus,errorThrown){
+				alert(errorThrown);
+				window.location = 'list_of_test.php';
+			}
 		});		
 	}
 };
@@ -1080,7 +1106,7 @@ window.ExamAssignment = {
 		var self = this;
 		self.getTrainingPalce();
 
-		jQuery('select[name="trainingplace"]').on('change',function(){			
+		jQuery('select[name="trainingplace"]').on('change',function(){		                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	
 			var courseID = jQuery(this).val();
 			jQuery('select[name="trainingcourse"]').empty().trigger("chosen:updated");
 			jQuery('#totalCourse,#totalNum').val(0);
@@ -1278,8 +1304,8 @@ window.ListOfTests = {
                 "render": function ( data, type, full, meta ) {
                 	if(data == full) return false;
                     var buttonID = full.id,
-                    	btn = '<a id="'+buttonID+'" href="test.php?exam_id='+buttonID+'" class="word btn btn-success customFont" role="button"><i class="glyphicon glyphicon-list-alt icon-white"></i>  ทำข้อสอบ</a>';
-                    	btn += '   <a id="'+buttonID+'" href="#result.php" class="excel btn btn-info customFont" role="button"><i class="glyphicon glyphicon-th-large icon-white"></i>  ตรวจสอบผล</a>';
+                    	btn = '<a id="'+buttonID+'" href="test.php?exam_id='+buttonID+'" class="word btn btn-success customFont0 fix-font1 " role="button"><i class="glyphicon glyphicon-list-alt icon-white"></i>  ทำข้อสอบ</a>';
+                    	btn += '   <a id="'+buttonID+'" href="#result.php" class="excel btn btn-info customFont0 fix-font1" role="button"><i class="glyphicon glyphicon-th-large icon-white"></i>  ตรวจสอบผล</a>';
                 	return btn;
                 }
             }            

@@ -4,7 +4,7 @@
 	$sbgid=trim($_GET['zsbgid']);
 	$i=1;
 	$db=mysql_query("select * from exam_subject where exam_group_id='$sbgid'");
-	echo "<select name='id' size='1' style='font-family: Tahoma; font-size: 13; color: #4B3D34'>";
+	echo "<select name='id' size='1' style='font-family: Tahoma; font-size: 16; color: #000'>";
 	echo "<option>เลือกชื่อวิชา หากไม่มีกรุณาปรับปรุงรายชื่อวิชา</option>";
 	while($rs=mysql_fetch_array($db))
 	{	$sbid=trim($rs['exam_code']);

@@ -109,7 +109,7 @@ class ExamStore extends BaseClass
 				$result = array(
 									'isError' 	=>  false,
 									'message'   =>  'การสมัครเสร็จสมบูรณ์',
-									'route'     =>  'manageexam.php'
+									'route'     =>  'index.php'
 								);
 			}else{
 				$result = array(
@@ -176,7 +176,7 @@ class ExamStore extends BaseClass
 		if(!empty($username) && !empty($password)){
 			$is_authenticated		= Membership::getInstance()->validate_user($username,$password);	
 			if($is_authenticated){
-				$redirect 				= 'manageexam.php';	
+				$redirect 				= 'index.php';	
 			}				
 		}
 
@@ -192,7 +192,7 @@ class ExamStore extends BaseClass
 		$redirect 				= 'login.html';
 		
 		if($is_authenticated){
-			$redirect 			= 'manageexam.php';	
+			$redirect 			= 'index.php';	
 		}
 
 		$authen  = array( 'info' => $is_authenticated , 'route' => $redirect);
@@ -272,7 +272,7 @@ class ExamStore extends BaseClass
 			if(isset($exams)){
 				foreach ($exams as $key => $value) {
 					$date = date_create($value['datetime']);
-					$exams[$key]['exam_code']  	= str_pad($value['exam_id'], 10, "0", STR_PAD_LEFT);
+					$exams[$key]['exam_code']  	= str_pad($value['exam_id'], 6, "0", STR_PAD_LEFT);
 					$exams[$key]['datetime'] 	= date_format($date, 'd/m/Y H:i:s');
 				}
 				$results['data'] = $exams;
@@ -316,15 +316,16 @@ class ExamStore extends BaseClass
 				$sql 	 .= PDOAdpter::getInstance()->whereQuery($where);
 			}
 			//Fetch result into arrays
-			$result  = PDOAdpter::getInstance()->select($sql, $params,false);	    	
-			
-			$questions = null;
+			$result     = PDOAdpter::getInstance()->select($sql, $params,false);	    	
+			$questions  = null;
+			$date 	    = new DateTime("now");
 			if(isset($result)){
 				$questions = self::getExistingExam($id);
 				$results['random_questions'] 	= self::processExam($questions);
 				$results['exam_minute'] 		= $result[0]['exam_minute'];
 				$results['name'] 				= $result[0]['name'];
 				$_SESSION['working_questions']  = $questions;
+				$_SESSION['start_time'] 		= $date->format('Y-m-d H:i:s');
 			}
 			echo json_encode($results);
 	}
@@ -430,25 +431,34 @@ class ExamStore extends BaseClass
 	public function saveAnswer($id){
 		$request 				= self::$_appInstance->request();
 		$answers 				= $request->post('ans');
-		$questions 				= $_SESSION['working_questions'];
-		$data 					= self::processAnswer($questions,$answers);
+
+		if($answers == null){
+			$results['message'] =  'เกิดข้อผิดพลาด : ไม่มีข้อมูลสำหรับบันทึก';
+			$results['route']   = 'list_of_test.php';
+		    echo json_encode($results);	
+		    return;
+		}
+		
+		$questions 					= $_SESSION['working_questions'];
+		$data 						= self::processAnswer($questions,$answers);
+		$date 						= new DateTime("now");
 		$save_data 				= array(
 									'total_done'    =>  sizeof($answers),
 									'total_exam'	=>  $data['total_exam'],
 									'score'			=>  $data['score'],
 									'answers'		=>  serialize($answers),
-									'exam_id'     	=>  intval($id),
+									'exam_random_history_id' =>  intval($id),
 									'user_id'  		=>  $_SESSION['user_id'],
-									'exam_random_history_id' => $id 
+									'datetime_end'  =>  $_SESSION['start_time'],  
+									'datetime_start'=>  $date->format('Y-m-d H:i:s')
 								);
-
 		$table 					= 'student_assessments'; 
 		$effected 			 	= PDOAdpter::getInstance()->insert($save_data,$table);
 		$results 				= array();
 
 		if($effected){
-			$results['message'] =  $message;
-			$results['route']   = 'index.php';
+			$results['message'] =  'ข้อมูลการทดสอบของท่านได้ถูกบันทึกไว้เรียบร้อยแล้ว';
+			$results['route']   = 'list_of_test.php';
 		}
 	    echo json_encode($results);	
 	}

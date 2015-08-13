@@ -27,10 +27,10 @@
         <div>
             <ul class="breadcrumb">
                 <li>
-                    <a href="#">Home</a>
+                    <a href="index.php">Home</a>
                 </li>
                 <li>
-                    <a href="#">ค้นหาข้อสอบ</a>
+                    <a href="#">ทดสอบความรู้</a>
                 </li>
             </ul>
         </div>
@@ -39,7 +39,7 @@
             <div class="box col-md-12">
                 <div class="box-inner">
                     <div class="box-header well" data-original-title="">
-                        <h2><i class="glyphicon glyphicon-star-empty"></i> รายการข้อสอบ</h2>
+                        <span class="customFont1"><i class="glyphicon glyphicon-star-empty"></i> รายการข้อสอบ</span>
                     </div>
                     <div class="box-content">
                         <!-- put your content here -->

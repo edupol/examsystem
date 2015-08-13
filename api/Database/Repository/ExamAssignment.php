@@ -98,7 +98,7 @@ class ExamAssignment extends BaseClass
 
 		if(isset($exams)){
 			foreach ($exams as $key => $value) {
-				$exams[$key]['exam_random_history_id']  	= str_pad($value['id'], 10, "0", STR_PAD_LEFT);
+				$exams[$key]['exam_random_history_id']  	= str_pad($value['id'], 6, "0", STR_PAD_LEFT);
 				$exams[$key]['start_assignment'] 			= date_format(date_create($value['start_assignment']), 'd/m/Y ');
 				$exams[$key]['end_assignment'] 			    = date_format(date_create($value['end_assignment']), 'd/m/Y ');
 				$exams[$key]['datetime'] 					= $exams[$key]['start_assignment'] .' - '. $exams[$key]['end_assignment'];

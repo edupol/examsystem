@@ -6,13 +6,16 @@
 		<meta http-equiv="Content-Language" content="th">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>เพิ่มหมวด/กลุ่มวิชา</title>
+		<script src="js/jquery.min.js"></script>		
 <script>	
 	function conf(n)
 	{ 	if(confirm("   ต้องการลบข้อมูลรหัส : ["+n+"] ใช่หรือไม่   ")==true)		{ return true; } 
 		return false;	
 	}
 	function chk()
-	{	if(document.sbgfrm.sbgname.value==""){ alert('โปรดกรอกข้อมูลในช่องชื่อหมวด/กลุ่มวิชา :'); return false;} else { return true; }
+	{	
+	    if($('select[name=sblid]').val()=="0"){ alert("โปรดเลือกชื่อหลักสูตร"); return false; }
+		return true;
 	}
 </script>	
 		
@@ -103,16 +106,15 @@
 					<td align="left" width="614" bgcolor="#F2CEB3" valign="bottom">
 					<table border="0" width="97%" id="table1" cellspacing="3" cellpadding="0">
 						<tr>
-							<td width="221"><font size="3" color="#0000FF"><span style="font-size: 11pt" lang="en-us">
-			<!-- <input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold; float:left"> --></span></font></td>
+							<td width="110">
+							  	<input type=button onClick="window.location='index.php'" value="   ออกข้อสอบ   " name="B4" style="font-family: Tahoma; font-size: 16; color: #FF0000; font-weight: bold">
+							</td>
+							<td width="110">
+							  	<input type=button onClick="window.location='sblevel.php'" value="   ปรับปรุงชื่อหลักสูตร   " name="B3" style="font-family: Tahoma; font-size: 16; color: #FF0000; font-weight: bold">
+							</td>
 							<td>
-					<input type=button onClick="window.location='index.php'" value="   ออกข้อสอบ   " name="B4" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></td>
-						</tr>
-						<tr>
-							<td width="221">
-							<input type=button onClick="window.location='sblevel.php'" value="   ปรับปรุงชื่อหลักสูตร   " name="B3" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></td>
-							<td>
-				<input type=button onClick="window.location='subject.php'" value="ปรับปรุงชื่อวิชา" name="B2" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></td>
+								<input type=button onClick="window.location='subject.php'" value="ปรับปรุงชื่อวิชา" name="B2" style="font-family: Tahoma; font-size: 16; color: #FF0000; font-weight: bold">
+							</td>
 						</tr>
 					</table>
 					</td>

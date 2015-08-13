@@ -1,7 +1,5 @@
 <?php 
-    
     include_once('include/header.php'); 
-
 ?>
 <div class="ch-container tour">
     <div class="row">
@@ -27,10 +25,10 @@
 <div>
     <ul class="breadcrumb">
         <li>
-            <a href="#">Home</a>
+            <a href="index.php">Home</a>
         </li>
         <li>
-            <a href="#">ออกข้อสอบ</a>
+            <a href="#">สุ่มข้อสอบ</a>
         </li>
     </ul>
 </div>
@@ -57,7 +55,7 @@
                                 <select id="examcourse" name="examcourse" data-rel="chosen" class="form-control input-lm"></select>
                             </div>
 
-                            <span id="totalCourse" class="notification">0</span>
+                            <span id="totalCourse" class="notification red customFont1 fix-font1">0</span>
                         </a>
                     </div>
 
@@ -72,7 +70,7 @@
                                 <select id="examgroup" name="examgroup" data-rel="chosen" class="form-control input-lm"></select>
                             </div>
 
-                            <span id="totalGroup" class="notification">0</span>
+                            <span id="totalGroup" class="notification red customFont1 fix-font1">0</span>
                         </a>
                     </div>
 
@@ -87,13 +85,13 @@
                                 <select id="exams" name="exams" data-rel="chosen" class="form-control input-lm"></select>
                             </div>
 
-                            <span id="totalExam" class="notification red">0</span>
+                            <span id="totalExam" class="notification red customFont1 fix-font1">0</span>
                         </a>
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-md-4 col-sm-6 col-xs-6" style="padding-top:25px">
                         
-                        <a id="addExam" class="btn btn-primary btn-md customFont0" href="#"><i class="glyphicon glyphicon-plus glyphicon-white"></i> เพิ่มวิชาลงในข้อสอบ</a>    
+                        <a id="addExam" class="btn btn-primary btn-md customFont0 fix-font1" href="#"><i class="glyphicon glyphicon-plus glyphicon-white"></i> เพิ่มวิชาลงในข้อสอบ</a>    
                     </div>
 
                 </div>
@@ -118,7 +116,7 @@
                 <label>ข้อ</label>
             </div>
             <div class="col-md-4 col-sm-6 col-xs-6" style="padding-top:25px">
-                <a id="randomExam" class="btn btn-primary btn-md customFont0"  href="#" data-toggle="tooltip" data-original-title="สามารถสุ่มซ้ำได้">
+                <a id="randomExam" class="btn btn-primary btn-md customFont0 fix-font1"  href="#" data-toggle="tooltip" data-original-title="สามารถสุ่มซ้ำได้">
                     <i class="glyphicon glyphicon-refresh glyphicon-white"></i> 
                     สุ่มข้อสอบ
                 </a>    
@@ -168,10 +166,15 @@
 
             <div class="col-md-4 col-sm-6 col-xs-6" style="padding-top:25px">
 
-                    <a id="exportDocument" class="btn btn-primary btn-md customFont0"  href="#">
+<!--                     <a id="saveExam" class="btn btn-primary btn-md customFont0"  href="#">
                         <i class="glyphicon glyphicon-download glyphicon-white"></i> 
                         ดาว์นโหลดข้อสอบ
-                    </a>    
+                    </a>   --> 
+                    <a id="exportDocument" class="btn btn-primary btn-md customFont0 fix-font1"  href="#">
+                        <i class="glyphicon glyphicon-ok-sign glyphicon-white"></i> 
+                        บันทึกไฟล์ข้อสอบ
+                    </a>   
+
                     <input name="questions_id" id="questions_id" type="hidden" />
                     <input name="random_questions" id="randomQuestions" type="hidden" />
                     <input name="user_id" id="uid" type="hidden" />

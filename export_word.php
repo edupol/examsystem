@@ -21,6 +21,10 @@ $exam_code = '';
 $index = 1;
 $html = '';
 
+$text = 'บันทึกข้อมูลเรียบร้อยแล้ว';
+Membership::getInstance()->redirect('list_of_exams.php');	
+exit();
+
 if(isset($result) && $result != null){//validate null
 
 	$exam_id = $result['exam_id'];
@@ -29,9 +33,9 @@ if(isset($result) && $result != null){//validate null
 	}else{
 		exit();
 	}
-	$header = "<b>ยศ ชื่อ - ชื่อสกุล (ตัวบรรจง)</b>........................................................<b>ตำแหน่ง</b>.....................................................รหัสข้อสอบ $exam_code <br>
-		<b>หน่วยสอบ</b>..........................................................................<b>ลายมือชื่อ</b>.....................................................................";
-	//$header .= " <div style=\"margin-left:50px\"><img src=\"http://edupol.org/edu_P/systemedu/examsystem/img/instruction.png\" width=\"477\" height=\"151\"/></div><br/>";
+	$header = "รหัสข้อสอบ $exam_code <br/> <b>ยศ ชื่อ - ชื่อสกุล (ตัวบรรจง)</b>....................................<b>ตำแหน่ง</b>....................................<br/>
+		<b>หน่วยสอบ</b>....................................<b>ลายมือชื่อ</b>.........................................";
+	$header .= " <div style=\"margin-left:50px\"><img src=\"http://edupol.org/edu_P/systemedu/examsystem/img/instruction.jpg\" width=\"354\" height=\"99\"/></div><br/>";
 	$header .= "<b>เลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว</b>";
 
 

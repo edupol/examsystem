@@ -11,9 +11,7 @@
 	{ 	if(confirm("   ต้องการลบชื่อหลักสูตร : ["+n+"] ใช่หรือไม่   ")==true)		{ return true; } 
 		return false;	
 	}
-	function chk()
-	{	if(document.sblfrm.sblname.value==""){ alert('โปรดกรอกข้อมูลในช่องชื่อหลักสูตร :'); return false;} else { return true; }
-	}
+
 </script>	
 		
 	</head>
@@ -84,20 +82,20 @@
 				</tr>
 				<tr>
 					<td align="left" width="622" bgcolor="#F2CEB3" valign="bottom">
-					<input type=button onClick="window.location='index.php'" value="ออกข้อสอบ" name="B4" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"><span lang="en-us">&nbsp;
+					<input type=button onClick="window.location='index.php'" value="ออกข้อสอบ" name="B4" style="font-family: Tahoma; font-size: 16px; color: #FF0000; font-weight: bold"><span lang="en-us">&nbsp;
 				</span>
-				<input type=button onClick="window.location='subgrp.php'" value="ปรับปรุงชื่อกุล่มวิชา" name="B2" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"><span lang="en-us">&nbsp;&nbsp;</span><input type=button onClick="window.location='subject.php'" value="ปรับปรุงชื่อวิชา" name="B5" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"><span lang="en-us">
+				<input type=button onClick="window.location='subgrp.php'" value="ปรับปรุงชื่อกุล่มวิชา" name="B2" style="font-family: Tahoma; font-size: 16px; color: #FF0000; font-weight: bold"><span lang="en-us">&nbsp;&nbsp;</span><input type=button onClick="window.location='subject.php'" value="ปรับปรุงชื่อวิชา" name="B5" style="font-family: Tahoma; font-size: 16px; color: #FF0000; font-weight: bold"><span lang="en-us">
 				</span>
 					</td>
-					<td align="center" width="16" bgcolor="#F2CEB3">&nbsp;</td>
-					<td align="center" width="101" valign="bottom" bgcolor="#F2CEB3">
-					<p align="right"><b><font style="font-size: 11pt">
+					<td align="center" width="10" bgcolor="#F2CEB3">&nbsp;</td>
+					<td align="center" width="140" valign="bottom" bgcolor="#F2CEB3">
+					<p align="right"><b><font style="font-size: 12pt">
 					ผู้ใช้งานระบบ </font><span lang="en-us">
-					<font style="font-size: 11pt">:</font></span></b></td>
+				  <font style="font-size: 11pt">:</font></span></b></td>
 					<td align="center" width="220" valign="bottom" bgcolor="#F2CEB3">
 					<p align="left">
-					<span style="font-size: 10pt; font-weight: 700" lang="en-us">
-					<? echo $_SESSION['vvname']; ?></span></td>
+					<span style="font-size: 12pt; font-weight: 700" lang="en-us">
+				  <? echo $_SESSION['vvname']; ?></span></td>
 					<td align="center" width="65" bgcolor="#F2CEB3">
 			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td>
 				</tr>

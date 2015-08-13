@@ -151,3 +151,22 @@ footer{
   padding-top: 20px;
   font-size: 16px;
 }
+.menu-box{
+  min-height: 150px;
+  padding-top: 50px;
+}
+.fix-font1{
+  color: #000;
+}
+.fix-navbar{
+  padding-top: 50px;
+  padding-left: 50px;
+}
+.fix-menu{
+  position: relative;
+  top:0;
+}
+.customFont2 {
+    font-size: 36px;
+    font-family: tohoma;
+}

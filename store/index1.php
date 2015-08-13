@@ -7,6 +7,7 @@
 		<meta http-equiv="Content-Language" content="th">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>ออกข้อสอบ</title>
+
 <script src="js/jquery.min.js"></script>		
 <script language = "javascript">
 	var XMLHttpRequestObject = false;
@@ -161,7 +162,7 @@
 					<img border="0" src="images/head.jpg" width="1162" height="136"></td>
 				</tr>
 				<tr>
-					<td align="left" width="611" bgcolor="#F2CEB3" valign="bottom"><font color="#0000FF">
+					<td align="left" width="612" bgcolor="#F2CEB3" valign="bottom"><font color="#0000FF">
 			<span style="font-size: 11pt" lang="en-us"><font size="3">
 			<span style="font-size: 9pt">
 			<!-- <input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" 
@@ -170,14 +171,14 @@
 			style="font-family: Tahoma; font-size: 18px; color: #FF0000; font-weight: bold; float: left">
 			&nbsp;&nbsp; </span></font></span>
 							</font></td>
-					<td align="center" width="106" valign="bottom" bgcolor="#F2CEB3">
-					<p align="right"><font style="font-size: 18pt">
+					<td align="center" width="125" valign="bottom" bgcolor="#F2CEB3">
+					<p align="right"><font style="font-size: 14pt">
 				  ผู้ใช้งานระบบ :</font></td>
-					<td align="center" width="242" valign="bottom" bgcolor="#F2CEB3">
+					<td align="center" width="302" valign="bottom" bgcolor="#F2CEB3">
 					<p align="left"><b>
-					<span style="font-size: 11pt; font-weight: 700 color:#003366" lang="en-us">
-					<?php echo $_SESSION['vvname']; ?></span></b></td>
-					<td align="center" width="65" bgcolor="#F2CEB3">
+					<span style="font-size: 14pt;font-weight: 700 color:#003366" lang="en-us">
+				  <?php echo $_SESSION['vvname']; ?></span></b></td>
+					<td align="center" width="123" bgcolor="#F2CEB3">
 			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><!-- <img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" 
 			width="64" height="80"> --></td>
 				</tr>
@@ -185,8 +186,8 @@
 					<td align="center" colspan="4" height="26">
 					<table border="0" width="100%" cellspacing="1" cellpadding="3" bgcolor="#EDE2DE">
 						<tr bgcolor="#FF9966">
-							<td width="5">&nbsp;</td>
-							<td><span style="font-size: 12pt; font-weight: 500" lang="en-us">
+							<td width="6">&nbsp;</td>
+							<td width="1141"><span style="font-size: 16pt; font-weight: 500" lang="en-us">
 							
 							<?php echo "ออกข้อสอบหลักสูตร : <font color='#FF0000'>".$sblname."
 							</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; กลุ่มวิชา : <font color='#FF0000'>".$sbgname."
@@ -201,20 +202,20 @@
 					<td align="center" colspan="4">
 					<table border="0" width="100%" cellspacing="1" cellpadding="3">
 						<tr>
-							<td width="121">
+							<td width="207">
 							<p align="right"><b>
-							<font style="font-size: 10pt" color="#003366">ข้อสอบออกไว้แล้ว </font> <span lang="en-us">
+							<font style="font-size: 14pt" color="#003366">ข้อสอบออกไว้แล้ว </font> <span lang="en-us">
 							<font style="font-size: 10pt" color="#003366">:</font><span style="font-size: 10pt">
 							</span> </span></b>
-							</td>
-							<td width="59">
+						  </td>
+							<td width="70">
 							<p align="center"><span lang="en-us">
-							<font color="#FF0000" style="font-size: 13pt">
-							<span style="font-weight: 700"><?  echo $sbjrow; ?></span></font></span></td>
-							<td width="105"><font color="#003366"><b><span style="font-size: 10pt">
+							<font color="#FF0000" style="font-size: 14pt">
+						  <span style="font-weight: 700"><?  echo $sbjrow; ?></span></font></span></td>
+							<td width="33"><font color="#003366"><b><span style="font-size: 14pt">
 							ข้อ</span></b></font></td>
-							<td width="369" id="tcname" align=right></td>
-							<td><p align="right"><font color="#0000FF">
+							<td width="344" id="tcname" align=right></td>
+							<td width="472"><p align="right"><font color="#0000FF">
 							<!-- <input type="button" value="ตรวจสอบรายชื่อผู้ออกและแก้ไขวิชานี้" onClick="getData('ajxchkn.php','tcname')" 
 							style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"/> --></font></td>
 						</tr>
@@ -226,9 +227,9 @@
 	<table border="0" width="100%" cellpadding="2" bgcolor="#EDE2DE" cellspacing="1">
 		<tr bgcolor="#FF9966">
 		  <td align="right" bgcolor="#FF9966" colspan="2" >
-		  <p align="center"><font color="#003366" style="font-size: 9pt;" >
-		  <b> คำถาม<br>
-		    เฉลย<span lang="en-us">/</span>คำตอบ</b></font></td>
+		  <p align="center"><font color="#003366" style="font-size: 12pt;" >
+		  <b>คำถาม<br>
+		    เฉลย<span lang="en-us">/</span><br>คำตอบ</b></font></td>
 		  <td bgcolor="#FF9966"><textarea rows="2" name="qtn" cols="151"><?php echo $qtn; ?></textarea></td>
 		  </tr>
 		<tr>

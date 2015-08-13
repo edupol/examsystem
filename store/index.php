@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Language" content="th">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>ระบบคลังข้อสอบ</title>
+
 <script src="js/jquery.min.js"></script>
 <script language = "javascript">
 	var XMLHttpRequestObject = false;
@@ -77,21 +78,21 @@
         <td align="center" colspan="4" bgcolor="#E7D7D0"><img border="0" src="images/head.jpg" width="1024" height="120"></td>
       </tr>
       <tr>
-        <td align="left" width="632" bgcolor="#F2CEB3" valign="bottom"><font color="#0000FF"> <span style="font-size: 11pt" lang="en-us"><font size="3"> <span style="font-size: 9pt">
+        <td align="left" width="370" bgcolor="#F2CEB3" valign="bottom"><font color="#0000FF"> <span style="font-size: 11pt" lang="en-us"><font size="3"> <span style="font-size: 9pt">
 <!--           <input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" 
 			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left"> -->
           &nbsp;&nbsp; </span></font></span> </font></td>
-        <td align="center" width="102" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 11pt"> ผู้ใช้งานระบบ :</font></span></td>
-        <td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 11pt; font-weight: 700 color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
+        <td align="center" width="120" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 14pt"> ผู้ใช้งานระบบ : </font></span></td>
+        <td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 14pt;font-weight: 700 color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
         <!-- <td align="center" width="65" bgcolor="#D2B8AE"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td> -->
       </tr>
       <tr>
           <td align="center" colspan="4" height="26">
         <table border="0" width="100%" cellspacing="1" cellpadding="3" bgcolor="#F2CEB3">
           <tr>
-            <td width="7%" height="40" valign="bottom"><p align="right"> <font color="#003366" style="font-size: 20pt"><b> หลักสูตร</b></font><b><span style="font-size: 10pt"> <font color="#003366"> :</font></span></td>
-            <td width="40%" height="40" valign="bottom"><select name="sblid" onChange="getData('ajxsbl.php?zsblid='+this.value,'tbsbgid')" 
-							style="font-family: Tahoma; font-size: 13; color: #4B3D34" size="1" tabindex="1">
+            <td width="19%" height="40" valign="bottom"><p align="right"> <font color="#003366" style="font-size: 18pt"><b> หลักสูตร</b></font><b><span style="font-size: 16pt"> <font color="#003366"> :</font></span></td>
+            <td width="38%" height="40" valign="bottom"><select name="sblid" onChange="getData('ajxsbl.php?zsblid='+this.value,'tbsbgid')" 
+							style="font-family: Tahoma; font-size: 16px; color: #000000" size="1" tabindex="1">
                 <option value="0" >เลือกชื่อหลักสูตร หากไม่มีกรุณาปรับปรุงชื่อหลักสูตร</option>
                 <?php	
                 $sql = "select * from exam_level ";
@@ -102,44 +103,44 @@
 				?>
                 <option value="<?php echo $osblid; ?>" <? if($osblid==$id){ echo "selected"; } ?>><?php echo $osblname; ?></option>
                 <?php }  ?>
-              </select></td>
-            <td height="40" colspan="3"><table border="0" width="100%" cellspacing="3" cellpadding="0">
+            </select></td>
+            <td height="40" colspan="3"><table border="0" width="90%" cellspacing="3" cellpadding="0">
                 <tr>
-                  <td valign="bottom"><p align="right"><font color="#0000FF">
+                  <td valign="bottom">
                       <!-- <input name="upload" type="submit" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold;float:right;"   value="อัฟโหลดข้อสอบ"> -->
-                      <input type="button" value="ปรับปรุงชื่อหลักสูตร" onClick="window.location='sblevel.php'" 
-							style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold">
-                      &nbsp;
+                      <input type="button" value="ปรับปรุงชื่อหลักสูตร"  onClick="window.location='sblevel.php'" 
+							style="font-family: Tahoma; font-size: 16px; color: rgb(255, 0, 0); font-weight: bold; padding-left: 2px; padding-right: 0px;">
+                     
                       <input type="button" value="ปรับปรุงชื่อกลุ่มวิชา" onClick="window.location='subgrp.php'" 
-							style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold">
-                      &nbsp;
+							style="font-family: Tahoma; font-size: 16px; color: rgb(255, 0, 0); font-weight: bold; padding-left: 2px; padding-right: 0px;">
+                      
                       <input type="button" value="ปรับปรุงชื่อวิชา" onClick="window.location='subject.php'" 
-							style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold">
-                      </font> </td>
+							style="font-family: Tahoma; font-size: 16px; color: rgb(255, 0, 0); font-weight: bold; padding-left: 2px; padding-right: 0px;">
+                       </td>
                 </tr>
               </table></td>
           </tr>
           <tr>
-            <td width="10%"><b>
-              <p align="right"> <font color="#003366" style="font-size: 20pt">กลุ่มวิชา</font><span style="font-size: 10pt"> <font color="#003366"> :</font></span></td>
-            <td width="25%" id="tbsbgid" ><p align="left">
+            <td width="19%"><b>
+              <p align="right"> <font color="#003366" style="font-size: 18pt">กลุ่มวิชา</font><span style="font-size: 16pt"> <font color="#003366"> :</font></span></td>
+            <td width="30%" id="tbsbgid" ><p align="left">
                 <select name='osbgid' onChange="getData('ajxsb.php?zsbgid='+this.value,'tdsbid')"  
-								size="1" style="font-family: Tahoma; font-size: 13; color: #4B3D34" tabindex="2">
+								size="1" style="font-family: Tahoma; font-size: 16px; color: #000000" tabindex="2">
                   <option value="0">เลือกชื่อกลุ่มวิชา หากไม่มีกรุณาปรับปรุงชื่อกลุ่มวิชา</option>
                 </select>
             </td>
-            <td width="5%"><p align="right"><b> <span style="font-size: 10pt"> <font color="#003366"> วิชา :</font></span></td>
+            <td width="8%"><p align="right"><b> <span style="font-size: 18pt"> <font color="#003366"> วิชา :</font></span></td>
             </td>
           
           
-            <td width="17%" id="tdsbid" ><select name='osbid' size="1" style="font-family: Tahoma; font-size: 13; color: #4B3D34" tabindex="3">
+            <td width="20%" id="tdsbid" ><select name='osbid' size="1" style="font-family: Tahoma; font-size: 16px; color: #000000" tabindex="3">
                 <option value="0">เลือกชื่อวิชา หากไม่มีกรุณาปรับปรุงชื่อวิชา</option>
               </select></td>
             <td width="37%"><p align="right"><font color="#0000FF"> <span style="font-size: 11pt" lang="en-us"><font size="3"> <span style="font-size: 9pt">
                 <input name="subm" type=submit  value="ออกข้อสอบ" 
-			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:right" 
+			style="font-family: Tahoma; font-size: 16px; color: #FF0000; font-weight: bold; float: right" 
 			tabindex="4">
-                </span></font></span></font></td>
+              </span></font></span></font></td>
           </tr>
         </table>
           </td>

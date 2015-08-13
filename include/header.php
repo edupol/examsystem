@@ -72,10 +72,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="manageexam.php"> <img alt="Charisma Logo" src="img/logo20.png" class="hidden-xs"/>
-            <div>ระบบทดสอบความรู้</div></a>
+            <a class="navbar-brand fix-navbar" href="manageexam.php"> <!-- <img alt="Charisma Logo" src="img/logo20.png" class="hidden-xs"/> -->
+            <div class="customFont2 fix-font1">ระบบสารสนเทศเพื่อการพัฒนางานฝึกอบรม พ.ศ.2558</div></a>
 
-            <div class="btn-group pull-right">
+            <div class="btn-group pull-right fix-menu">
                 <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
                     <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs exam-text" id="username"> admin</span>
                     <span class="caret"></span>

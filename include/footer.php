@@ -1,6 +1,6 @@
 <div  class="ch-container">
     <footer class="row">
-        <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; <a href="http://edupol.org" target="_blank">Police Education Bureau</a> 2014</p>
+        <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; <a href="http://edupol.org" target="_blank">Police Education Bureau</a> 2015</p>
         <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a href="#">Section 6 General Staff</a></p>
     </footer>
 </div>

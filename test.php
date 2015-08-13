@@ -33,11 +33,10 @@
                 </ul>
 
                 <div class="box ">
-                    <div class="col-md-12"><span class="label1">ชื่อแบบทดสอบ</span><span class="exam-text">xxxxxxxx</span></div>
+                    <div class="col-md-12"><span class="label1">ชื่อแบบทดสอบ</span><span id="examText" class="exam-text">xxxxxxxx</span></div>
                     <div class="col-md-3"><span>เวลาทำข้อสอบ</span><span id="StartClock" class="exam-text">xxxxxxxx</span></div>
-                    <div class="col-md-3"><span>ใช้เวลาไป</span><span id="StartClock" class="exam-text">xxxxxxxx</span></div>
                     <div class="col-md-3"><span>เหลือเวลา</span><span id="EndClock"  class="exam-text">xxxxxxxx</span></div>
-                    <div class="col-md-3"><span class="label1">จำนวนข้อ</span><span class="exam-text">xxxxxxxx</span></div>                    
+                    <div class="col-md-3"><span class="label1">จำนวนข้อ</span><span id="totalExam" class="exam-text">xxxxxxxx</span></div>                    
 
                 </div>
             
@@ -66,8 +65,8 @@
                 <!--End control group-->
        
                 <div class="form-actions form-group">
-                    <a id="saveAnswer" class="btn btn-success"><i class=" icon-ok icon-white"></i> บันทึกค่า</a>
-                    <a class="btn btn-primary" href="login.html">
+                    <a id="saveAnswer" class="btn btn-success customFont0 fix-font1"><i class=" icon-ok icon-white "></i> บันทึกค่า</a>
+                    <a class="btn btn-primary customFont0 fix-font1" href="login.html">
                         <i class="icon-home icon-white"></i> 
                         ยกเลิก
                     </a>

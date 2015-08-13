@@ -39,13 +39,13 @@
     <div class="box col-md-12">
         <div class="box-inner" id="changepwd">
             <div class="box-header well" data-original-title="">
-                <h2><i class="glyphicon glyphicon-star-empty"></i> เปลี่ยนรหัสผ่าน</h2>
+                <span class="customFont1 "><i class="glyphicon glyphicon-star-empty "></i> เปลี่ยนรหัสผ่าน</span>
             </div>
             <div class="box-content">
                 <!-- put your content here -->
                 <form id="Register">
                     <div class="form-group">
-                        <label class="control-label" for="first_name">รหัสผ่านเดิม</label> 
+                        <label class="control-label customFont0 fix-font1" for="first_name">รหัสผ่านเดิม</label> 
                         <div class="clearfix"></div>
                         <input placeholder="รหัสผ่านเดิม" name="password" class="form-control input-lm" type="password" value="" maxlength="50">                                      
                                              
@@ -55,7 +55,7 @@
                     <!--End control group-->
 
                     <div class="form-group">
-                        <label class="control-label" for="first_name">รหัสผ่านใหม่</label> 
+                        <label class="control-label customFont0 fix-font1" for="first_name">รหัสผ่านใหม่</label> 
                         <div class="clearfix"></div>
                         <input placeholder="รหัสผ่านใหม่" name="new_password" class="form-control input-lm" type="password" value="" maxlength="50">                                      
                                              
@@ -65,7 +65,7 @@
                     <!--End control group-->
 
                     <div class="form-group">
-                        <label class="control-label" for="first_name">ยืนยันรหัสใหม่</label> 
+                        <label class="control-label customFont0 fix-font1" for="first_name">ยืนยันรหัสใหม่</label> 
                         <div class="clearfix"></div>
                         <input placeholder="ยืนยันรหัสใหม่" name="confirm_password" class="form-control input-lm" type="password" value="" maxlength="50">                                      
                                              
@@ -75,8 +75,8 @@
                     <!--End control group--> 
 
                     <div class="control-group">
-                        <a class="save btn btn-success"><i class=" icon-ok icon-white"></i> บันทึกค่า</a>
-                        <a class="btn btn-primary" href="login.html">
+                        <a class="save btn btn-success customFont0 fix-font1"><i class=" icon-ok icon-white"></i> บันทึกค่า</a>
+                        <a class="btn btn-primary customFont0 fix-font1" href="login.html">
                             <i class="icon-home icon-white"></i> 
                             กลับสู่หน้าหลัก
                         </a>
