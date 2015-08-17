@@ -1,6 +1,6 @@
-<?php	session_start();
-	//if(!$_SESSION['vvstatus'][7]){ echo "<script> alert('ท่านไม่ได้รับอนุญาตให้ใช้งานระบบนี้ โปรดติดต่อผู้ดูแลระบบ'); 
-	//window.location='../index.php';</script>";  exit();}
+<?php	
+   session_start();
+   define('WEB_PATH', '//'. $_SERVER["SERVER_NAME"].'/examsystem/');
    require_once 'libs/PDOAdapter.php';
 
 ?>
@@ -11,6 +11,8 @@
 <title>ระบบคลังข้อสอบ</title>
 
 <script src="js/jquery.min.js"></script>
+<script src="<?php echo WEB_PATH;?>js/url.helper.js"></script>
+<script src="<?php echo WEB_PATH;?>js/main.js"></script>
 <script language = "javascript">
 	var XMLHttpRequestObject = false;
 	if (window.XMLHttpRequest) 
@@ -45,7 +47,12 @@
 <body background="images/bg.png">
 <?php
 	include("connect.inc");	
-  $_SESSION['vvname'] = 'ร.ต.ท.จรัสพงษ์ โชคชัยสิริ';
+
+   //extend session value from API
+   $_SESSION['vvid13']  = $_SESSION["user_id"];
+   $_SESSION['vvname']  = $_SESSION['username'];//'ร.ต.ท.จรัสพงษ์ โชคชัยสิริ';
+
+
 	if(isset($_POST['subm']) || isset($_POST['upload']))
 	{	$_SESSION['vvsbid']=trim($_POST['osbid']);
 		$sbid=trim($_POST['osbid']);
@@ -82,8 +89,8 @@
 <!--           <input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" 
 			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left"> -->
           &nbsp;&nbsp; </span></font></span> </font></td>
-        <td align="center" width="120" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 14pt"> ผู้ใช้งานระบบ : </font></span></td>
-        <td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 14pt;font-weight: 700 color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
+        <td align="center" width="120" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 18px;font-weight: 700 ;"> ผู้ใช้งานระบบ : </font></span></td>
+        <td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
         <!-- <td align="center" width="65" bgcolor="#D2B8AE"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td> -->
       </tr>
       <tr>
@@ -104,7 +111,7 @@
                 <option value="<?php echo $osblid; ?>" <? if($osblid==$id){ echo "selected"; } ?>><?php echo $osblname; ?></option>
                 <?php }  ?>
             </select></td>
-            <td height="40" colspan="3"><table border="0" width="90%" cellspacing="3" cellpadding="0">
+            <td height="40" colspan="3"><table border="0" width="100%" cellspacing="3" cellpadding="0">
                 <tr>
                   <td valign="bottom">
                       <!-- <input name="upload" type="submit" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold;float:right;"   value="อัฟโหลดข้อสอบ"> -->

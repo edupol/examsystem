@@ -58,11 +58,48 @@ class ExamAssignment extends BaseClass
 				$results['message'] = "พบข้อมูลซ้ำในระบบฐานข้อมูล";
 			}
 		}
+		$results['route']	= 'list_of_exams.php';
 		$results['isError'] = $isError;
 		
 		echo json_encode($results);	
 	}
-	
+	/*
+					SELECT b.id,concat(c.short_name,' ',b.first_name,' ',b.last_name) as name,
+					 b.belongto,DATE_FORMAT(a.datetime_start, '%d/%m/%Y') as start_date,TIME(a.datetime_start) as start_time,
+					 TIME(a.datetime_end) end_time,a.total_exam,a.total_done,a.score FROM `student_assessments` a 
+					 join user b on a.user_id = b.id 
+					 join rank c on b.rank_id = c.id 
+					 where a.score = (select max(score) as score from `student_assessments` ) 
+					 and a.exam_random_history_id  = 3 group by a.user_id
+                     order by a.score desc
+	*/
+	public function getAssetmentsByExamID($id){
+		$sql     = " SELECT concat(c.short_name,' ',b.first_name,' ',b.last_name) as name,
+					 b.belongto as position,DATE_FORMAT(a.datetime_start, '%d/%m/%Y') as test_date,concat(TIME(a.datetime_start),' - ',TIME(a.datetime_end)) as test_time,
+					 a.total_exam,a.total_done,a.score FROM `student_assessments` a 
+					 join user b on a.user_id = b.id 
+					 join rank c on b.rank_id = c.id 
+					 where a.score in (select max(score) as score from `student_assessments` group by user_id ) 
+					 and a.exam_random_history_id  = ? group by a.user_id
+					 order by a.score desc ";
+	    
+	    $params = array();	  
+
+	    //user identity criteria
+		if (isset($id)) {
+			array_push($params, $id);
+		}    
+
+		$test_result	= PDOAdpter::getInstance()->select($sql, $params, false);
+
+		foreach ($test_result as $index => $value) {
+			$test_result[$index]['seq']            = $index+1;
+		}
+		$results['data'] = $test_result;
+	//	var_dump($results);
+		echo json_encode( $results );
+	}
+
 	public function getAssignmentsByStudentID(){
 
 		$user_id 				= $_SESSION['user_id'];
@@ -127,24 +164,19 @@ class ExamAssignment extends BaseClass
 
 	    //user identity criteria
 		if (isset($data)) {
-
-			//sql for pwd criteria			
+		
 			array_push($where, "student_course_id = ? ");
 			array_push($params, $data['student_course_id']);
-
-			//sql for pwd criteria			
+		
 			array_push($where, "exam_random_history_id = ? ");
 			array_push($params, $data['exam_random_history_id']);
-
-			//sql for pwd criteria			
+		
 			array_push($where, "start_assignment = ? ");
 			array_push($params, $data['start_assignment']);
 
-			//sql for pwd criteria			
 			array_push($where, "end_assignment = ? ");
 			array_push($params, $data['end_assignment']);	
-
-			//sql for pwd criteria			
+		
 			array_push($where, "assign_by = ? ");
 			array_push($params, $data['assign_by']);	
 

@@ -26,7 +26,7 @@
     <div class="box col-md-12" >
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
-                <span class="customFont1" id="addExamBox"><i class="glyphicon glyphicon-star-empty"></i> ระบบสารสนเทศ</span>
+                <!-- <span class="customFont1" id="addExamBox"><i class="glyphicon glyphicon-star-empty"></i> ระบบสารสนเทศ</span> -->
             </div>
             <div class="box-content">
                 <!-- put your content here -->

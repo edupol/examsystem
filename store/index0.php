@@ -1,8 +1,15 @@
+<?php	
+   session_start();
+   define('WEB_PATH', '//'. $_SERVER["SERVER_NAME"].'/examsystem/');
+   require_once 'libs/PDOAdapter.php';
+
+?>
 <html>
 	<head>
 		<meta http-equiv="Content-Language" content="th">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>ระบบคลังข้อสอบ</title>
+<script src="<?php echo WEB_PATH;?>js/main.js"></script>		
 <script language = "javascript">
 	var XMLHttpRequestObject = false;
 	if (window.XMLHttpRequest) 

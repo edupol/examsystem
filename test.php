@@ -25,7 +25,7 @@
             <div>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="#">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
                         <a href="#">ระบบทดสอบความรู้</a>
@@ -33,10 +33,10 @@
                 </ul>
 
                 <div class="box ">
-                    <div class="col-md-12"><span class="label1">ชื่อแบบทดสอบ</span><span id="examText" class="exam-text">xxxxxxxx</span></div>
-                    <div class="col-md-3"><span>เวลาทำข้อสอบ</span><span id="StartClock" class="exam-text">xxxxxxxx</span></div>
-                    <div class="col-md-3"><span>เหลือเวลา</span><span id="EndClock"  class="exam-text">xxxxxxxx</span></div>
-                    <div class="col-md-3"><span class="label1">จำนวนข้อ</span><span id="totalExam" class="exam-text">xxxxxxxx</span></div>                    
+                    <div class="col-md-12"><span class="label1 customFont1">ชื่อแบบทดสอบ</span><span id="examText" class="exam-text customFont1">xxxxxxxx</span></div>
+                    <div class="col-md-3"><span class="customFont1">เวลาทำข้อสอบ</span><span id="StartClock" class="exam-text customFont1">00:00:00</span></div>
+                    <div class="col-md-3"><span class="customFont1">เหลือเวลา</span><span id="EndClock"  class="exam-text customFont1">00:00:00</span></div>
+                    <div class="col-md-3"><span class="label1 customFont1">จำนวนข้อ</span><span id="totalExam" class="exam-text customFont1">0</span></div>                    
 
                 </div>
             
@@ -46,7 +46,7 @@
                     <div class="box col-md-12">
                         <div class="box-inner">
                             <div class="box-header well" data-original-title="">
-                                <h2><i class="glyphicon glyphicon-star-empty"></i> ระบบทดสอบความรู้</h2>
+                                <h2><i class="glyphicon glyphicon-star-empty"></i> โปรดเลือกคำตอบ</h2>
                             </div>
                             <div id="examContainer" class="box-content">
                                 <!-- put your content here -->
@@ -66,7 +66,7 @@
        
                 <div class="form-actions form-group">
                     <a id="saveAnswer" class="btn btn-success customFont0 fix-font1"><i class=" icon-ok icon-white "></i> บันทึกค่า</a>
-                    <a class="btn btn-primary customFont0 fix-font1" href="login.html">
+                    <a class="btn btn-primary customFont0 fix-font1" href="list_of_test.php">
                         <i class="icon-home icon-white"></i> 
                         ยกเลิก
                     </a>

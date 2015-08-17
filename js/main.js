@@ -1130,7 +1130,7 @@ window.ExamAssignment = {
 				div 			= jQuery('<div>'),
 				label 			= jQuery('<label>'),
 				input			= jQuery('<input>'),
-				link 			= jQuery('<a> ลบหลักสูตร</a>'),
+				link 			= jQuery('<a> ลบ</a>'),
 				icon 			= jQuery('<i>'),
 				total 			= 0;
 
@@ -1139,14 +1139,14 @@ window.ExamAssignment = {
 			total = self.getTotalNums();
 			jQuery('#totalQuestions').html(total);
 			div.clone().addClass('row').append(
-				div.clone().addClass('col-md-9 col-sm-10').append(
+				div.clone().addClass('col-md-11 col-sm-10').append(
 					label.clone().text('ชื่อวิชา'),
-					input.clone().addClass('form-control exam-name')
+					input.clone().addClass('form-control customFont0 fix-font1')
 								 .attr({
 								 		'disabled' : 'disabled'
 								 }).val(CourseName +' รุ่นที่ '+ coursenumber)
 				),
-				div.clone().addClass('col-md-3 col-sm-10 red padd-top-25').append(
+				div.clone().addClass('col-md-1 col-sm-10 red padd-top-25').append(
 					link.clone().addClass('btn btn-danger btn-md').prepend(
 						icon.clone().addClass('glyphicon glyphicon-minus glyphicon-white')
 					).on('click',function(){
@@ -1275,6 +1275,7 @@ window.ExamAssignment = {
 
 				if(response != "undefined" && response != null){
 					alert(response.message);
+					window.location = response.route;
 				}
 			}	
 		});		
@@ -1305,7 +1306,7 @@ window.ListOfTests = {
                 	if(data == full) return false;
                     var buttonID = full.id,
                     	btn = '<a id="'+buttonID+'" href="test.php?exam_id='+buttonID+'" class="word btn btn-success customFont0 fix-font1 " role="button"><i class="glyphicon glyphicon-list-alt icon-white"></i>  ทำข้อสอบ</a>';
-                    	btn += '   <a id="'+buttonID+'" href="#result.php" class="excel btn btn-info customFont0 fix-font1" role="button"><i class="glyphicon glyphicon-th-large icon-white"></i>  ตรวจสอบผล</a>';
+                    	btn += '   <a id="'+buttonID+'" href="list_of_test_result.php?exam_id='+buttonID+'" class="excel btn btn-info customFont0 " role="button"><i class="glyphicon glyphicon-th-large icon-white"></i>  ตรวจสอบผล</a>';
                 	return btn;
                 }
             }            
@@ -1327,9 +1328,67 @@ window.ListOfTests = {
 	}
 };
 
+window.ListOfTestsResult = {
+	init:function(){
+		var self = this;
+		self.setDataTable();
+	},setDataTable : function(){
+		var self 	= this,
+			id 		= window.URL.get('exam_id'),
+			url 	= (window.Setting.isTest)? window.Setting.testAPI : window.Setting.serverAPI ;
+			
+		url 	+= 'exam/assestment/'+ id ;
+
+		//datatable
+		jQuery('.datatable').dataTable({
+		    "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-12'i><'col-md-12 center-block'p>>",
+		    "sPaginationType": "bootstrap",
+		    "oLanguage": {
+		        "sLengthMenu": "_MENU_ records per page"
+		    },
+		     "ajax": url,
+		     "columns" : [{ "data": "seq" },{ "data": "name" },{ "data": "position" },{ "data": "test_date" },{ "data": "test_time" },{ "data": "total_exam" },{ "data": "total_done" },{ "data": "score" },
+            // {
+            //     sortable: false,
+            //     "render": function ( data, type, full, meta ) {
+            //     	if(data == full) return false;
+            //         var buttonID = full.id,
+            //         	btn = '<a id="'+buttonID+'" href="test.php?exam_id='+buttonID+'" class="word btn btn-success customFont0 fix-font1 " role="button"><i class="glyphicon glyphicon-list-alt icon-white"></i>  ข้อมูลการทำแบบทดสอบย้อนหลัง</a>';
+            //     	return btn;
+            //     }
+            // }            
+            ],
+          
+		});		
+
+
+		jQuery('.datatable').on('click','.word,.excel,.assignment',function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			var route = jQuery(this).attr('href'),
+				exam_id = jQuery(this).attr('id');
+
+			jQuery('input[name="exam_id"]').val(exam_id);				
+			jQuery('#examSubmit').attr({'action':route}).submit();		
+		});
+	}
+}	
 $(document).ready(function(){
 
-	var source = window.Setting.page();
+	var source 	= window.Setting.page(),
+	urlData  	= window.URL.getUriObject(window.self.location.href),
+	directory 	= urlData.directory;
+
+	// if(directory == "/examsystem/store/"){
+	// 	//load user id into store session
+	// 	window.ListOfExams.getUser(function(response){
+	// 		var uid = response.user_id;
+	// 		$.post("set_session.php", { id: uid}, function( data ) {
+	// 		  //
+	// 		});
+	// 	});
+	// }
+
 	switch(source){
 		case 'register.php' : 
 			window.Register.init();
@@ -1354,6 +1413,9 @@ $(document).ready(function(){
 		break;
 		case 'list_of_test.php' :
 			window.ListOfTests.init();
+		break;
+		case 'list_of_test_result.php' :
+			window.ListOfTestsResult.init();
 		break;
 		default : 
 		break;

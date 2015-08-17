@@ -97,8 +97,8 @@ class Exam extends BaseClass{
 			$field			 = '*';//'id as exam_id, random_questions ';
 	
 			//Sql statement
-			$sql     = "SELECT $field FROM $table ";
-	
+			//$sql     = "SELECT $field FROM $table ";
+            $sql = "select `b`.`id` AS `id`,`c`.`qtn` AS `qtn`,`c`.`ans1` AS `ans1`,`c`.`ans2` AS `ans2`,`c`.`ans3` AS `ans3`,`c`.`ans4` AS `ans4`,`c`.`answer` AS `answer`,`a`.`question_id` AS `question_id`,`b`.`user_id` AS `user_id`,`b`.`name` AS `name`,`b`.`exam_minute` AS `exam_minute`,`b`.`start_date` AS `start_date`,`b`.`end_date` AS `end_date` from ((`exam_random_history_questions` `a` join `exam_random_history` `b` on((`a`.`exam_random_history_id` = `b`.`id`))) join `questions` `c` on((`a`.`question_id` = `c`.`id`)))";	
 			/*
 			*Treats array as a stack prevent bug&errors when binding to prepare statment
 			*Set value by push args into stack

@@ -72,7 +72,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand fix-navbar" href="manageexam.php"> <!-- <img alt="Charisma Logo" src="img/logo20.png" class="hidden-xs"/> -->
+            <a class="navbar-brand fix-navbar" href="index.php"> <!-- <img alt="Charisma Logo" src="img/logo20.png" class="hidden-xs"/> -->
             <div class="customFont2 fix-font1">ระบบสารสนเทศเพื่อการพัฒนางานฝึกอบรม พ.ศ.2558</div></a>
 
             <div class="btn-group pull-right fix-menu">

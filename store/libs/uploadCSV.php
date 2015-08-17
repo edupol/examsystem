@@ -44,7 +44,7 @@ if(isset($_POST['uploadFile'])){
 			$data['ans4'] 	= (($objArr[6] == "4")?"1":"0").$objArr[5];//'04'.substr(trim($objArr[5]),2);//iconv( 'UTF-8', 'TIS-620', $objArr[5]);
 			$data['answer'] = $objArr[6];
 			$data['created_at'] = $date->format('Y-m-d H:i:s'); 
-			$data['instructor_id'] = 456;//$_SESSION['vvid13'];
+			$data['instructor_id'] = $_SESSION['vvid13'];
 
 			//save row to database			
 			$pdo->insert($data,'questions');

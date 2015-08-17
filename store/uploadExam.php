@@ -1,13 +1,14 @@
 <?php 
 	session_start();
-	if(!$_SESSION['vvstatus'][7]){ echo "<script>window.location='../index.php'</script>";  exit();}
+  define('WEB_PATH', '//'. $_SERVER["SERVER_NAME"].'/examsystem/');
+	// if(!$_SESSION['vvstatus'][7]){ echo "<script>window.location='../index.php'</script>";  exit();}
 	 include_once("libs/getExamInf.php");
    require_once 'libs/PDOAdapter.php';
 
    if(isset($_GET['exam_id']) && !empty($_GET['exam_id'])){
       $_SESSION['vvsbid'] = $_GET['exam_id'];
    }
-   var_dump($_SESSION['vvsbid']);
+
 ?>
 
 <html>
@@ -15,7 +16,10 @@
 		<meta http-equiv="Content-Language" content="th">
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-874">
 		<title>นำเข้าข้อสอบ</title>
+        <script src="js/jquery.min.js"></script>  
         <script src="js/util.js"   type="text/javascript" ></script>
+        <script src="<?php echo WEB_PATH;?>js/url.helper.js"></script>
+        <script src="<?php echo WEB_PATH;?>js/main.js"></script>  
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
 	<body background="images/sq.gif">

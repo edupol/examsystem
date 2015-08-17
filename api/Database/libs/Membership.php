@@ -44,7 +44,7 @@ class Membership {
 		if($ensure_credentials) {
 			$result = $this->getUser(null, $un, $pwd);
 			$_SESSION['status'] 	= 'authorized';
-			$_SESSION['username'] 	= $result[0]['first_name']." ".$result[0]['last_name'];
+			$_SESSION['username'] 	= $result[0]['short_name']." ".$result[0]['first_name']." ".$result[0]['last_name'];
 			//$_SESSION['position']	= 
 			$_SESSION['user_id'] 	= $result[0]['id'];
 		}
@@ -91,10 +91,11 @@ class Membership {
 	private function getUser($id=null,$username=null,$pwd=null){
 		//db table		
 		$table 		     = 'user';
-		$field			 = 'count(id) as valid,id,phone,first_name,last_name';
+		$field			 = 'count(user.id) as valid,user.id,phone,first_name,last_name,rank.short_name';
 
 		//Sql statement
-	    $sql     = "SELECT $field FROM $table  ";
+	    $sql     = " SELECT $field FROM $table  
+	    			 JOIN rank on $table.rank_id = rank.id ";
 
 	    /*
 	    *Treats array as a stack prevent bug&errors when binding to prepare statment
@@ -116,7 +117,7 @@ class Membership {
 		
 		if(isset($id)){
 			//sql for id criteria
-			array_push($where, "id = ? ");
+			array_push($where, "$table.id = ? ");
 			array_push($params,$id);			
 		}
 		

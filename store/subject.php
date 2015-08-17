@@ -1,5 +1,5 @@
 <?php	session_start();
-//if(!$_SESSION['vvstatus'][7]){ echo "<script>window.location='../index.php'</script>";  exit();}
+   define('WEB_PATH', '//'. $_SERVER["SERVER_NAME"].'/examsystem/');
 ?>
 <html>
 	<head>
@@ -7,6 +7,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>เพิ่มรายชื่อวิชา</title>
 		<script src="js/jquery.min.js"></script>
+		<script src="<?php echo WEB_PATH;?>js/url.helper.js"></script>
+		<script src="<?php echo WEB_PATH;?>js/main.js"></script>
 <script language = "javascript">
 	var XMLHttpRequestObject = false;
 	if (window.XMLHttpRequest) 
@@ -133,21 +135,16 @@
 			<span style="font-size: 9pt">
 			<span style="font-size: 11pt">&nbsp;</span></span></font></font><table border="0" width="92%" id="table1" cellspacing="3" cellpadding="0">
 					<tr>
-						<td><input type=button onClick="window.location='index.php'" value="        ออกข้อสอบ         " name="B2" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></td>
-						<td><input type=button onClick="window.location='subgrp.php'" value="  ปรับปรุงชื่อกลุ่มวิชา   " name="B3" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold; float:left"></td>
-						<td><input type=button onClick="window.location='sblevel.php'" value="  ปรับปรุงชื่อหลักสูตร  " name="B4" style="font-family: Tahoma; font-size: 13; color: #FF0000; font-weight: bold"></td>
+						<td><input type=button onClick="window.location='index.php'" value="        ออกข้อสอบ         " name="B2" style="font-family: Tahoma; font-size: 16px; color: #FF0000; font-weight: bold"></td>
+						<td><input type=button onClick="window.location='subgrp.php'" value="  ปรับปรุงชื่อกลุ่มวิชา   " name="B3" style="font-family: Tahoma; font-size: 16px; color: #FF0000; font-weight: bold; float:left"></td>
+						<td><input type=button onClick="window.location='sblevel.php'" value="  ปรับปรุงชื่อหลักสูตร  " name="B4" style="font-family: Tahoma; font-size: 16px; color: #FF0000; font-weight: bold"></td>
 					</tr>
 				</table>
 					</td>
-					<td align="center" width="114" valign="bottom" bgcolor="#F2CEB3">
-					<p align="right"><b><font style="font-size: 11pt">
-					ผู้ใช้งานระบบ </font><span lang="en-us">
-					<font style="font-size: 11pt">:</font></span></b></td>
-					<td align="center" width="275" valign="bottom" bgcolor="#F2CEB3">
-					<p align="left">
-					<span style="font-size: 10pt; font-weight: 700" lang="en-us">
-					<? echo $_SESSION['vvname']; ?></span></td>
-					<td align="center" width="65" bgcolor="#F2CEB3">
+					<td align="center" width="120" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 18px;font-weight: 700 ;"> ผู้ใช้งานระบบ : </font></span></td>
+					<td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
+
+					<td align="center" width="5" bgcolor="#F2CEB3">
 			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><!-- <img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"> --></td>
 				</tr>
 				<tr>
@@ -164,7 +161,7 @@
 			<span style="font-size: 12pt; font-weight: 700">หลักสูตร
 			<span lang="en-us">:</span></span></td>
 			<td width="340" bgcolor="#FFCC99">
-				<select name="sblid" onChange="getData('ajxsbl.php?zsblid='+this.value,'tbsbgid')" style="font-family: Tahoma; font-size: 13; color: #4B3D34" size="1" tabindex="1">
+				<select name="sblid" onChange="getData('ajxsbl.php?zsblid='+this.value,'tbsbgid')" style="font-family: Tahoma; font-size: 16px; color: #4B3D34" size="1" tabindex="1">
 					<option value="0">เลือกชื่อหลักสูตร หากไม่มีกรุณาปรับปรุงชื่อหลักสูตร</option>
 				<?php	$sbldb=mysql_query("select * from exam_level ");
 					while($sblrs=mysql_fetch_array($sbldb)){	$osblid=trim($sblrs['id']);	$osblname=trim($sblrs['name']);	
@@ -178,7 +175,7 @@
 			<p align="right">
 			<span style="font-size: 12pt; font-weight: 700">กลุ่มวิชา :</span></td>
 			<td width="348" bgcolor="#FFCC99" id="tbsbgid">
-				<select name='sbgid'  size="1" style="font-family: Tahoma; font-size: 13; color: #4B3D34" tabindex="2">
+				<select name='sbgid'  size="1" style="font-family: Tahoma; font-size: 16px; color: #4B3D34" tabindex="2">
 				<option value="0">เลือกชื่อกลุ่มวิชา หากไม่มีกรุณาปรับปรุงรายชื่อกลุ่มวิชา</option>
 			<?php		$sbgdb=mysql_query("select * from exam_group where exam_level_id='$sblid'");
 					while($sbgrs=mysql_fetch_array($sbgdb)){	$osbgid=trim($sbgrs['id']);	$osbgname=trim($sbgrs['name']);		?>
@@ -192,7 +189,7 @@
 			<p align="right">
 			<span style="font-size: 12pt; font-weight: 700">ชื่อวิชา :</span></td>
 			<td width="348" bgcolor="#FFCC99">
-			<input type="text" name="sbname" value="<? echo $sbname; ?>" size="48" style="font-family: Tahoma; font-size: 12; color: #4B3D34; font-weight: bold" tabindex="3"></td>
+			<input type="text" name="sbname" value="<? echo $sbname; ?>" size="48" style="font-family: Tahoma; font-size: 16px; color: #4B3D34; font-weight: bold" tabindex="3"></td>
 		</tr>		
 
 		<tr bgcolor="#FFCC99">
@@ -202,7 +199,7 @@
 					<tr>
 						<td>
 						<p align="center">
-				<input type="submit" value="<? echo $subm; ?>" name="subm" style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold" tabindex="4"></td>
+				<input type="submit" value="<? echo $subm; ?>" name="subm" style="font-family: Tahoma; font-size: 18px; color: #FF0000; font-weight: bold" tabindex="4"></td>
 					</tr>
 				</table>
 			
@@ -221,19 +218,19 @@
 		<tr>
 			<td width="78" align="center" bgcolor="#FF6600">
 				<font color="#FFFFFF">
-				<span style="font-size: 11pt; font-weight: 700">รหัส</span></font>
+				<span style="font-size: 14pt; font-weight: 700">รหัส</span></font>
 			</td>
 			<td align="center" width="380" bgcolor="#FF6600">
 				<font color="#FFFFFF">
-				<span style="font-size: 11pt; font-weight: 700">ชื่อวิชา</span></font>
+				<span style="font-size: 14pt; font-weight: 700">ชื่อวิชา</span></font>
 			</td>
 			<td align="center" width="280" bgcolor="#FF6600">
 				<font color="#FFFFFF">
-				<span style="font-size: 11pt; font-weight: 700">ชื่อกลุ่มวิชา</span></font>
+				<span style="font-size: 14pt; font-weight: 700">ชื่อกลุ่มวิชา</span></font>
 			</td>
 			<td align="center" width="280" bgcolor="#FF6600">
 				<font color="#FFFFFF">
-				<span style="font-size: 11pt; font-weight: 700">หลักสูตร</span></font>
+				<span style="font-size: 14pt; font-weight: 700">หลักสูตร</span></font>
 			</td>
 			<td align="center" width="135" bgcolor="#FF6600">
 			<font color="#FFFFFF">
@@ -258,11 +255,11 @@
 ?>		
 		<tr>
 			<td width="78" bgcolor="#FFCC99">
-			<p align="center"><span style="font-size: 11pt" lang="en-us"><?php echo $ssbid; ?></span></td>
+			<p align="center"><span style="font-size: 14pt" lang="en-us"><?php echo $ssbid; ?></span></td>
 			<td width="380" bgcolor="#FFCC99"><span style="font-size: 11pt" lang="en-us"><?php echo $ssbname; ?></span></td>
 			<td width="280" bgcolor="#FFCC99"><span style="font-size: 11pt" lang="en-us"><?php echo $ssbgname; ?></span></td>
 			<td width="280" bgcolor="#FFCC99"><span style="font-size: 11pt" lang="en-us"><?php echo $ssblname; ?></span></td>
-			<td width="75" align="center" bgcolor="#FFCC99"><span style="font-size: 11pt" lang="en-us"><?php echo $result_test["num"]; ?></span></td>
+			<td width="75" align="center" bgcolor="#FFCC99"><span style="font-size: 14pt" lang="en-us"><?php echo $result_test["num"]; ?></span></td>
 			<td width="19" bgcolor="#FFCC99" align="center">
 			<p align="center">
 			<a href="subject.php?editsbid=<?php echo $ssbid; ?>&editsbname=<?php echo $ssbname; ?>&editsbgid=<?php echo $ssbgid; ?>&editsblid=<?php echo $ssblid; ?>">
@@ -274,11 +271,11 @@
 	<?php } else {  ?>	
 		<tr>
 			<td width="78" bgcolor="#FF9966">
-			<p align="center"><span style="font-size: 11pt" lang="en-us"><?php echo $ssbid; ?></span></td>
+			<p align="center"><span style="font-size: 14pt" lang="en-us"><?php echo $ssbid; ?></span></td>
 			<td width="380" bgcolor="#FF9966"><span style="font-size: 11pt" lang="en-us"><?php echo $ssbname; ?></span></td>
 			<td width="280" bgcolor="#FF9966"><span style="font-size: 11pt" lang="en-us"><?php echo $ssbgname; ?></span></td>
 			<td width="280" bgcolor="#FF9966"><span style="font-size: 11pt" lang="en-us"><?php echo $ssblname; ?></span></td>
-			<td width="75" align="center" bgcolor="#FF9966"><span style="font-size: 11pt" lang="en-us"><?php echo $result_test["num"]; ?></span></td>
+			<td width="75" align="center" bgcolor="#FF9966"><span style="font-size: 14pt" lang="en-us"><?php echo $result_test["num"]; ?></span></td>
 			<td width="19" bgcolor="#FF9966" align="center">
 			<p align="center">
 			<a href="subject.php?editsbid=<?php echo $ssbid; ?>&editsbname=<?php echo $ssbname; ?>&editsbgid=<?php echo $ssbgid; ?>&editsblid=<?php echo $ssblid; ?>">

@@ -1,12 +1,14 @@
 <?php	session_start();
-	//if(!$_SESSION['vvstatus'][7]){ echo "<script>window.location='../index.php'</script>";  exit();}
+	define('WEB_PATH', '//'. $_SERVER["SERVER_NAME"].'/examsystem/');
 ?>
 <html>
 	<head>
 		<meta http-equiv="Content-Language" content="th">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>เพิ่มหมวด/กลุ่มวิชา</title>
-		<script src="js/jquery.min.js"></script>		
+		<script src="js/jquery.min.js"></script>	
+		<script src="<?php echo WEB_PATH;?>js/url.helper.js"></script>
+		<script src="<?php echo WEB_PATH;?>js/main.js"></script>	
 <script>	
 	function conf(n)
 	{ 	if(confirm("   ต้องการลบข้อมูลรหัส : ["+n+"] ใช่หรือไม่   ")==true)		{ return true; } 
@@ -103,7 +105,7 @@
 					<img border="0" src="images/head.jpg" width="1024" height="120"></td>
 				</tr>
 				<tr>
-					<td align="left" width="614" bgcolor="#F2CEB3" valign="bottom">
+					<td align="left" width="550" bgcolor="#F2CEB3" valign="bottom">
 					<table border="0" width="97%" id="table1" cellspacing="3" cellpadding="0">
 						<tr>
 							<td width="110">
@@ -118,21 +120,16 @@
 						</tr>
 					</table>
 					</td>
-					<td align="center" width="114" valign="bottom" bgcolor="#F2CEB3">
-					<p align="right"><b><font style="font-size: 11pt">
-					ผู้ใช้งานระบบ </font><span lang="en-us">
-					<font style="font-size: 11pt">:</font></span></b></td>
-					<td align="center" width="231" valign="bottom" bgcolor="#F2CEB3">
-					<p align="left">
-					<span style="font-size: 10pt; font-weight: 700" lang="en-us">
-					<? echo $_SESSION['vvname']; ?></span></td>
-					<td align="center" width="65" bgcolor="#F2CEB3"></td>
+					<td align="center" width="120" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 18px;font-weight: 700 ;"> ผู้ใช้งานระบบ : </font></span></td>
+					<td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
+
+					<td align="center" width="5" bgcolor="#F2CEB3"></td>
 				</tr>
 				<tr>
 					<td align="center" colspan="4">
 <div align="center">
 <form name="sbgfrm" method="POST" action="subgrp.php" onSubmit="return chk();">
-	<table border="0" width="741" cellspacing="1" cellpadding="2" height="100">
+	<table border="0" width="850" cellspacing="1" cellpadding="2" height="100">
 		<tr>
 			<td colspan="4" bgcolor="#FF6600">
 			<p align="center"><font color="#FFFFFF"><span style="font-size: 15pt; font-weight: 700">ปรับปรุงชื่อกลุ่มวิชา</span></font></td>
@@ -140,7 +137,7 @@
 		<tr>
 			<td width="115" bgcolor="#FFCC99">
 			<p align="right">
-			<span style="font-size: 12pt; font-weight: 700">ชื่อหลักสูตร<span lang="en-us"> 
+			<span style="font-size: 14pt; font-weight: 700">ชื่อหลักสูตร<span lang="en-us"> 
 			:</span></span></td>
 			<td width="319" bgcolor="#FFCC99">
 				<select name="sblid" size="1" tabindex="1">
@@ -155,7 +152,7 @@
 	  </tr>
 		<tr>
 			<td width="151" align="right" bgcolor="#FFCC99">
-			<span style="font-size: 12pt; font-weight: 700">ชื่อกลุ่มวิชา :</span></td>
+			<span style="font-size: 14pt; font-weight: 700">ชื่อกลุ่มวิชา :</span></td>
 			<td width="591" bgcolor="#FFCC99" colspan="3">
 			<input type=hidden name="hsbgid" value="<?php echo $hsbgid; ?>">
 			 <input type="text" name="sbgname" value="<?php echo $sbgname; ?>" size="102" style="font-family: Tahoma; font-size: 12; color: #4B3D34; " tabindex="2"></td>
@@ -182,24 +179,24 @@
 	<table border="0" width="850" height="71" cellspacing="1" cellpadding="2">
 		<tr>
 			<td align="center" colspan="5">
-			<font color="#0000FF"><span style="font-size: 12pt" lang="en-us"><?php echo $msg; ?></span></font></td>
+			<font color="#0000FF"><span style="font-size: 14pt" lang="en-us"><?php echo $msg; ?></span></font></td>
 		</tr>
 		<tr>
 			<td width="98" align="center" bgcolor="#FF6600">
 			<font color="#FFFFFF">
-			<span style="font-size: 12pt; font-weight: 700">รหัส</span></font></td>
+			<span style="font-size: 14pt; font-weight: 700">รหัส</span></font></td>
 			<td align="center" width="345" bgcolor="#FF6600">
 			<font color="#FFFFFF">
-			<span style="font-size: 12pt; font-weight: 700">ชื่อกลุ่มวิชา</span></font></td>
+			<span style="font-size: 14pt; font-weight: 700">ชื่อกลุ่มวิชา</span></font></td>
 			<td align="center" width="344" bgcolor="#FF6600">
 			<font color="#FFFFFF">
-			<span style="font-size: 12pt; font-weight: 700">ชื่อหลักสูตร</span></font></td>
+			<span style="font-size: 14pt; font-weight: 700">ชื่อหลักสูตร</span></font></td>
 			<td align="center" bgcolor="#FF6600">
-			<font color="#FFFFFF" style="font-size: 12pt">
+			<font color="#FFFFFF" style="font-size: 14pt">
 			<span style="font-weight: 700">แก้</span></font></td>
 			<td align="center" bgcolor="#FF6600">
 			<font color="#FFFFFF">
-			<span style="font-size: 12pt; font-weight: 700">ลบ</span></font></td>
+			<span style="font-size: 14pt; font-weight: 700">ลบ</span></font></td>
 		</tr>
 <?php	for($i=0;$i<$row;$i++)
 	{	$rs=mysql_fetch_array($db);		
@@ -209,11 +206,11 @@
 ?>		
 		<tr>
 			<td width="98" bgcolor="#FFCC99">
-			<p align="center"><span style="font-size: 11pt" lang="en-us"><?php echo $ssbgid; ?></span></td>
+			<p align="center"><span style="font-size: 14pt" lang="en-us"><?php echo $ssbgid; ?></span></td>
 			<td width="345" bgcolor="#FFCC99">
-			<span style="font-size: 11pt" lang="en-us"><?php echo $ssbgname; ?></span></td>
+			<span style="font-size: 14pt" lang="en-us"><?php echo $ssbgname; ?></span></td>
 			<td width="344" bgcolor="#FFCC99">
-			<span style="font-size: 11pt" lang="en-us"><?php echo $ssblname; ?></span></td>
+			<span style="font-size: 14pt" lang="en-us"><?php echo $ssblname; ?></span></td>
 			<td width="21" bgcolor="#FFCC99" align="center">
 			<p align="center">
 			<a href="subgrp.php?editsbgid=<?php echo $ssbgid; ?>&editsbgname=<?php echo $ssbgname; ?>&editsblid=<?php echo $ssblid; ?>">
@@ -225,11 +222,11 @@
 <?php } else {  ?>		
 		<tr>
 			<td width="98" bgcolor="#FF9966" height="22">
-			<p align="center"><span style="font-size: 11pt" lang="en-us"><?php echo $ssbgid; ?></span></td>
+			<p align="center"><span style="font-size: 14pt" lang="en-us"><?php echo $ssbgid; ?></span></td>
 			<td width="345" bgcolor="#FF9966" height="22">
-			<span style="font-size: 11pt" lang="en-us"><?php echo $ssbgname; ?></span></td>
+			<span style="font-size: 14pt" lang="en-us"><?php echo $ssbgname; ?></span></td>
 			<td width="344" bgcolor="#FF9966" height="22">
-			<span style="font-size: 11pt" lang="en-us"><?php echo $ssblname; ?></span></td>
+			<span style="font-size: 14pt" lang="en-us"><?php echo $ssblname; ?></span></td>
 			<td width="21" bgcolor="#FF9966" align="center" height="22">
 			<a href="subgrp.php?editsbgid=<?php echo $ssbgid; ?>&editsbgname=<?php echo $ssbgname; ?>&editsblid=<?php echo $ssblid; ?>">
 			<img border="0" src="images/b_edit.png" width="16" height="16"></a></td>
@@ -246,7 +243,7 @@
 				</tr>
 				<tr>
 					<td align="center" colspan="4"><font color="#9F777E">
-					<span style="font-size: 12pt; font-weight: 700">พัฒนาโดย 
+					<span style="font-size: 14pt; font-weight: 700">พัฒนาโดย 
 					ฝ่ายอำนวยการ 6 กองบังคับการอำนวยการ กองบัญชาการศึกษา</span></font></td>
 				</tr>
 			</table>

@@ -1,6 +1,7 @@
 <?php	session_start();
-	//if(!$_SESSION['vvstatus'][7]){ echo "<script>window.location='../index.php'</script>";  exit();}
+    define('WEB_PATH', '//'. $_SERVER["SERVER_NAME"].'/examsystem/');
 	date_default_timezone_set('Asia/Bangkok');
+	//var_dump($_SESSION);
 ?>
 <html>
 	<head>
@@ -8,7 +9,9 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>ออกข้อสอบ</title>
 
-<script src="js/jquery.min.js"></script>		
+<script src="js/jquery.min.js"></script>	
+<script src="<?php echo WEB_PATH;?>js/url.helper.js"></script>
+<script src="<?php echo WEB_PATH;?>js/main.js"></script>	
 <script language = "javascript">
 	var XMLHttpRequestObject = false;
 	if (window.XMLHttpRequest) 
@@ -98,8 +101,8 @@
 			$sbjdb=mysql_query($sql);
 			$rs=mysql_fetch_array($sbjdb);
 			$exam_subject_id = $rs['id'];
-			mysql_query("insert into questions (exam_subject_id,instructor_id,created_at,qtn,ans1,ans2,ans3,ans4) values 
-			($exam_subject_id,'$apid13','$apdate','$qtn','$ans1','$ans2','$ans3','$ans4')") or die("".mysql_error());
+			mysql_query("insert into questions (exam_subject_id,instructor_id,created_at,qtn,ans1,ans2,ans3,ans4,answer) values 
+			($exam_subject_id,'$apid13','$apdate','$qtn','$ans1','$ans2','$ans3','$ans4','$rd')") or die("".mysql_error());
 		}
 		 else	if(trim($subm)=="แก้ไขข้อสอบ")//แก้ไขข้อสอบ
 		{	
@@ -163,21 +166,18 @@
 				</tr>
 				<tr>
 					<td align="left" width="612" bgcolor="#F2CEB3" valign="bottom"><font color="#0000FF">
-			<span style="font-size: 11pt" lang="en-us"><font size="3">
-			<span style="font-size: 9pt">
+			<span style="font-size: 14pt" lang="en-us"><font size="3">
+			<span style="font-size: 14pt">
 			<!-- <input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" 
 			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left"> -->
 			<input type="button" value="เลือกหลักสูตร  กลุ่มวิชา  ชื่อวิชา" onClick="window.location='index.php'" 
 			style="font-family: Tahoma; font-size: 18px; color: #FF0000; font-weight: bold; float: left">
 			&nbsp;&nbsp; </span></font></span>
 							</font></td>
-					<td align="center" width="125" valign="bottom" bgcolor="#F2CEB3">
-					<p align="right"><font style="font-size: 14pt">
-				  ผู้ใช้งานระบบ :</font></td>
-					<td align="center" width="302" valign="bottom" bgcolor="#F2CEB3">
-					<p align="left"><b>
-					<span style="font-size: 14pt;font-weight: 700 color:#003366" lang="en-us">
-				  <?php echo $_SESSION['vvname']; ?></span></b></td>
+   <td align="center" width="120" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 18px;font-weight: 700 ;"> ผู้ใช้งานระบบ : </font></span></td>
+        <td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
+        <!-- <td align="center" width="65" bgcolor="#D2B8AE"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td> -->
+     
 					<td align="center" width="123" bgcolor="#F2CEB3">
 			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><!-- <img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" 
 			width="64" height="80"> --></td>
@@ -205,7 +205,7 @@
 							<td width="207">
 							<p align="right"><b>
 							<font style="font-size: 14pt" color="#003366">ข้อสอบออกไว้แล้ว </font> <span lang="en-us">
-							<font style="font-size: 10pt" color="#003366">:</font><span style="font-size: 10pt">
+							<font style="font-size: 14pt" color="#003366">:</font><span style="font-size: 14pt">
 							</span> </span></b>
 						  </td>
 							<td width="70">
@@ -224,37 +224,43 @@
 				</tr>
 				<tr>
 					<td align="center" colspan="4">
-	<table border="0" width="100%" cellpadding="2" bgcolor="#EDE2DE" cellspacing="1">
+	<table border="0" width="1150" cellpadding="2" bgcolor="#EDE2DE" cellspacing="1">
 		<tr bgcolor="#FF9966">
-		  <td align="right" bgcolor="#FF9966" colspan="2" >
-		  <p align="center"><font color="#003366" style="font-size: 12pt;" >
-		  <b>คำถาม<br>
-		    เฉลย<span lang="en-us">/</span><br>คำตอบ</b></font></td>
-		  <td bgcolor="#FF9966"><textarea rows="2" name="qtn" cols="151"><?php echo $qtn; ?></textarea></td>
-		  </tr>
+		  <td align="right" bgcolor="#FF9966"  style="width: 30px;">
+			  <p align="center"><font color="#003366" style="font-size: 14pt;font-weight:bold" >
+			  เฉลย</font>
+		  </td>
+		  <td align="right" bgcolor="#FF9966"  style="width: 60px;">
+			  <p align="center"><font color="#003366" style="font-size: 14pt;font-weight:bold" >
+			  คำถาม</font>
+		  </td>		  
+		  <td  bgcolor="#FF9966">
+		  	<textarea rows="2" name="qtn" style="font-family: Tahoma; font-size: 22px; color: #000066;width: 1024px"><?php echo $qtn; ?></textarea>
+		  </td>
+		</tr>
 		<tr>
 		  <td align="right" bgcolor="#FF9966"><input type="radio" value="1" name="rd" <?php echo $echk1;?> ></td>
-		  <td align="right" bgcolor="#FF9966"><font color="#003366" style="font-size: 10pt"><b>1</b></font></td>
-		  <td bgcolor="#FF9966"><input type="text" name="ans1" value="<?php echo $ans1; ?>" size="184" style="font-family: Tahoma; font-size: 12; color: #000066"></td>
+		  <td align="right" bgcolor="#FF9966"><font color="#003366" style="font-size: 14pt"><b>1</b></font></td>
+		  <td bgcolor="#FF9966"><input type="text" name="ans1" value="<?php echo $ans1; ?>" size="184" style="font-family: Tahoma; font-size: 22px; color: #000066;width: 1024px"/></td>
 		  </tr>
 		<tr>
 		  <td align="right" bgcolor="#FF9966"><input type="radio" value="2" name="rd" <?php echo $echk2;?>></td>
-		  <td align="right" bgcolor="#FF9966"><font color="#003366" style="font-size: 10pt"><b>2</b></font></td>
-		  <td bgcolor="#FF9966"><input type="text" name="ans2" size="184" value="<?php echo $ans2; ?>" style="font-family: Tahoma; font-size: 12; color: #000066"></td>
+		  <td align="right" bgcolor="#FF9966"><font color="#003366" style="font-size: 14pt"><b>2</b></font></td>
+		  <td bgcolor="#FF9966"><input type="text" name="ans2" size="184" value="<?php echo $ans2; ?>" style="font-family: Tahoma; font-size: 22px; color: #000066;width: 1024px"/></td>
 		  </tr>
 		<tr>
 		  <td align="right" bgcolor="#FF9966"><input type="radio" value="3" name="rd" <?php echo $echk3;?>></td>
-		  <td align="right" bgcolor="#FF9966"><font color="#003366" style="font-size: 10pt"><b>3</b></font></td>
-		  <td bgcolor="#FF9966"><input type="text" name="ans3" size="184" value="<?php echo $ans3; ?>" style="font-family: Tahoma; font-size: 12; color: #000066"></td>
+		  <td align="right" bgcolor="#FF9966"><font color="#003366" style="font-size: 14pt"><b>3</b></font></td>
+		  <td bgcolor="#FF9966"><input type="text" name="ans3" size="184" value="<?php echo $ans3; ?>" style="font-family: Tahoma; font-size: 22px; color: #000066;width: 1024px"/></td>
 		  </tr>
 		<tr>
 		  <td align="right" bgcolor="#FF9966"><input type="radio" value="4" name="rd" <?php echo $echk4;?>></td>
-		  <td align="right" bgcolor="#FF9966"><font color="#003366" style="font-size: 10pt"><b>4</b></font></td>
-		  <td bgcolor="#FF9966"><input type="text" name="ans4" size="184" value="<?php echo $ans4; ?>" style="font-family: Tahoma; font-size: 12; color: #000066"></td>
+		  <td align="right" bgcolor="#FF9966"><font color="#003366" style="font-size: 14pt"><b>4</b></font></td>
+		  <td bgcolor="#FF9966"><input type="text" name="ans4" size="184" value="<?php echo $ans4; ?>" style="font-family: Tahoma; font-size: 22px; color: #000066;width: 1024px"/></td>
 		  </tr>
 		<tr bgcolor="#FF9966">
-		  <td align="right" colspan="3"><p align="center"><font color="#0000FF"> <span style="font-size: 11pt" lang="en-us"><font size="3"> <span style="font-size: 9pt"> &nbsp;&nbsp;&nbsp;&nbsp;
-		    <input type="submit" value="<?php echo $subm;?>" name="subm" style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold">
+		  <td align="right" colspan="3"><p align="center"><font color="#0000FF"> <span style="font-size: 14pt" lang="en-us"><font size="3"> <span style="font-size: 16pt"> &nbsp;&nbsp;&nbsp;&nbsp;
+		    <input type="submit" value="<?php echo $subm;?>" name="subm" style="font-family: Tahoma; font-size: 18; color: #FF0000; font-weight: bold">
 		    </span></font></span></font></td>
 		  </tr>
 		</table>
@@ -270,7 +276,7 @@
 cellspacing="1" background="images/5.png">	
 	<tr>
 		<td align="center" width="2%" bgcolor="#FF6600" height="24">
-			<font color="#FFFFFF"><b><span style="font-size: 10pt">ข้อ<span lang="en-us">/</span>เฉลย</span></b>
+			<font color="#FFFFFF"><b><span style="font-size: 14pt">ข้อ<span lang="en-us">/</span>เฉลย</span></b>
 			<span lang="en-us"></span></span></font><span lang="en-us"><b><span lang="en-us"></a>
 			</span></span></font></b>
 		</td>
@@ -283,13 +289,13 @@ cellspacing="1" background="images/5.png">
 		</td>
 <span lang="en-us">  
 		<td align="center" bgcolor="#FF6600" height="24" colspan="2" >
-			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><b><span style="font-size: 10pt">
+			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><b><span style="font-size: 14pt">
 			ลบ</span></b></font></td>
 		<td align="center" bgcolor="#FF6600" height="24" >
-			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><span style="font-size: 10pt">
+			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><span style="font-size: 14pt">
 			แก้</span></font></td>
 		<!-- <td align="center" bgcolor="#FF6600" height="24" colspan="2">
-			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><b><span style="font-size: 10pt">
+			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><b><span style="font-size: 14pt">
 			ไปข้อ</span></b></font></td> -->
 	</tr>
 <?php	for($i=0;$i<$sbjrow;$i++)
@@ -312,19 +318,19 @@ cellspacing="1" background="images/5.png">
 ?>	
 	<tr bgcolor="#FF9966">
 		<td align="center" width="2%"><a name="<?php echo $sbno; ?>">
-		<font color="#FF0000">	<span style="font-size: 10pt; font-weight: 700" lang="en-us">
+		<font color="#FF0000">	<span style="font-size: 14pt; font-weight: 700" lang="en-us">
 		<?php echo $sbjrow-$i; ?></span></font></a></td>
 		<td align="left" colspan="7">
-		<span style="font-size: 9pt" lang="en-us"><?php echo $qtn; ?></span>
+		<span style="font-size: 16pt" lang="en-us"><?php echo $qtn; ?></span>
 		</td>
 	</tr>
 	<tr bgcolor="#FFCC99">
 		<td align="center" width="2%">
 		<p align="right"><input type="radio" name="srd<?php echo $i; ?>" <?php echo $schk1; ?>></td>
 		<td align="left" width="2%">
-		<p align="right"><span style="font-size: 9pt; font-weight: 700">1</span></td>
+		<p align="right"><span style="font-size: 16pt; font-weight: 700">1</span></td>
 		<td align="left" width="907">
-		<span style="font-size: 9pt" lang="en-us"><?php echo $ans1; ?></span></td>
+		<span style="font-size: 16pt" lang="en-us"><?php echo $ans1; ?></span></td>
 		<td align="left" width="2%" rowspan="4" colspan="2">
 	<a href="index1.php?delsbno=<?php echo $sbno; ?>">
 	<img border="0" src="images/b_drop.png" width="16" height="16"></a></td>
@@ -344,25 +350,25 @@ cellspacing="1" background="images/5.png">
 		<td align="center" width="2%">
 		<p align="right"><input type="radio" name="srd<?php echo $i; ?>" <?php echo $schk2; ?>></td>
 		<td align="left" width="2%">
-		<p align="right"><span style="font-weight: 700; font-size: 9pt">2</span></td>
+		<p align="right"><span style="font-weight: 700; font-size: 16pt">2</span></td>
 		<td align="left" width="907">
-		<span style="font-size: 9pt" lang="en-us"><?php echo $ans2; ?></span></td>
+		<span style="font-size: 16pt" lang="en-us"><?php echo $ans2; ?></span></td>
 		</tr>
 	<tr bgcolor="#FFCC99">
 		<td align="center" width="2%">
 		<p align="right"><input type="radio" name="srd<?php echo $i; ?>" <?php echo $schk3; ?>></td>
 		<td align="left" width="2%">
-		<p align="right"><span style="font-weight: 700; font-size: 9pt">3</span></td>
+		<p align="right"><span style="font-weight: 700; font-size: 16pt">3</span></td>
 		<td align="left" width="907">
-		<span style="font-size: 9pt" lang="en-us"><?php echo $ans3; ?></span></td>
+		<span style="font-size: 16pt" lang="en-us"><?php echo $ans3; ?></span></td>
 		</tr>
 	<tr bgcolor="#FFCC99">
 		<td align="center" width="2%">
 		<p align="right"><input type="radio" name="srd<? echo $i; ?>" <?php echo $schk4; ?>></td>
 		<td align="left" width="2%">
-		<p align="right"><span style="font-weight: 700; font-size: 9pt">4</span></td>
+		<p align="right"><span style="font-weight: 700; font-size: 16pt">4</span></td>
 		<td align="left" width="907">
-		<span style="font-size: 9pt" lang="en-us"><?php echo $ans4; ?></span></td>
+		<span style="font-size: 16pt" lang="en-us"><?php echo $ans4; ?></span></td>
 		</tr>
 <?php } ?>		
 </table>

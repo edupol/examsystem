@@ -79,7 +79,10 @@ $app->get('/course/number/:id',array( $course, 'getCourseNumberByID'));
 
 //Exam assignment API
 $app->post('/exam/assignment',array( $examAssignment, 'setAssignments'));
+
+$app->get('/exam/assestment/:id',array( $examAssignment, 'getAssetmentsByExamID'));
 $app->get('/exam/assignment/me',array( $examAssignment, 'getAssignmentsByStudentID'));
+
 $app->run();
 
 ?>

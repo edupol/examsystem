@@ -7,7 +7,7 @@
 	$sql="select * from exam_group where exam_level_id='$sblid'";
 	$sbgrs = PDOAdpter::getInstance()->select($sql,null,false);
 	$txt="getData('ajxsb.php?zsbgid='+this.value,'tdsbid')";
-	echo "<select name='osbgid' onchange=".$txt." size='1' style='font-family: Tahoma; font-size: 16; color: #000'>";
+	echo "<select name='osbgid' onchange=".$txt." size='1' style='font-family: Tahoma; font-size: 16; width: 367px; color: #000 '>";
 	echo "<option value='0'>เลือกชื่อกลุ่มวิชา หากไม่มีกรุณาปรับปรุงชื่อกลุ่มวิชา</option>";
 	foreach($sbgrs as $key => $sbgrs)
 	{	$osbgid=trim($sbgrs['id']);
