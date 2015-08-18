@@ -119,7 +119,7 @@
                     <div class="clearfix"></div>
                     <div class="col-md-4 col-sm-6 col-xs-6" style="padding-top:25px">
                         
-                        <a id="addExam" class="btn btn-primary btn-md customFont0 fix-font1" href="#"><i class="glyphicon glyphicon-plus glyphicon-white"></i> เพิ่มรายชื่อผู้เข้ารับการทดสอบ</a>    
+                        <a id="addExam" class="btn btn-primary btn-md customFont0 fix-font1" href="#"><i class="glyphicon glyphicon-plus glyphicon-white"></i> เพิ่มรายชื่อหลักสูตร</a>    
                     </div>
 
                 </div>

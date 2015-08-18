@@ -193,7 +193,7 @@
 			<span style="font-size: 14pt; font-weight: 700">ชื่อหลักสูตร</span></font></td>
 			<td align="center" bgcolor="#FF6600">
 			<font color="#FFFFFF" style="font-size: 14pt">
-			<span style="font-weight: 700">แก้</span></font></td>
+			<span style="font-weight: 700">แก้ไข</span></font></td>
 			<td align="center" bgcolor="#FF6600">
 			<font color="#FFFFFF">
 			<span style="font-size: 14pt; font-weight: 700">ลบ</span></font></td>

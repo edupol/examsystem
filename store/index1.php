@@ -13,6 +13,8 @@
 <script src="<?php echo WEB_PATH;?>js/url.helper.js"></script>
 <script src="<?php echo WEB_PATH;?>js/main.js"></script>	
 <script language = "javascript">
+
+
 	var XMLHttpRequestObject = false;
 	if (window.XMLHttpRequest) 
 	{	XMLHttpRequestObject = new XMLHttpRequest();
@@ -34,9 +36,8 @@
 	       }
 	  }	
 	function conf(n)
-	{ 	if(confirm("  ข้อสอบที่บันทึกไว้ในวิชา : "+n+" จะถูกลบทั้งหมด โปรดยืนยันการลบ  ")==true)		
-		{ return true; } 
-		return false;	
+	{ 	
+		return  confirm("  ข้อสอบที่บันทึกไว้ในวิชานี้ ข้อที่ : "+n+" จะถูกลบ โปรดยืนยันการลบ  ");	
 	}
 	function chk()
 	{	if($('input[name=ans1]').val()==""){ alert('     โปรดกรอกข้อมูลในช่องคำตอบ 1    '); return false;} 
@@ -56,6 +57,15 @@
 			container.scrollTop(
 			    scrollTo.offset().top - container.offset().top + container.scrollTop()
 			);
+		});
+
+		$('a.delete-row').on('click',function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			var ok  =  confirm("  ข้อสอบที่บันทึกไว้ในวิชานี้ ข้อที่ : "+$(this).attr('id')+" จะถูกลบ โปรดยืนยันการลบ  ");	
+			if(ok){
+				window.location = $(this).attr('href');
+			}
 		});
 	});
 </script>
@@ -276,24 +286,26 @@
 cellspacing="1" background="images/5.png">	
 	<tr>
 		<td align="center" width="2%" bgcolor="#FF6600" height="24">
-			<font color="#FFFFFF"><b><span style="font-size: 14pt">ข้อ<span lang="en-us">/</span>เฉลย</span></b>
+			<font color="#000"><b><span style="font-size: 14pt">ข้อ<span lang="en-us">/</span>เฉลย</span></b>
 			<span lang="en-us"></span></span></font><span lang="en-us"><b><span lang="en-us"></a>
 			</span></span></font></b>
 		</td>
 		</span>
-		<td align="center" bgcolor="#FF6600" height="24" colspan="2">
+		<td width="907" align="center" bgcolor="#FF6600" height="24" colspan="2">
 			<span><font face="Tahoma"  face="Tahoma" style="font-size: 12pt; font-weight: 700"> 
 			คำถาม/คำตอบ </font>
 		</span>
 	</font>
 		</td>
+
 <span lang="en-us">  
-		<td align="center" bgcolor="#FF6600" height="24" colspan="2" >
-			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><b><span style="font-size: 14pt">
+		<td align="center" width="2%" bgcolor="#FF6600" height="24"  colspan="2">
+			<font color="#000" face="Tahoma" style="font-size: 20pt; font-weight: 700"><span style="font-size: 14pt">
+			แก้ไข</span></font></td>
+		<td align="center width="2%" " bgcolor="#FF6600" height="24" colspan="2" >
+			<font color="#000" face="Tahoma" style="font-size: 20pt; font-weight: 700"><b><span style="font-size: 14pt">
 			ลบ</span></b></font></td>
-		<td align="center" bgcolor="#FF6600" height="24" >
-			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><span style="font-size: 14pt">
-			แก้</span></font></td>
+
 		<!-- <td align="center" bgcolor="#FF6600" height="24" colspan="2">
 			<font color="#FFFFFF" face="Tahoma" style="font-size: 20pt; font-weight: 700"><b><span style="font-size: 14pt">
 			ไปข้อ</span></b></font></td> -->
@@ -331,12 +343,14 @@ cellspacing="1" background="images/5.png">
 		<p align="right"><span style="font-size: 16pt; font-weight: 700">1</span></td>
 		<td align="left" width="907">
 		<span style="font-size: 16pt" lang="en-us"><?php echo $ans1; ?></span></td>
-		<td align="left" width="2%" rowspan="4" colspan="2">
-	<a href="index1.php?delsbno=<?php echo $sbno; ?>">
-	<img border="0" src="images/b_drop.png" width="16" height="16"></a></td>
-		<td align="left" width="2%" rowspan="4" colspan="2">
+
+		<td align="center" width="2%" rowspan="4" colspan="2" >
 	<a href="index1.php?editsbno=<?php echo $sbno; ?>">
 	<img border="0" src="images/b_edit.png" width="16" height="16"></a></td>
+		<td align="center" width="2%" rowspan="4" >
+	<a href="index1.php?delsbno=<?php echo $sbno; ?>"  class="delete-row" id="<?php echo $sbjrow-$i;?>"> 
+	<img border="0" src="images/b_drop.png" width="16" height="16"></a></td>
+
 <!-- 		<td align="left" width="3%" rowspan="4">
 			<span lang="en-us">
 			<select size="1" class="scroll-container"  >

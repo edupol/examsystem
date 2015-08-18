@@ -1,7 +1,7 @@
 // JavaScript Document
 window.Setting = {
 	testAPI 	: '//192.168.8.69/examsystem/api/',
-	serverAPI 	: '//edupol.org/api/',
+	serverAPI 	: '//edupol.org/examsystem/api/',
 	isTest  	: true,
 	isError     : false,
 	userType    : 0,
@@ -1140,7 +1140,7 @@ window.ExamAssignment = {
 			jQuery('#totalQuestions').html(total);
 			div.clone().addClass('row').append(
 				div.clone().addClass('col-md-11 col-sm-10').append(
-					label.clone().text('ชื่อวิชา'),
+					label.clone().text('ชื่อหลักสูตร'),
 					input.clone().addClass('form-control customFont0 fix-font1')
 								 .attr({
 								 		'disabled' : 'disabled'
@@ -1372,7 +1372,9 @@ window.ListOfTestsResult = {
 			jQuery('#examSubmit').attr({'action':route}).submit();		
 		});
 	}
-}	
+}
+
+
 $(document).ready(function(){
 
 	var source 	= window.Setting.page(),
