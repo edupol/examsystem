@@ -121,7 +121,7 @@
 					</table>
 					</td>
 					<td align="center" width="120" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 18px;font-weight: 700 ;"> ผู้ใช้งานระบบ : </font></span></td>
-					<td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
+					<td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <?php echo $_SESSION['vvname']; ?></span></b></td>
 
 					<td align="center" width="5" bgcolor="#F2CEB3"></td>
 				</tr>
@@ -145,7 +145,7 @@
 				<?php	$sbldb=mysql_query("select * from exam_level");
 					while($sblrs=mysql_fetch_array($sbldb)){	$osblid=trim($sblrs['id']);	$osblname=trim($sblrs['name']);	
 				?>
-					<option value="<? echo $osblid; ?>" <?php if($osblid==$sblid){ echo "selected"; } ?>><?php echo $osblname; ?></option>
+					<option value="<?php echo $osblid; ?>" <?php if($osblid==$sblid){ echo "selected"; } ?>><?php echo $osblname; ?></option>
 				<?php }  ?>	
 			  </select>
 		  </td>
@@ -164,7 +164,7 @@
 					<tr>
 						<td>
 						<p align="center">
-				<input type="submit" value="<? echo $subm; ?>" name="subm" style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold"></td>
+				<input type="submit" value="<?php echo $subm; ?>" name="subm" style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold"></td>
 						<td width="6">&nbsp;</td>
 					</tr>
 				</table>
@@ -232,7 +232,7 @@
 			<img border="0" src="images/b_edit.png" width="16" height="16"></a></td>
 			<td width="21" bgcolor="#FF9966" align="center" height="22">
 			<a href="subgrp.php?delsbgid=<?php echo $ssbgid; ?>">
-			<img border="0" src="images/b_drop.png"  onclick="return conf('<? echo $ssbgid; ?>')"  width="16" height="16"></a></td>
+			<img border="0" src="images/b_drop.png"  onclick="return conf('<?php echo $ssbgid; ?>')"  width="16" height="16"></a></td>
 		</tr>
 <?php	} }
 ?>

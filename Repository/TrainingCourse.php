@@ -81,17 +81,17 @@ class TrainingCourse extends BaseClass{
 
 	}
 	
-	public function get(conditions,$params,$table,$bool = true){
+	public function get($conditions,$params,$table,$bool = true){
 
 		//db table		
 		$field			 = ($return)? '*' : 'count(id) as exist';
 
 		//Sql statement
 	    $sql     = "SELECT $field FROM $table ";
-	    if(isset()){
+	    // if(isset()){
 
-	    }
-	    $sql    .= $conditions
+	    // }
+	    $sql    .= $conditions;
 		
  
 	    //Fetch result into arrays

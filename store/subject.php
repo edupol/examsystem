@@ -38,7 +38,7 @@
 	function chk()
 	{	
     	if($('select[name=sblid]').val()=="0"){ alert("โปรดเลือกชื่อหลักสูตร"); return false; }
-		if($('select[name=sbgid]').val()=="0"){ alert("โปรดเลือกชื่อกลุ่มวิชา"); return false; }
+		if($('select[name=osbgid]').val()=="0"){ alert("โปรดเลือกชื่อกลุ่มวิชา"); return false; }
 		if($('select[name=sbname]').val()==""){ alert("โปรดระบุวิชา"); return false; }
 		return true;	
 	}
@@ -53,13 +53,15 @@
 	if(isset($_POST['subm']))
 	{	$sbid=trim($_POST['sbid']);
 		$sbname=trim($_POST['sbname']);
-		$sbgid=trim($_POST['sbgid']);			//ส่งค่าไปแสดงตัวเลือก
+		$sbgid=trim($_POST['osbgid']);			//ส่งค่าไปแสดงตัวเลือก
 		$sblid=trim($_POST['sblid']);				//ส่งค่าไปแสดงตัวเลือก
 		$hsbname=trim($_POST['hsbname']);
 		$hsbgid=trim($_POST['hsbgid']);     
 		$subm=trim($_POST['subm']);
 		if($subm=="บันทึกข้อมูล")
-		{	$db=mysql_query("select * from exam_subject where name='$sbname' and exam_group_id='$sbgid'");
+		{	
+
+			$db=mysql_query("select * from exam_subject where name='$sbname' and exam_group_id='$sbgid'");
 			$row=@mysql_num_rows($db); if($row==null){ $row=0; }
 			if($row>0)
 			{	$rs=mysql_fetch_array($db);	
@@ -73,21 +75,16 @@
 				$exam_code = 'sb-'.str_pad($sbid, 3, "0", STR_PAD_LEFT);
 				$sql = "insert into exam_subject (name,exam_group_id,exam_code) values ('$sbname','$sbgid','$exam_code')";
 				mysql_query($sql) or die("ตาย".mysql_error());
+				echo "<script>window.location='subject.php'</script>";
 			}
 		} else	//แก้ไขข้อมูล
-		{	$db=mysql_query("select * from exam_subject where name='$sbname' and name<>'$hsbname' and exam_code<>'$sbid'");
-			$row=mysql_numrows($db);
-			if($row>0)
-			{	$rs=mysql_fetch_array($db);
-				$sbid=$rs['id'];	
-				$msg="ไม่บันทึกข้อมูล เนื่องจาก $sbname มีบันทึกไว้แล้วที่รหัส : $sbid";
-			} else
-			{	
-				$sbid=trim($_GET['editsbid']);
-				$sql = "update exam_subject set name='$sbname',exam_group_id='$sbgid' where id='$sbid'";
-				mysql_query($sql);
-				echo "<script>window.location='subject.php'</script>";	
-			}
+		{		
+			$sbid=trim($_GET['editsbid']);
+			$sql = "update exam_subject set name='$sbname',exam_group_id='$sbgid' where id='$sbid'";
+			mysql_query($sql);
+			//var_dump($sql);
+			echo "<script>window.location='subject.php'</script>";	
+		
 		}	
 		$sbname="";
 		$subm="บันทึกข้อมูล";
@@ -142,10 +139,10 @@
 				</table>
 					</td>
 					<td align="center" width="120" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 18px;font-weight: 700 ;"> ผู้ใช้งานระบบ : </font></span></td>
-					<td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
+					<td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <?php echo $_SESSION['vvname']; ?></span></b></td>
 
 					<td align="center" width="5" bgcolor="#F2CEB3">
-			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><!-- <img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"> --></td>
+			<a href="index.php?delpid=<?php echo $rs['pid']; ?>"><!-- <img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" width="64" height="80"> --></td>
 				</tr>
 				<tr>
 					<td align="center" colspan="4">
@@ -166,7 +163,7 @@
 				<?php	$sbldb=mysql_query("select * from exam_level ");
 					while($sblrs=mysql_fetch_array($sbldb)){	$osblid=trim($sblrs['id']);	$osblname=trim($sblrs['name']);	
 				?>
-					<option value="<? echo $osblid; ?>" <?php if($osblid==$sblid){ echo "selected"; } ?>><?php echo $osblname; ?></option>
+					<option value="<?php echo $osblid; ?>" <?php if($osblid==$sblid){ echo "selected"; } ?>><?php echo $osblname; ?></option>
 				<?php }  ?>	
 				</select></td>
 		</tr>
@@ -175,7 +172,7 @@
 			<p align="right">
 			<span style="font-size: 12pt; font-weight: 700">กลุ่มวิชา :</span></td>
 			<td width="348" bgcolor="#FFCC99" id="tbsbgid">
-				<select name='sbgid'  size="1" style="font-family: Tahoma; font-size: 16px; color: #4B3D34" tabindex="2">
+				<select name='osbgid'  size="1" style="font-family: Tahoma; font-size: 16px; color: #4B3D34" tabindex="2">
 				<option value="0">เลือกชื่อกลุ่มวิชา หากไม่มีกรุณาปรับปรุงรายชื่อกลุ่มวิชา</option>
 			<?php		$sbgdb=mysql_query("select * from exam_group where exam_level_id='$sblid'");
 					while($sbgrs=mysql_fetch_array($sbgdb)){	$osbgid=trim($sbgrs['id']);	$osbgname=trim($sbgrs['name']);		?>
@@ -189,7 +186,7 @@
 			<p align="right">
 			<span style="font-size: 12pt; font-weight: 700">ชื่อวิชา :</span></td>
 			<td width="348" bgcolor="#FFCC99">
-			<input type="text" name="sbname" value="<? echo $sbname; ?>" size="48" style="font-family: Tahoma; font-size: 16px; color: #4B3D34; font-weight: bold" tabindex="3"></td>
+			<input type="text" name="sbname" value="<?php echo $sbname; ?>" size="48" style="font-family: Tahoma; font-size: 16px; color: #4B3D34; font-weight: bold" tabindex="3"></td>
 		</tr>		
 
 		<tr bgcolor="#FFCC99">
@@ -199,7 +196,7 @@
 					<tr>
 						<td>
 						<p align="center">
-				<input type="submit" value="<? echo $subm; ?>" name="subm" style="font-family: Tahoma; font-size: 18px; color: #FF0000; font-weight: bold" tabindex="4"></td>
+				<input type="submit" value="<?php echo $subm; ?>" name="subm" style="font-family: Tahoma; font-size: 18px; color: #FF0000; font-weight: bold" tabindex="4"></td>
 					</tr>
 				</table>
 			
@@ -213,7 +210,7 @@
 		<tr>
 			<td align="center" colspan="6">
 			<font color="#0000FF">
-			<span style="font-size: 12pt; font-weight: 700" lang="en-us"><? echo $msg; ?></span></font></td>
+			<span style="font-size: 12pt; font-weight: 700" lang="en-us"><?php echo $msg; ?></span></font></td>
 		</tr>
 		<tr>
 			<td width="78" align="center" bgcolor="#FF6600">

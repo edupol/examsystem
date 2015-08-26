@@ -82,8 +82,9 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a href="changepwd.php">เปลี่ยนรหัสผ่าน</a></li>
-                    <li class="divider"></li>
                     <li><a href="login.html">ออกจากระบบ</a></li>
+                    <li class="divider"></li>
+                    <li><a href="uploadFile/document.rar">คู่มือการใช้งานระบบ</a></li>
                 </ul>
             </div>
         </div>

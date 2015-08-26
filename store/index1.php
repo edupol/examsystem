@@ -185,11 +185,11 @@
 			&nbsp;&nbsp; </span></font></span>
 							</font></td>
    <td align="center" width="120" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 18px;font-weight: 700 ;"> ผู้ใช้งานระบบ : </font></span></td>
-        <td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
-        <!-- <td align="center" width="65" bgcolor="#D2B8AE"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td> -->
+        <td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <?php echo $_SESSION['vvname']; ?></span></b></td>
+        <!-- <td align="center" width="65" bgcolor="#D2B8AE"><img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td> -->
      
 					<td align="center" width="123" bgcolor="#F2CEB3">
-			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><!-- <img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" 
+			<a href="index.php?delpid=<?php echo $rs['pid']; ?>"><!-- <img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" 
 			width="64" height="80"> --></td>
 				</tr>
 				<tr>
@@ -221,7 +221,7 @@
 							<td width="70">
 							<p align="center"><span lang="en-us">
 							<font color="#FF0000" style="font-size: 14pt">
-						  <span style="font-weight: 700"><?  echo $sbjrow; ?></span></font></span></td>
+						  <span style="font-weight: 700"><?php  echo $sbjrow; ?></span></font></span></td>
 							<td width="33"><font color="#003366"><b><span style="font-size: 14pt">
 							ข้อ</span></b></font></td>
 							<td width="344" id="tcname" align=right></td>
@@ -378,7 +378,7 @@ cellspacing="1" background="images/5.png">
 		</tr>
 	<tr bgcolor="#FFCC99">
 		<td align="center" width="2%">
-		<p align="right"><input type="radio" name="srd<? echo $i; ?>" <?php echo $schk4; ?>></td>
+		<p align="right"><input type="radio" name="srd<?php echo $i; ?>" <?php echo $schk4; ?>></td>
 		<td align="left" width="2%">
 		<p align="right"><span style="font-weight: 700; font-size: 16pt">4</span></td>
 		<td align="left" width="907">

@@ -60,7 +60,7 @@
 </font>
 </span>
 <font face="Tahoma" style="font-size: 15pt; font-weight: 700" color="#FF0000">
-<p align="center"><span lang="en-us"><? echo $msg;    ?></span></p>
+<p align="center"><span lang="en-us"><?php echo $msg;    ?></span></p>
 </font>
 <span lang="en-us">  
 	<font face="AngsanaUPC" style="font-size: 20pt; font-weight: 700" color="#0000FF">

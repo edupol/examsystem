@@ -85,13 +85,13 @@
         <td align="center" colspan="4" bgcolor="#E7D7D0"><img border="0" src="images/head.jpg" width="1024" height="120"></td>
       </tr>
       <tr>
-        <td align="left" width="370" bgcolor="#F2CEB3" valign="bottom"><font color="#0000FF"> <span style="font-size: 11pt" lang="en-us"><font size="3"> <span style="font-size: 9pt">
-<!--           <input type="button" value="ระบบสารสนเทศ บช.ศ. " onClick="window.location='../index.php'" 
-			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left"> -->
-          &nbsp;&nbsp; </span></font></span> </font></td>
+        <td align="left" width="370" bgcolor="#F2CEB3" valign="bottom">
+         <input type="button" value="ระบบสารสนเทศ" onClick="window.location='../index.php'" 
+              style="font-family: Tahoma; font-size: 16px; color: rgb(255, 0, 0); font-weight: bold; padding-left: 2px; padding-right: 0px;"/>
+        </td>
         <td align="center" width="120" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 18px;font-weight: 700 ;"> ผู้ใช้งานระบบ : </font></span></td>
-        <td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
-        <!-- <td align="center" width="65" bgcolor="#D2B8AE"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td> -->
+        <td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <?php echo $_SESSION['vvname']; ?></span></b></td>
+        <!-- <td align="center" width="65" bgcolor="#D2B8AE"><img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td> -->
       </tr>
       <tr>
           <td align="center" colspan="4" height="26">
@@ -108,7 +108,7 @@
             $osblid=trim($val['id']);	
             $osblname=trim($val['name']);	
 				?>
-                <option value="<?php echo $osblid; ?>" <? if($osblid==$id){ echo "selected"; } ?>><?php echo $osblname; ?></option>
+                <option value="<?php echo $osblid; ?>" <?php if($osblid==$id){ echo "selected"; } ?>><?php echo $osblname; ?></option>
                 <?php }  ?>
             </select></td>
             <td height="40" colspan="3"><table border="0" width="100%" cellspacing="3" cellpadding="0">
@@ -123,6 +123,7 @@
                       
                       <input type="button" value="ปรับปรุงชื่อวิชา" onClick="window.location='subject.php'" 
 							style="font-family: Tahoma; font-size: 16px; color: rgb(255, 0, 0); font-weight: bold; padding-left: 2px; padding-right: 0px;">
+
                        </td>
                 </tr>
               </table></td>

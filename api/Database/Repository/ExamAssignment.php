@@ -91,11 +91,16 @@ class ExamAssignment extends BaseClass
 		}    
 
 		$test_result	= PDOAdpter::getInstance()->select($sql, $params, false);
-
-		foreach ($test_result as $index => $value) {
-			$test_result[$index]['seq']            = $index+1;
+		if(isset($test_result)){
+			foreach ($test_result as $index => $value) {
+					$test_result[$index]['seq']            = $index+1;
+			}
+			$results['data'] = $test_result;
+		}else{
+			$results['data'] = 0;
 		}
-		$results['data'] = $test_result;
+
+
 	//	var_dump($results);
 		echo json_encode( $results );
 	}

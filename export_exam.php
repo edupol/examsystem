@@ -6,6 +6,7 @@ require_once('Repository/ExamStore.php');
 $user_id 		= $_POST['user_id'];
 $exam_id 		= $_POST['exam_id'];
 
+
 $exam = Exam::getInstance();
 $results = $exam->getExistingExam($exam_id);	
 
@@ -24,7 +25,7 @@ if(isset($results) && $results != null){//validate null
 	}
 	$header = "<div style=\"position:relative;right:0px;\">รหัสข้อสอบ $exam_code <br/> <b>ยศ ชื่อ - ชื่อสกุล (ตัวบรรจง)</b>....................................<b>ตำแหน่ง</b>........................................<br/>
 		<b>หน่วยสอบ</b>......................................................<b>ลายมือชื่อ</b>.......................................";
-	$header .= " <div style=\"margin-left:50px\"><img src=\"http://edupol.org/edu_P/systemedu/examsystem/img/instruction.jpg\" width=\"550\" height=\"138\"/></div><br/>";
+	$header .= " <div style=\"margin-left:50px\"><img src=\"http://192.168.1.99/examsystem/img/instruction.jpg\" width=\"550\" height=\"138\"/></div><br/>";
 	$header .= "<b>เลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว</b>";
 
 

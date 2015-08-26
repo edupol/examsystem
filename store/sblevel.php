@@ -93,11 +93,11 @@
 					</td>
 					<td align="center" width="10" bgcolor="#F2CEB3">&nbsp;</td>
 					<td align="center" width="120" valign="bottom" bgcolor="#F2CEB3"><p align="right"><font style="font-size: 18px;font-weight: 700 ;"> ผู้ใช้งานระบบ : </font></span></td>
-					<td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <? echo $_SESSION['vvname']; ?></span></b></td>
-					<!-- <td align="center" width="65" bgcolor="#D2B8AE"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td> -->
+					<td align="center" width="225" valign="bottom" bgcolor="#F2CEB3"><p align="left"><b><span style="font-size: 18px;font-weight: 700 ;color:#003366" lang="en-us"> <?php echo $_SESSION['vvname']; ?></span></b></td>
+					<!-- <td align="center" width="65" bgcolor="#D2B8AE"><img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td> -->
 
 					<td align="center" width="65" bgcolor="#F2CEB3">
-			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><!-- <img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" width="64" height="80"> --></td>
+			<a href="index.php?delpid=<?php echo $rs['pid']; ?>"><!-- <img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" width="64" height="80"> --></td>
 				</tr>
 				<tr>
 					<td colspan="4"></td>
@@ -116,7 +116,7 @@
 			<span style="font-size: 16pt; font-weight: 700">รหัสหลักสูตร : </span>
 			</td>
 			<td width="339" bgcolor="#FFCC99">
-		  <input type="text" name="sblid" value="<? echo $sblid; ?>" readonly size="14" style="font-family: Tahoma; font-size: 12; color: #4B3D34; ">  </td>
+		  <input type="text" name="sblid" value="<?php echo $sblid; ?>" readonly size="14" style="font-family: Tahoma; font-size: 12; color: #4B3D34; ">  </td>
 		</tr> -->
 		<tr>
 			<td width="151" align="right" bgcolor="#FFCC99">
@@ -134,7 +134,7 @@
 				</td>
 						<td width="498">
 						<p align="center">
-				<input type="submit" value="<? echo $subm; ?>" name="subm" style="font-family: Tahoma; font-size: 18; color: #FF0000; font-weight: bold" tabindex="2"></td>
+				<input type="submit" value="<?php echo $subm; ?>" name="subm" style="font-family: Tahoma; font-size: 18; color: #FF0000; font-weight: bold" tabindex="2"></td>
 					</tr>
 				</table>
 			
@@ -148,7 +148,7 @@
 	<table border="0" width="660" height="71" cellspacing="1" cellpadding="2">
 		<tr>
 			<td align="center" colspan="4">
-			<font color="#0000FF"><span style="font-size: 16pt" lang="en-us"><? echo $msg; ?></span></font></td>
+			<font color="#0000FF"><span style="font-size: 16pt" lang="en-us"><?php echo $msg; ?></span></font></td>
 		</tr>
 		<tr>
 			<td width="73" align="center" bgcolor="#FF6600">
@@ -188,7 +188,7 @@
 			<td width="520" bgcolor="#FF9966" height="22">
 			<span style="font-size: 16pt" lang="en-us"><?php echo $ssblname; ?></span></td>
 			<td width="21" bgcolor="#FF9966" align="center" height="22">
-			<a href="sblevel.php?editsblid=<?php echo $ssblid; ?>&editsblname=<? echo $ssblname; ?>">
+			<a href="sblevel.php?editsblid=<?php echo $ssblid; ?>&editsblname=<?php echo $ssblname; ?>">
 			<img border="0" src="images/b_edit.png" width="16" height="16"></a></td>
 			<td width="21" bgcolor="#FF9966" align="center" height="22">
 			<a href="sblevel.php?delsblid=<?php echo $ssblid; ?>">

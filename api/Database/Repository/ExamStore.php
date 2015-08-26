@@ -244,7 +244,7 @@ class ExamStore extends BaseClass
 	}
 
 	public function export(){
-		echo json_encode( array('questions' => base64_encode($_SESSION['random_questions']),'questions_id' =>  $_SESSION['questions_id'] , 'user_id' => $_SESSION['user_id']));
+		echo json_encode( array('questions' => base64_encode($_SESSION['random_questions']),'questions_id' =>  base64_encode($_SESSION['questions_id']) , 'user_id' => $_SESSION['user_id']));
 	}
 
 	private function isExist($data){
@@ -307,8 +307,8 @@ class ExamStore extends BaseClass
 				array_push($where , " id = ? ");
 				array_push($params,$id);
 				
-				array_push($where , "is_error = ? ");
-				array_push($params, $is_error);
+				// array_push($where , "is_error = ? ");
+				// array_push($params, $is_error);
 			}
 			
 			//merge where conditions
@@ -318,6 +318,7 @@ class ExamStore extends BaseClass
 			//Fetch result into arrays
 			$result     = PDOAdpter::getInstance()->select($sql, $params,false);	    	
 			$questions  = null;
+
 			$date 	    = new DateTime("now");
 			if(isset($result)){
 				$questions = self::getExistingExam($id);
@@ -349,7 +350,7 @@ class ExamStore extends BaseClass
 			if (isset($id) ) {
 	
 				//sql for pwd criteria			
-				array_push($where , "id = ? ");
+				array_push($where , "`b`.id = ? ");
 				array_push($params,$id);
 			}
 			
@@ -433,7 +434,8 @@ class ExamStore extends BaseClass
 		$answers 				= $request->post('ans');
 
 		if($answers == null){
-			$results['message'] =  'หมดเวลา : ไม่มีข้อมูลการทำแบบทดสอบ';
+			$results['message'] =  'เกิดข้อผิดพลาด : ไม่มีข้อมูลการทำแบบทดสอบ';
+			$results['route']   = 'list_of_test.php';
 		    echo json_encode($results);	
 		    return;
 		}

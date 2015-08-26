@@ -15,7 +15,7 @@ $data['name'] 				= $_POST['name'];
 $data['exam_minute']		= $_POST['exam_minute'];
 $data['created_date'] 		= date('Y-m-d H:i:s');
 
-$result = $exam->saveRandomHistory($data,unserialize($_POST['questions_id'] ));
+$result = $exam->saveRandomHistory($data,unserialize(base64_decode($_POST['questions_id'] )));
 $exam_code = '';
 
 $index = 1;
@@ -35,7 +35,7 @@ if(isset($result) && $result != null){//validate null
 	}
 	$header = "รหัสข้อสอบ $exam_code <br/> <b>ยศ ชื่อ - ชื่อสกุล (ตัวบรรจง)</b>....................................<b>ตำแหน่ง</b>....................................<br/>
 		<b>หน่วยสอบ</b>....................................<b>ลายมือชื่อ</b>.........................................";
-	$header .= " <div style=\"margin-left:50px\"><img src=\"http://edupol.org/edu_P/systemedu/examsystem/img/instruction.jpg\" width=\"354\" height=\"99\"/></div><br/>";
+	$header .= " <div style=\"margin-left:50px\"><img src=\"img/instruction.jpg\" width=\"354\" height=\"99\"/></div><br/>";
 	$header .= "<b>เลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว</b>";
 
 

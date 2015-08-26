@@ -14,8 +14,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Language" content="th">
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-874">
-		<title>π”‡¢È“¢ÈÕ Õ∫</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>‡∏ô‡∏≥‡πÄ‡∏Ç‡πâ‡∏≤‡∏Ç‡πâ‡∏≠‡∏™‡∏≠‡∏ö</title>
         <script src="js/jquery.min.js"></script>  
         <script src="js/util.js"   type="text/javascript" ></script>
         <script src="<?php echo WEB_PATH;?>js/url.helper.js"></script>
@@ -28,32 +28,32 @@
 ?>
 <div align="center">
 
-			<input type=hidden name=sbno value="<? echo $sbno; ?>">
+			<input type=hidden name=sbno value="<?php echo $sbno; ?>">
 			<table border="0" width="1024" background="images/laithai.jpg" cellspacing="0" cellpadding="0">
 				<tr>
 					<td align="center" colspan="4" bgcolor="#E7D7D0">
-					<img border="0" src="images/head.gif" width="1024" height="120"></td>
+					<!-- <img border="0" src="images/head.gif" width="1024" height="120"> --></td>
 				</tr>
 				<tr>
 					<td align="left" width="611" bgcolor="#D2B8AE" valign="bottom"><font color="#0000FF">
 			<span style="font-size: 11pt" lang="en-us"><font size="3">
 			<span style="font-size: 9pt">
-			<input type="button" value="√–∫∫ “√ π‡∑» ∫™.». " onClick="window.location='../index.php'" 
+			<input type="button" value="‡∏£‡∏∞‡∏ö‡∏ö‡∏™‡∏≤‡∏£‡∏™‡∏ô‡πÄ‡∏ó‡∏® ‡∏ö‡∏ä.‡∏®. " onClick="window.location='../index.php'" 
 			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left">
-			<input type="button" value="‡≈◊Õ°À≈—° Ÿµ√  °≈ÿË¡«‘™“  ™◊ËÕ«‘™“" onClick="window.location='index.php'" 
+			<input type="button" value="‡πÄ‡∏•‡∏∑‡∏≠‡∏Å‡∏´‡∏•‡∏±‡∏Å‡∏™‡∏π‡∏ï‡∏£  ‡∏Å‡∏•‡∏∏‡πà‡∏°‡∏ß‡∏¥‡∏ä‡∏≤  ‡∏ä‡∏∑‡πà‡∏≠‡∏ß‡∏¥‡∏ä‡∏≤" onClick="window.location='index.php'" 
 			style="font-family: Tahoma; font-size: 15; color: #FF0000; font-weight: bold; float:left">
 			&nbsp;&nbsp; </span></font></span>
 							</font></td>
 					<td align="center" width="106" valign="bottom" bgcolor="#D2B8AE">
 					<p align="right"><font style="font-size: 11pt">
-					ºŸÈ„™Èß“π√–∫∫ :</font></td>
+					‡∏ú‡∏π‡πâ‡πÉ‡∏ä‡πâ‡∏á‡∏≤‡∏ô‡∏£‡∏∞‡∏ö‡∏ö :</font></td>
 					<td align="center" width="242" valign="bottom" bgcolor="#D2B8AE">
 					<p align="left"><b>
 					<span style="font-size: 11pt; font-weight: 700 color:#003366" lang="en-us">
-					<? echo $_SESSION['vvname']; ?></span></b></td>
+					<?php echo $_SESSION['vvname']; ?></span></b></td>
 					<td align="center" width="65" bgcolor="#D2B8AE">
-			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" 
-			width="64" height="80"></td>
+			<a href="index.php?delpid=<?php echo $rs['pid']; ?>"><!-- <img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" 
+			width="64" height="80"> --></td>
 				</tr>
 				<tr>
 					<td align="center" colspan="4" height="26">
@@ -62,9 +62,9 @@
 							<td width="5">&nbsp;</td>
 							<td><span style="font-size: 12pt; font-weight: 500" lang="en-us">
 							
-							<? echo "ÕÕ°¢ÈÕ Õ∫À≈—° Ÿµ√ : <font color='#FF0000'>".$sblname."
-							</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; °≈ÿË¡«‘™“ : <font color=	'#FF0000'>".$sbgname."
-							</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;«‘™“ : <font color='#FF0000'>".$sbname."</font> -".$sbid; ?>
+							<?php echo "‡∏≠‡∏≠‡∏Å‡∏Ç‡πâ‡∏≠‡∏™‡∏≠‡∏ö‡∏´‡∏•‡∏±‡∏Å‡∏™‡∏π‡∏ï‡∏£ : <font color='#FF0000'>".$sblname."
+							</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ‡∏Å‡∏•‡∏∏‡πà‡∏°‡∏ß‡∏¥‡∏ä‡∏≤ : <font color=	'#FF0000'>".$sbgname."
+							</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;‡∏ß‡∏¥‡∏ä‡∏≤ : <font color='#FF0000'>".$sbname."</font> -".$sbid; ?>
 							</span>
 							</td>
 						</tr>
@@ -77,16 +77,16 @@
 						<tr>
 							<td width="121">
 							<p align="right"><b>
-							<font style="font-size: 10pt" color="#003366">¢ÈÕ Õ∫ÕÕ°‰«È·≈È« </font> <span lang="en-us">
+							<font style="font-size: 10pt" color="#003366">‡∏Ç‡πâ‡∏≠‡∏™‡∏≠‡∏ö‡∏≠‡∏≠‡∏Å‡πÑ‡∏ß‡πâ‡πÅ‡∏•‡πâ‡∏ß </font> <span lang="en-us">
 							<font style="font-size: 10pt" color="#003366">:</font><span style="font-size: 10pt">
 							</span> </span></b>
 							</td>
 							<td width="59">
 							<p align="center"><span lang="en-us">
 							<font color="#FF0000" style="font-size: 13pt">
-							<span style="font-weight: 700"><?  echo $sbjrow; ?></span></font></span></td>
+							<span style="font-weight: 700"><?php  echo $sbjrow; ?></span></font></span></td>
 							<td width="105"><font color="#003366"><b><span style="font-size: 10pt">
-							¢ÈÕ</span></b></font></td>
+							‡∏Ç‡πâ‡∏≠</span></b></font></td>
 							<td width="369" id="tcname" align=right></td>
 							<td></td>
 						</tr>
@@ -99,12 +99,12 @@
                         <table width="100%" class="table-style1">    
                                <tr>
                                    <td height="30" width="100%">
-                                       <span style="font-family: Tahoma; font-size: 13pt; color: #000000;font-weight: bold; " class="pad-l1">¢—ÈπµÕπ°“√Õ—æ‚À≈¥</span>
+                                       <span style="font-family: Tahoma; font-size: 13pt; color: #000000;font-weight: bold; " class="pad-l1">‡∏Ç‡∏±‡πâ‡∏ô‡∏ï‡∏≠‡∏ô‡∏Å‡∏≤‡∏£‡∏≠‡∏±‡∏û‡πÇ‡∏´‡∏•‡∏î</span>
                                    </td>
                                </tr>
                                <tr height="30">
                                    <td class="pad-l1">
-                                       <span style="font-family: Tahoma; font-size: 9pt; color: #000000;font-weight: bold; ">1. ®—¥ Format ‰ø≈Ï„π Excel ¥—ßπ’È</span>
+                                       <span style="font-family: Tahoma; font-size: 9pt; color: #000000;font-weight: bold; ">1. ‡∏à‡∏±‡∏î Format ‡πÑ‡∏ü‡∏•‡πå‡πÉ‡∏ô Excel ‡∏î‡∏±‡∏á‡∏ô‡∏µ‡πâ</span>
                                    </td>
                                </tr>
                                <tr>
@@ -114,18 +114,18 @@
                                                <td width="8%" valign="top" class="pad-l1">     
                                                    <span style="padding-right:2px;font-family: Tahoma; font-size: 9pt; color: #FF0000;font-weight: bold; ">Column A :</span>                  
                                                </td>
-                                               <td width="23%"  valign="top"><span class="text-1">«‘™“</span></td>
+                                               <td width="23%"  valign="top"><span class="text-1">‡∏ß‡∏¥‡∏ä‡∏≤</span></td>
                                                <td width="8%" valign="top">            
                                                    <span style="padding-right:2px;font-family: Tahoma; font-size: 9pt; color: #FF0000;font-weight: bold; ">Column B :</span>           
                                                </td>
                                                <td width="23%" valign="top"> 
-                                                   <span class="text-1">§”∂“¡</span>                      
+                                                   <span class="text-1">‡∏Ñ‡∏≥‡∏ñ‡∏≤‡∏°</span>                      
                                                </td>
                                                <td width="8%" valign="top">         
                                                    <span style="padding-right:2px;font-family: Tahoma; font-size: 9pt; color: #FF0000;font-weight: bold; ">Column C :</span>              
                                                </td>
                                                <td width="23%" valign="top"> 
-                                                  <span class="text-1">„ Ë §”µÕ∫∑’Ë 1</span><span style="font-family: Tahoma; font-size: 9pt; color: #003300;font-weight: bold; "></span>                     
+                                                  <span class="text-1">‡πÉ‡∏™‡πà ‡∏Ñ‡∏≥‡∏ï‡∏≠‡∏ö‡∏ó‡∏µ‡πà 1</span><span style="font-family: Tahoma; font-size: 9pt; color: #003300;font-weight: bold; "></span>                     
                                                </td>
                                            </tr>   
                                            
@@ -134,28 +134,28 @@
                                                    <span style="padding-right:2px;font-family: Tahoma; font-size: 9pt; color: #FF0000;font-weight: bold; ">Column D :</span>                  
                                                </td>
                                                <td width="23%"  valign="top">    
-                                                   <span class="text-1">„ Ë §”µÕ∫∑’Ë 2</span></td>
+                                                   <span class="text-1">‡πÉ‡∏™‡πà ‡∏Ñ‡∏≥‡∏ï‡∏≠‡∏ö‡∏ó‡∏µ‡πà 2</span></td>
                                                <td width="8%" valign="top">            
                                                    <span style="padding-right:2px;font-family: Tahoma; font-size: 9pt; color: #FF0000;font-weight: bold; ">Column E :</span>           
                                                </td>
                                                <td width="23%" valign="top"> 
-                                               <span class="text-1">„ Ë §”µÕ∫∑’Ë 3</span></td>
+                                               <span class="text-1">‡πÉ‡∏™‡πà ‡∏Ñ‡∏≥‡∏ï‡∏≠‡∏ö‡∏ó‡∏µ‡πà 3</span></td>
                                                <td width="8%" valign="top">         
                                                    <span style="padding-right:2px;font-family: Tahoma; font-size: 9pt; color: #FF0000;font-weight: bold; ">Column F :</span>              
                                                </td>
                                                <td width="23%" valign="top"> 
-                                                  <span class="text-1">„ Ë §”µÕ∫∑’Ë 4</span></td>
+                                                  <span class="text-1">‡πÉ‡∏™‡πà ‡∏Ñ‡∏≥‡∏ï‡∏≠‡∏ö‡∏ó‡∏µ‡πà 4</span></td>
                                            </tr>
                                        </table>
                                </tr>
                                <tr height="30">
                                    <td colspan="3" class="pad-l1">
-                                       <span style="font-family: Tahoma; font-size: 9pt; color: #000000;font-weight: bold; ">2. Save ‰ø≈Ï ·≈È«‡≈◊Õ° Save as type ‡ªÁπ·∫∫ CVS (Comma delimited) (*.cvs) </span>
+                                       <span style="font-family: Tahoma; font-size: 9pt; color: #000000;font-weight: bold; ">2. Save ‡πÑ‡∏ü‡∏•‡πå ‡πÅ‡∏•‡πâ‡∏ß‡πÄ‡∏•‡∏∑‡∏≠‡∏Å Save as type ‡πÄ‡∏õ‡πá‡∏ô‡πÅ‡∏ö‡∏ö CVS (Comma delimited) (*.cvs) </span>
                                    </td>
                                </tr>
                                <tr height="20">
                                    <td colspan="3">
-                                       <span class="pad-l1" style="font-family: Tahoma; font-size: 9pt; color: #000000;font-weight: bold; ">3. ‡ª‘¥‰ø≈Ï CVS ·≈È«‡≈◊Õ° Save as ‚¥¬ª√—∫ Encoding ‡ªÁπ UTF-8</span>
+                                       <span class="pad-l1" style="font-family: Tahoma; font-size: 9pt; color: #000000;font-weight: bold; ">3. ‡πÄ‡∏õ‡∏¥‡∏î‡πÑ‡∏ü‡∏•‡πå CVS ‡πÅ‡∏•‡πâ‡∏ß‡πÄ‡∏•‡∏∑‡∏≠‡∏Å Save as ‡πÇ‡∏î‡∏¢‡∏õ‡∏£‡∏±‡∏ö Encoding ‡πÄ‡∏õ‡πá‡∏ô UTF-8</span>
                                    </td>
                                </tr>
                            </table>
@@ -170,7 +170,7 @@
                             <table width="100%">
                                 <tr>
                                      <td align="right" width="35%">                     
-                                         <span style="padding-right:10px;font-family: Tahoma; font-size: 11pt; color: #0000FF;font-weight: bold; ">‡≈◊Õ°‰ø≈Ï CVS :</span>                    
+                                         <span style="padding-right:10px;font-family: Tahoma; font-size: 11pt; color: #0000FF;font-weight: bold; ">‡πÄ‡∏•‡∏∑‡∏≠‡∏Å‡πÑ‡∏ü‡∏•‡πå CVS :</span>                    
                                      </td>
                                      <td>
                                          <input  type="file" name="fileCSV" id="fileCSV" size="60">                  
@@ -199,36 +199,36 @@
                         <table width="100%">
                             <tr bgcolor="#514139">
                                 <td align="center" width="5%" >
-                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">√À— </span></td>
+                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">‡∏£‡∏´‡∏±‡∏™</span></td>
                                 <td align="center" width="20%" >
-                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">§”∂“¡</span></td>    
+                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">‡∏Ñ‡∏≥‡∏ñ‡∏≤‡∏°</span></td>    
                                 <td align="center" width="15%" >
-                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">§”µÕ∫∑’Ë 1</span></td>    
+                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">‡∏Ñ‡∏≥‡∏ï‡∏≠‡∏ö‡∏ó‡∏µ‡πà 1</span></td>    
                                 <td align="center" width="15%" >
-                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">§”µÕ∫∑’Ë 2</span></td>    
+                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">‡∏Ñ‡∏≥‡∏ï‡∏≠‡∏ö‡∏ó‡∏µ‡πà 2</span></td>    
                                 <td align="center" width="15%" >
-                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">§”µÕ∫∑’Ë 3</span></td>    
+                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">‡∏Ñ‡∏≥‡∏ï‡∏≠‡∏ö‡∏ó‡∏µ‡πà 3</span></td>    
                                 <td align="center" width="15%" >
-                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">§”µÕ∫∑’Ë 4</span></td>          
+                                    <span style="font-family: Tahoma; font-size: 9pt; color: #FFFFFF;font-weight: bold; ">‡∏Ñ‡∏≥‡∏ï‡∏≠‡∏ö‡∏ó‡∏µ‡πà 4</span></td>          
                             </tr>
                             
-                            <? for($i=0;$i<count($exams);$i++){		
+                            <?php for($i=0;$i<count($exams);$i++){		
 							 	 	  $rowStyle = ($i%2==0) ?  '#CFC2BA' : '#F0E2D9' ;
                             ?> 
                                    
                                <tr>             		    
-                              <!-- √À—  -->
-                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><? echo $exams[$i]['exam_subject_id'];  ?></span></td>
-                              <!-- À≈—° Ÿµ√ -->
-                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><? echo $exams[$i]['qtn'];  ?></span></td>
-                               <!-- √À—  13 À≈—° -->
-                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><? echo $exams[$i]['ans1'];  ?></span></td>
-                               <!-- ¬» -->
-                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><? echo $exams[$i]['ans2'];  ?></span></td>
-                               <!-- ™◊ËÕ -->
-                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><? echo $exams[$i]['ans3'];  ?></span></td>
-                               <!-- π“¡ °ÿ≈ -->
-                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><? echo $exams[$i]['ans4'];  ?></span></td>
+                              <!-- ‡∏£‡∏´‡∏±‡∏™ -->
+                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><?php echo $exams[$i]['exam_subject_id'];  ?></span></td>
+                              <!-- ‡∏´‡∏•‡∏±‡∏Å‡∏™‡∏π‡∏ï‡∏£ -->
+                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><?php echo $exams[$i]['qtn'];  ?></span></td>
+                               <!-- ‡∏£‡∏´‡∏±‡∏™ 13 ‡∏´‡∏•‡∏±‡∏Å -->
+                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><?php echo $exams[$i]['ans1'];  ?></span></td>
+                               <!-- ‡∏¢‡∏® -->
+                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><?php echo $exams[$i]['ans2'];  ?></span></td>
+                               <!-- ‡∏ä‡∏∑‡πà‡∏≠ -->
+                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><?php echo $exams[$i]['ans3'];  ?></span></td>
+                               <!-- ‡∏ô‡∏≤‡∏°‡∏™‡∏Å‡∏∏‡∏• -->
+                                  <td align="center" bgcolor="<?=$rowStyle;?>" height="7"><span style="font-size: 9pt" style="word-break:break-all;"><?php echo $exams[$i]['ans4'];  ?></span></td>
                               </tr>    
                           
                           <?php } ?>
@@ -251,7 +251,7 @@
 				<tr>
 					<td align="center" colspan="4"><font color="#9F777E">
 					<span style="font-size: 12pt; font-weight: 700">
-						æ—≤π“‚¥¬ ΩË“¬Õ”π«¬°“√ 6 °Õß∫—ß§—∫°“√Õ”π«¬°“√ °Õß∫—≠™“°“√»÷°…“</span></font>
+						‡∏û‡∏±‡∏í‡∏ô‡∏≤‡πÇ‡∏î‡∏¢ ‡∏ù‡πà‡∏≤‡∏¢‡∏≠‡∏≥‡∏ô‡∏ß‡∏¢‡∏Å‡∏≤‡∏£ 6 ‡∏Å‡∏≠‡∏á‡∏ö‡∏±‡∏á‡∏Ñ‡∏±‡∏ö‡∏Å‡∏≤‡∏£‡∏≠‡∏≥‡∏ô‡∏ß‡∏¢‡∏Å‡∏≤‡∏£ ‡∏Å‡∏≠‡∏á‡∏ö‡∏±‡∏ç‡∏ä‡∏≤‡∏Å‡∏≤‡∏£‡∏®‡∏∂‡∏Å‡∏©‡∏≤</span></font>
 					</td>
 				</tr>
 			</table>

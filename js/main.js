@@ -1,6 +1,6 @@
 // JavaScript Document
 window.Setting = {
-	testAPI 	: '//192.168.8.69/examsystem/api/',
+	testAPI 	: '//192.168.1.99/examsystem/api/',
 	serverAPI 	: '//edupol.org/examsystem/api/',
 	isTest  	: true,
 	isError     : false,

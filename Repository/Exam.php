@@ -110,7 +110,7 @@ class Exam extends BaseClass{
 			if (isset($id) ) {
 	
 				//sql for pwd criteria			
-				array_push($where , "id = ? ");
+				array_push($where , "`b`.id = ? ");
 				array_push($params,$id);
 			}
 			
@@ -119,6 +119,7 @@ class Exam extends BaseClass{
 				$sql 	 .= PDOAdpter::getInstance()->whereQuery($where);
 			}
 
+			var_dump($sql);
 			//Fetch result into arrays
 			$results  = PDOAdpter::getInstance()->select($sql, $params,false);	    	
 			

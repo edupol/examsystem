@@ -66,9 +66,9 @@
 ?>	 
 <div align="center">
 <form method="POST" action="index.php" name="sbjfrm" onSubmit="return chk()">
-			<input type=hidden name=epid value="<? echo $epid; ?>">
-			<input type=hidden name=epname value="<? echo $epname; ?>">
-			<input type=hidden name=epfull value="<? echo $epfull; ?>">
+			<input type=hidden name=epid value="<?php echo $epid; ?>">
+			<input type=hidden name=epname value="<?php echo $epname; ?>">
+			<input type=hidden name=epfull value="<?php echo $epfull; ?>">
 			<table border="0" width="1024" background="images/5.png" cellspacing="0" cellpadding="0">
 				<tr>
 					<td align="center" colspan="4" bgcolor="#E7D7D0"><img src="images/head.jpg" alt="" width="1162" height="136" border="0"></td>
@@ -86,9 +86,9 @@
 					<td align="center" width="307" valign="bottom" bgcolor="#F2CEB3">
 					<p align="left">
 					<span style="font-size: 11pt; font-weight: 700 color:#003366" lang="en-us">
-					<? $_SESSION['vvname']; ?></span></td>
+					<?php $_SESSION['vvname']; ?></span></td>
 					<td align="center" width="65" bgcolor="#F2CEB3">
-			<a href="index.php?delpid=<? echo $rs['pid']; ?>"><img border="0" src="../<? echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td>
+			<a href="index.php?delpid=<?php echo $rs['pid']; ?>"><img border="0" src="../<?php echo $_SESSION['vvphoto']; ?>" width="64" height="80"></td>
 				</tr>
 				<tr>
 					<td align="center" colspan="4" height="26">
@@ -98,14 +98,14 @@
 							<p align="right"><span style="font-size: 10pt"><span lang="en-us">&nbsp;<font color="#003366">
 								</font></span><font color="003366">วิชาที่ออกข้อสอบ :</font></span></td>
 							<td width="248"><p align="left">
-									<select id="sbgid" onChange="getData('sbj.php?zsbgid='+sbgid.value+'&zsbid=<? echo $sbid; ?>','tdsbid')" name="sbgid" size="1" style="font-family: Tahoma; font-size: 12; color: #4B3D34">
+									<select id="sbgid" onChange="getData('sbj.php?zsbgid='+sbgid.value+'&zsbid=<?php echo $sbid; ?>','tdsbid')" name="sbgid" size="1" style="font-family: Tahoma; font-size: 12; color: #4B3D34">
 									<option>เลือกกลุ่มวิชา หากไม่มีกรุณาเพิ่มรายชื่อใหม่</option>
 									<?php $sbgdb=mysql_query("select * from exam_group");
 										while($sbgrs=mysql_fetch_array($sbgdb))
 										{	$ssbgid=trim($sbgrs['id']);
 											$ssbgname=trim($sbgrs['name']);
 									?>
-									<option value="<? echo $ssbgid; ?>" <?php if($ssbgid==$sbgid){ echo "selected";} ?>><?php echo $ssbgname; ?></option>
+									<option value="<?php echo $ssbgid; ?>" <?php if($ssbgid==$sbgid){ echo "selected";} ?>><?php echo $ssbgname; ?></option>
 									<?php $i++; }  ?>
 								</select>
 							</td>
@@ -300,7 +300,7 @@ cellspacing="1" background="images/5.png">
 		</tr>
 	<tr bgcolor="#FFCC99">
 		<td align="center" width="2%">
-		<p align="right"><input type="radio" name="srd<? echo $i; ?>" <?php echo $schk4; ?>></td>
+		<p align="right"><input type="radio" name="srd<?php echo $i; ?>" <?php echo $schk4; ?>></td>
 		<td align="left" width="2%">
 		<p align="right"><span style="font-weight: 700; font-size: 9pt">4</span></td>
 		<td align="left" width="907">
