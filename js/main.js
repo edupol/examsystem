@@ -1,6 +1,6 @@
 // JavaScript Document
 window.Setting = {
-	testAPI 	: '//192.168.1.99/examsystem/api/',
+	testAPI 	: '//192.168.8.69/examsystem/api/',
 	serverAPI 	: '//edupol.org/examsystem/api/',
 	isTest  	: true,
 	isError     : false,
@@ -878,15 +878,16 @@ window.Logon  = {
 				type: 'POST' ,
 				dataType: "json",
 				success: function(response){
-
+					//console.log(response);
 					if(response != "undefined" && response != null){
 						if(response.info == null) {
 							window.location = response.route;
-						};
-						if(!response.info.isLoggedIn){
-							alert('ท่านไม่สามารถเข้าใช้งานได้ กรุณาล๊อกอินเข้าระบบอีกครั้ง');
+						}else{
+							if(!response.info.isLoggedIn){
+								alert('ท่านไม่สามารถเข้าใช้งานได้ กรุณาล๊อกอินเข้าระบบอีกครั้ง');
+							}
+							jQuery('#username').html(response.info.username);
 						}
-						jQuery('#username').html(response.info.username);
 					}
 				}	
 			});		
@@ -1380,16 +1381,6 @@ $(document).ready(function(){
 	var source 	= window.Setting.page(),
 	urlData  	= window.URL.getUriObject(window.self.location.href),
 	directory 	= urlData.directory;
-
-	// if(directory == "/examsystem/store/"){
-	// 	//load user id into store session
-	// 	window.ListOfExams.getUser(function(response){
-	// 		var uid = response.user_id;
-	// 		$.post("set_session.php", { id: uid}, function( data ) {
-	// 		  //
-	// 		});
-	// 	});
-	// }
 
 	switch(source){
 		case 'register.php' : 

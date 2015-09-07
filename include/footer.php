@@ -48,7 +48,7 @@
 <!-- application script for Charisma demo -->
 <script src="<?php echo WEB_PATH;?>js/charisma.js"></script>
 <script src="<?php echo WEB_PATH;?>js/url.helper.js"></script>
-<script src="<?php echo WEB_PATH;?>js/main.js"></script>
+<script src="<?php echo WEB_PATH;?>js/main.js?v=2"></script>
 
 </body>
 </html>
