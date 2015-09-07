@@ -85,6 +85,7 @@ class ExamStore extends BaseClass
 		$data['rank_id'] 			= $request->post('rank');
 		$data['first_name'] 		= $request->post('first_name');
 		$data['last_name'] 			= $request->post('last_name');
+		$data['username'] 			= $request->post('username');
 		$data['phone'] 				= $request->post('phone');
 		$data['email'] 				= $request->post('email');
 		$data['position_id'] 		= $request->post('position');
@@ -105,7 +106,7 @@ class ExamStore extends BaseClass
 
 			if(isset($id)){
 				//set login status
-				Membership::getInstance()->validate_user($data['phone'],$data['password']);
+				Membership::getInstance()->validate_user($data['username'],$data['password']);
 				$result = array(
 									'isError' 	=>  false,
 									'message'   =>  'การสมัครเสร็จสมบูรณ์',
